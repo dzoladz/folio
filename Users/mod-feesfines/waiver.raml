@@ -1,0 +1,53 @@
+#%RAML 1.0
+title: Waives
+version: v1
+baseUri: http://github.com/org/folio/mod-feesfines
+
+documentation:
+  - title: Waives API
+    content: This documents the API calls that can be made to query and manage waive of the system
+
+types:
+  waiver: !include waivedata.json
+  waivedataCollection: !include waivedataCollection.json
+  errors: !include raml-util/schemas/errors.schema
+
+traits:
+  orderable: !include raml-util/traits/orderable.raml
+  pageable: !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+  language: !include raml-util/traits/language.raml
+  validate: !include raml-util/traits/validation.raml
+  facets: !include raml-util/traits/facets.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+  get-only: !include raml-util/rtypes/get-only.raml
+  post-empty-body: !include raml-util/rtypes/post-empty-body.raml
+
+/waives:
+  type:
+    collection:
+      exampleCollection: !include examples/waive_collection.sample
+      exampleItem: !include examples/waive.sample
+      schemaCollection: waivedataCollection
+      schemaItem: waiver
+  get:
+    is: [
+      searchable: {description: "with valid searchable fields", example: "active=true"},
+      orderable: {fieldsList: "field A, field B"},
+      pageable,
+      facets
+    ]
+    description: Return a list of waive
+  post:
+    is: [validate]
+    description: Create a waive
+  /{waiveId}:
+    type:
+      collection-item:
+        exampleItem: !include examples/waive.sample
+        schema: waiver
+    get:
+      description: Get a single waive

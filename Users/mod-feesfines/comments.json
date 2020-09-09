@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Comments",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-feesfines"
+      }
+    ],
+    "paths": {
+      "/comments": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of comments",
+          "operationId": "GET_comments"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a comment",
+          "operationId": "POST_comments"
+        }
+      },
+      "/comments/{commentId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single comment",
+          "operationId": "GET_comments-commentId"
+        },
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "comment": {
+          "includePath": "commentdata.json",
+          "$ref": "#/components/schemas/Can not resolve commentdata.json"
+        },
+        "commentdataCollection": {
+          "includePath": "commentdataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve commentdataCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

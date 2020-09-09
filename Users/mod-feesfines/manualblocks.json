@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Manual Patron Blocks",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-feesfines"
+      }
+    ],
+    "paths": {
+      "/manualblocks": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of manualblocks",
+          "operationId": "GET_manualblocks"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a manualblock",
+          "operationId": "POST_manualblocks"
+        }
+      },
+      "/manualblocks/{manualblockId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single manualblock",
+          "operationId": "GET_manualblocks-manualblockId"
+        },
+        "parameters": [
+          {
+            "name": "manualblockId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "manualblock": {
+          "includePath": "manualblockdata.json",
+          "$ref": "#/components/schemas/Can not resolve manualblockdata.json"
+        },
+        "manualblockdataCollection": {
+          "includePath": "manualblockdataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve manualblockdataCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,83 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Feefines",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-feesfines"
+      }
+    ],
+    "paths": {
+      "/feefines": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of feefines",
+          "operationId": "GET_feefines"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a feefine",
+          "operationId": "POST_feefines"
+        }
+      },
+      "/feefines/{feefineId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single feefine",
+          "operationId": "GET_feefines-feefineId"
+        },
+        "parameters": [
+          {
+            "name": "feefineId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "feefine": {
+          "includePath": "feefinedata.json",
+          "$ref": "#/components/schemas/Can not resolve feefinedata.json"
+        },
+        "feefinedataCollection": {
+          "includePath": "feefinedataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve feefinedataCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "error.schema": {
+          "includePath": "raml-util/schemas/error.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/error.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

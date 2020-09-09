@@ -1,0 +1,761 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Mod-Users BL",
+      "version": "v5.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-users-bl"
+      }
+    ],
+    "paths": {
+      "/bl-users": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/compositeUserListObject"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access denied"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a number of user (and possibly related) records based on criteria in the user and related modules",
+          "operationId": "GET_bl-users"
+        }
+      },
+      "/bl-users/by-id/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/compositeUser"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "User not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a user by id",
+          "operationId": "GET_bl-users-by-id-id",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/trait_permissionsExpandable_expandPermissions"
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bl-users/by-username/{username}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/compositeUser"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "User not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a user by username",
+          "operationId": "GET_bl-users-by-username-username",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/trait_permissionsExpandable_expandPermissions"
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bl-users/_self": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/compositeUser"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "User not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a user by self reference",
+          "operationId": "GET_bl-users-_self",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/trait_permissionsExpandable_expandPermissions"
+            }
+          ]
+        }
+      },
+      "/bl-users/login": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "headers": {
+                "x-okapi-token": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/compositeUser"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Allow a new user to login and return an authtoken, along with a composite user record",
+          "operationId": "POST_bl-users-login",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginCredentials"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "X-Forwarded-For",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "#/components/parameters/trait_permissionsExpandable_expandPermissions"
+            }
+          ]
+        }
+      },
+      "/bl-users/forgotten/password": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "called when a user has forgotten a password",
+          "operationId": "POST_bl-users-forgotten-password",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/identifier"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/bl-users/forgotten/username": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "called when a user has forgotten a username",
+          "operationId": "POST_bl-users-forgotten-username",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/identifier"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/bl-users/settings/myprofile/password": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Successful update"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Unauthorized"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Allow change password for user",
+          "operationId": "POST_bl-users-settings-myprofile-password",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/updateCredentials"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "X-Forwarded-For",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/bl-users/password-reset/link": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/generateLinkResponse"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Generate and send password reset link",
+          "operationId": "POST_bl-users-password-reset-link",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/generateLinkRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/bl-users/password-reset/reset": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Successful password reset"
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Reset password",
+          "operationId": "POST_bl-users-password-reset-reset",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/passwordReset"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "X-Forwarded-For",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/bl-users/password-reset/validate": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Successful link validation"
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_bl-users-password-reset-validate"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "compositeUser": {
+          "includePath": "compositeUser.json",
+          "$ref": "#/components/schemas/Can not resolve compositeUser.json"
+        },
+        "compositeUserListObject": {
+          "includePath": "compositeUserListObject.json",
+          "$ref": "#/components/schemas/Can not resolve compositeUserListObject.json"
+        },
+        "loginCredentials": {
+          "includePath": "loginCredentials.json",
+          "$ref": "#/components/schemas/Can not resolve loginCredentials.json"
+        },
+        "userdata.json": {
+          "includePath": "userdata.json",
+          "$ref": "#/components/schemas/Can not resolve userdata.json"
+        },
+        "usergroup.json": {
+          "includePath": "usergroup.json",
+          "$ref": "#/components/schemas/Can not resolve usergroup.json"
+        },
+        "permissionUser.json": {
+          "includePath": "permissionUser.json",
+          "$ref": "#/components/schemas/Can not resolve permissionUser.json"
+        },
+        "proxyfor.json": {
+          "includePath": "proxyfor.json",
+          "$ref": "#/components/schemas/Can not resolve proxyfor.json"
+        },
+        "identifier": {
+          "includePath": "identifier.json",
+          "$ref": "#/components/schemas/Can not resolve identifier.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "updateCredentials": {
+          "includePath": "updateCredentials.json",
+          "$ref": "#/components/schemas/Can not resolve updateCredentials.json"
+        },
+        "generateLinkRequest": {
+          "includePath": "generateLinkRequest.json",
+          "$ref": "#/components/schemas/Can not resolve generateLinkRequest.json"
+        },
+        "generateLinkResponse": {
+          "includePath": "generateLinkResponse.json",
+          "$ref": "#/components/schemas/Can not resolve generateLinkResponse.json"
+        },
+        "configurations": {
+          "includePath": "configurations.json",
+          "$ref": "#/components/schemas/Can not resolve configurations.json"
+        },
+        "passwordResetAction": {
+          "includePath": "passwordResetAction.json",
+          "$ref": "#/components/schemas/Can not resolve passwordResetAction.json"
+        },
+        "passwordReset": {
+          "includePath": "passwordReset.json",
+          "$ref": "#/components/schemas/Can not resolve passwordReset.json"
+        },
+        "notification": {
+          "includePath": "notification.json",
+          "$ref": "#/components/schemas/Can not resolve notification.json"
+        }
+      },
+      "responses": {},
+      "parameters": {
+        "trait_permissionsExpandable_expandPermissions": {
+          "name": "expandPermissions",
+          "in": "query",
+          "description": "Whether or not to expand permissions listings",
+          "schema": {
+            "default": false,
+            "type": "boolean"
+          }
+        }
+      },
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

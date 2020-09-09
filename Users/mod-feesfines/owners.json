@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Owners",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-feesfines"
+      }
+    ],
+    "paths": {
+      "/owners": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of owners",
+          "operationId": "GET_owners"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a owner",
+          "operationId": "POST_owners"
+        }
+      },
+      "/owners/{ownerId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single owner",
+          "operationId": "GET_owners-ownerId"
+        },
+        "parameters": [
+          {
+            "name": "ownerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "owner": {
+          "includePath": "ownerdata.json",
+          "$ref": "#/components/schemas/Can not resolve ownerdata.json"
+        },
+        "ownerdataCollection": {
+          "includePath": "ownerdataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve ownerdataCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

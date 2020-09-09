@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Users",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-users"
+      }
+    ],
+    "paths": {
+      "/users": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of users",
+          "operationId": "GET_users"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a user",
+          "operationId": "POST_users"
+        }
+      },
+      "/users/{userId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single user",
+          "operationId": "GET_users-userId"
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "user": {
+          "includePath": "userdata.json",
+          "$ref": "#/components/schemas/Can not resolve userdata.json"
+        },
+        "userdataCollection": {
+          "includePath": "userdataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve userdataCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

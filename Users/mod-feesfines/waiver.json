@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Waives",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-feesfines"
+      }
+    ],
+    "paths": {
+      "/waives": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of waive",
+          "operationId": "GET_waives"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a waive",
+          "operationId": "POST_waives"
+        }
+      },
+      "/waives/{waiveId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single waive",
+          "operationId": "GET_waives-waiveId"
+        },
+        "parameters": [
+          {
+            "name": "waiveId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "waiver": {
+          "includePath": "waivedata.json",
+          "$ref": "#/components/schemas/Can not resolve waivedata.json"
+        },
+        "waivedataCollection": {
+          "includePath": "waivedataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve waivedataCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

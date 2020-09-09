@@ -1,0 +1,87 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Permissions Interface",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-auth/_tenantPermissions"
+      }
+    ],
+    "paths": {
+      "/_/tenantpermissions": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Permissions loaded successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/okapiPermissionSet"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Load new permissionSets into the permission module when a module gets enabled for a tenant",
+          "operationId": "POST__-tenantpermissions",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve raml-util/examples/tenantPermissions.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/okapiPermissionSet"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "okapiPermission.json": {
+          "includePath": "okapiPermission.json",
+          "$ref": "#/components/schemas/Can not resolve okapiPermission.json"
+        },
+        "okapiPermissionSet": {
+          "includePath": "okapiPermissionSet.json",
+          "$ref": "#/components/schemas/Can not resolve okapiPermissionSet.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,51 @@
+#%RAML 1.0
+title: Transfers criteria
+version: v1
+baseUri: http://github.com/org/folio/mod-feesfines
+
+documentation:
+  - title: Transfers criteria API
+    content: This documents the API calls that can be made to query and manage fee/fine of the system
+
+types:
+  transferCriteria: !include transfer-criteriadata.json
+  transferCriteriaCollection: !include transfer-criteriadataCollection.json
+  errors: !include raml-util/schemas/errors.schema
+
+traits:
+  orderable: !include raml-util/traits/orderable.raml
+  pageable: !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+  language: !include raml-util/traits/language.raml
+  validate: !include raml-util/traits/validation.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+  get-only: !include raml-util/rtypes/get-only.raml
+  post-empty-body: !include raml-util/rtypes/post-empty-body.raml
+
+/transfer-criterias:
+  type:
+    collection:
+      exampleCollection: !include examples/transfer-criteria_collection.sample
+      exampleItem: !include examples/transfer-criteria.sample
+      schemaCollection: transferCriteriaCollection
+      schemaItem: transferCriteria
+  get:
+    is: [
+      searchable: {description: "with valid searchable fields", example: "active=true"},
+      orderable: {fieldsList: "field A, field B"},
+      pageable
+    ]
+    description: Return a list of transfer criteria
+  post:
+    is: [validate]
+    description: Create a transfer criteria
+  /{transferCriteriaId}:
+    type:
+      collection-item:
+        exampleItem: !include examples/transfer-criteria.sample
+        schema: transferCriteria
+    get:
+      description: Get a single transfer criteria

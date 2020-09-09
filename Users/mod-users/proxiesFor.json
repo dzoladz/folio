@@ -1,0 +1,70 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Proxies For",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-users"
+      }
+    ],
+    "paths": {
+      "/proxiesfor": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of all proxy relationships",
+          "operationId": "GET_proxiesfor"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a proxyFor relationship",
+          "operationId": "POST_proxiesfor"
+        }
+      },
+      "/proxiesfor/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "proxiesFor": {
+          "includePath": "proxyfor.json",
+          "$ref": "#/components/schemas/Can not resolve proxyfor.json"
+        },
+        "proxyforCollection": {
+          "includePath": "proxyforCollection.json",
+          "$ref": "#/components/schemas/Can not resolve proxyforCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

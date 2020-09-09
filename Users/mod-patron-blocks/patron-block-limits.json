@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Patron Block Limits",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-users"
+      }
+    ],
+    "paths": {
+      "/patron-block-limits": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of patron block limits",
+          "operationId": "GET_patron-block-limits"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a patron block limit",
+          "operationId": "POST_patron-block-limits"
+        }
+      },
+      "/patron-block-limits/{patronBlockLimitId}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a patron block limit",
+          "operationId": "PUT_patron-block-limits-patronBlockLimitId"
+        },
+        "parameters": [
+          {
+            "name": "patronBlockLimitId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "patron-block-limit": {
+          "includePath": "patron-block-limit.json",
+          "$ref": "#/components/schemas/Can not resolve patron-block-limit.json"
+        },
+        "patron-block-limits": {
+          "includePath": "patron-block-limits.json",
+          "$ref": "#/components/schemas/Can not resolve patron-block-limits.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

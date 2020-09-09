@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "User Groups",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-users"
+      }
+    ],
+    "paths": {
+      "/departments": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of departmants",
+          "operationId": "GET_departments"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a departmant",
+          "operationId": "POST_departments"
+        }
+      },
+      "/departments/{departmentId}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_departments-departmentId"
+        },
+        "parameters": [
+          {
+            "name": "departmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "department": {
+          "includePath": "department.json",
+          "$ref": "#/components/schemas/Can not resolve department.json"
+        },
+        "departmentCollection": {
+          "includePath": "departmentCollection.json",
+          "$ref": "#/components/schemas/Can not resolve departmentCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

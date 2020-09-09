@@ -1,0 +1,561 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Patron Services",
+      "version": "v4.0"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-patron"
+      }
+    ],
+    "paths": {
+      "/patron/account/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Returns the user account info",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/account.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/account"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to process request -- constraint violation"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to get account -- unauthorized"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access Denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access Denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Item with a given ID not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "account not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Return account details for the specified FOLIO user id",
+          "operationId": "GET_patron-account-id",
+          "parameters": [
+            {
+              "name": "includeLoans",
+              "in": "query",
+              "description": "Indicates whether or not to include the loans array in\nthe response\n",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "includeCharges",
+              "in": "query",
+              "description": "Indicates whether or not to include the charges array in\nthe response\n",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "includeHolds",
+              "in": "query",
+              "description": "Indicates whether or not to include the holds array in\nthe response\n",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "description": "The UUID of a FOLIO user"
+          }
+        ]
+      },
+      "/patron/account/{id}/item/{itemId}/renew": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Returns the renewed loan data",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/loan"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to process request -- constraint violation"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to renew loan -- unauthorized"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access Denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access Denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Item with a given ID not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "item not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration\n",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Renews a loan on the item for the user",
+          "operationId": "POST_patron-account-id-item-itemId-renew"
+        },
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "description": "The UUID of a FOLIO item"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "description": "The UUID of a FOLIO user"
+          }
+        ]
+      },
+      "/patron/account/{id}/item/{itemId}/hold": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Returns data for a new hold request on the specified item\n",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/hold.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/hold"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to process request -- constraint violation"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to create hold -- unauthorized"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access Denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access Denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Item with a given ID not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "item not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration\n",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Creates a hold request on an existing item for the user\n",
+          "operationId": "POST_patron-account-id-item-itemId-hold",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/hold.json",
+                "schema": {
+                  "$ref": "#/components/schemas/hold"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "description": "The UUID of a FOLIO item"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "description": "The UUID of a FOLIO user"
+          }
+        ]
+      },
+      "/patron/account/{id}/instance/{instanceId}/hold": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Returns data for a new hold request on the selected item\n",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/hold.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/hold"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to process request -- constraint violation"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to create hold -- unauthorized"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access Denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access Denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Instance with a given ID not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "item not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration\n",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Creates a hold request on an existing item by instance ID for the user\n",
+          "operationId": "POST_patron-account-id-instance-instanceId-hold",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/hold.json",
+                "schema": {
+                  "$ref": "#/components/schemas/hold"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "instanceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "description": "The UUID of a FOLIO instance"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "description": "The UUID of a FOLIO user"
+          }
+        ]
+      },
+      "/patron/account/{id}/hold/{holdId}/cancel": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "The specified hold request was removed",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/hold.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/hold"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to process request -- constraint violation\n"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to cancel hold -- unauthorized"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "access denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "hold with a given ID not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "hold not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration\n",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Removes the specified hold request",
+          "operationId": "POST_patron-account-id-hold-holdId-cancel",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/hold-cancellation.json",
+                "schema": {
+                  "$ref": "#/components/schemas/hold-cancellation"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "holdId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "description": "The UUID of a FOLIO hold request"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            },
+            "description": "The UUID of a FOLIO user"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "account": {
+          "includePath": "account.json",
+          "$ref": "#/components/schemas/Can not resolve account.json"
+        },
+        "hold": {
+          "includePath": "hold.json",
+          "$ref": "#/components/schemas/Can not resolve hold.json"
+        },
+        "loan": {
+          "includePath": "loan.json",
+          "$ref": "#/components/schemas/Can not resolve loan.json"
+        },
+        "charge": {
+          "includePath": "charge.json",
+          "$ref": "#/components/schemas/Can not resolve charge.json"
+        },
+        "money": {
+          "includePath": "money.json",
+          "$ref": "#/components/schemas/Can not resolve money.json"
+        },
+        "item": {
+          "includePath": "item.json",
+          "$ref": "#/components/schemas/Can not resolve item.json"
+        },
+        "hold-cancellation": {
+          "includePath": "hold-cancellation.json",
+          "$ref": "#/components/schemas/Can not resolve hold-cancellation.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

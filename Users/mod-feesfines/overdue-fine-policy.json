@@ -1,0 +1,202 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Overdue Fine Policies",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/overdue-fines-policies": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return Overdue Fine Policy list",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/overdue-fine-policies"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get Overdue Fine Policy list",
+          "operationId": "GET_overdue-fines-policies"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Overdue fine policy created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/overdue-fine-policy"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create new Overdue Fine Policy",
+          "operationId": "POST_overdue-fines-policies",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/overdue-fine-policy"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/overdue-fines-policies/{overdueFinePolicyId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return Overdue Fine Policy",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/overdue-fine-policy"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get Overdue Fine Policy by id",
+          "operationId": "GET_overdue-fines-policies-overdueFinePolicyId"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "Source record deleted"
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body, query parameter or constraint violation.",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Cannot delete in use fine policy"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "There is no source record for that overdueFinePolicyId",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete Overdue Fine Policy by id",
+          "operationId": "DELETE_overdue-fines-policies-overdueFinePolicyId"
+        },
+        "parameters": [
+          {
+            "name": "overdueFinePolicyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "overdue-fine-policy": {
+          "includePath": "overdue-fine-policy.json",
+          "$ref": "#/components/schemas/Can not resolve overdue-fine-policy.json"
+        },
+        "overdue-fine-policies": {
+          "includePath": "overdue-fine-policies.json",
+          "$ref": "#/components/schemas/Can not resolve overdue-fine-policies.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

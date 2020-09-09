@@ -1,0 +1,886 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Permissions",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-auth/permissions"
+      }
+    ],
+    "paths": {
+      "/perms/users": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permissionUserListObject"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access Denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access Denied"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of users",
+          "operationId": "GET_perms-users",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/trait_pageable_length"
+            },
+            {
+              "$ref": "#/components/parameters/trait_pageable_start"
+            },
+            {
+              "$ref": "#/components/parameters/trait_sortable_sortBy"
+            },
+            {
+              "$ref": "#/components/parameters/trait_queryable_query"
+            },
+            {
+              "$ref": "#/components/parameters/trait_byPermission_hasPermissions"
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permissionUser"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add a new user",
+          "operationId": "POST_perms-users",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/permissionUser"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/perms/users/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permissionUser"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access Denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access Denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "User does not exist"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a permission user",
+          "operationId": "GET_perms-users-id",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/trait_indexSelectable_indexField"
+            }
+          ]
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permissionUser"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "User not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Modify an existing user",
+          "operationId": "PUT_perms-users-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/permissionUser"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "User not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Remove a user",
+          "operationId": "DELETE_perms-users-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/perms/users/{id}/permissions": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "An object of returned permissions",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permissionNameListObject"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access Denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access Denied"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "User not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "User not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get permissions that a user has",
+          "operationId": "GET_perms-users-id-permissions",
+          "parameters": [
+            {
+              "name": "expanded",
+              "in": "query",
+              "description": "Recursively return all subpermissions",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "full",
+              "in": "query",
+              "description": "Return full permission objects, as opposed to just permission names",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "#/components/parameters/trait_indexSelectable_indexField"
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "200": {
+              "description": "The added permission",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permissionNameObject"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add a permission to a user",
+          "operationId": "POST_perms-users-id-permissions",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/permissionNameObject"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/trait_indexSelectable_indexField"
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/perms/users/{id}/permissions/{permissionname}": {
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "404": {
+              "description": "Permission not found in user",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Permission not found in user"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Remove a permission from a user",
+          "operationId": "DELETE_perms-users-id-permissions-permissionname",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/trait_indexSelectable_indexField"
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "permissionname",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/perms/permissions": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permissionListObject"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of existing permissions",
+          "operationId": "GET_perms-permissions",
+          "parameters": [
+            {
+              "name": "expandSubs",
+              "in": "query",
+              "description": "Return one level of subpermissions as objects if true. If false or omitted, expanded will be considered.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "expanded",
+              "in": "query",
+              "description": "Recursively return all subpermissions as strings if true. Is only considered if expandSubs is false or omitted.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "includeDummy",
+              "in": "query",
+              "description": "Return placeholder 'dummy' permissions",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "$ref": "#/components/parameters/trait_pageable_length"
+            },
+            {
+              "$ref": "#/components/parameters/trait_pageable_start"
+            },
+            {
+              "$ref": "#/components/parameters/trait_sortable_sortBy"
+            },
+            {
+              "$ref": "#/components/parameters/trait_queryable_query"
+            },
+            {
+              "$ref": "#/components/parameters/trait_byMember_memberOf"
+            },
+            {
+              "$ref": "#/components/parameters/trait_byOwner_ownedBy"
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permissionUpload"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add a new permission",
+          "operationId": "POST_perms-permissions",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/permissionUpload"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/perms/permissions/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permission"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Permission not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Permission not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get an existing permission by id",
+          "operationId": "GET_perms-permissions-id"
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/permissionUpload"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Permission not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Permission not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Modify an existing permission",
+          "operationId": "PUT_perms-permissions-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/permissionUpload"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Permission not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Permission not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Remove a permission",
+          "operationId": "DELETE_perms-permissions-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "permission": {
+          "includePath": "permission.json",
+          "$ref": "#/components/schemas/Can not resolve permission.json"
+        },
+        "permissionNameObject": {
+          "includePath": "permissionNameObject.json",
+          "$ref": "#/components/schemas/Can not resolve permissionNameObject.json"
+        },
+        "permissionListObject": {
+          "includePath": "permissionListObject.json",
+          "$ref": "#/components/schemas/Can not resolve permissionListObject.json"
+        },
+        "permissionUser": {
+          "includePath": "permissionUser.json",
+          "$ref": "#/components/schemas/Can not resolve permissionUser.json"
+        },
+        "permissionUserListObject": {
+          "includePath": "permissionUserListObject.json",
+          "$ref": "#/components/schemas/Can not resolve permissionUserListObject.json"
+        },
+        "permissionNameListObject": {
+          "includePath": "permissionNameListObject.json",
+          "$ref": "#/components/schemas/Can not resolve permissionNameListObject.json"
+        },
+        "permissionUpload": {
+          "includePath": "permissionUpload.json",
+          "$ref": "#/components/schemas/Can not resolve permissionUpload.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {
+        "trait_pageable_length": {
+          "name": "length",
+          "in": "query",
+          "description": "The maximum number of results to return.",
+          "schema": {
+            "default": 10,
+            "minimum": 1,
+            "maximum": 2147483647,
+            "type": "integer"
+          }
+        },
+        "trait_pageable_start": {
+          "name": "start",
+          "in": "query",
+          "description": "The starting index in a list of results (starts at one).",
+          "schema": {
+            "default": 1,
+            "minimum": 1,
+            "maximum": 2147483647,
+            "type": "integer"
+          }
+        },
+        "trait_sortable_sortBy": {
+          "name": "sortBy",
+          "in": "query",
+          "description": "A comma-separated list of fieldnames to sort by",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "trait_queryable_query": {
+          "name": "query",
+          "in": "query",
+          "description": "A query string to filter users based on matching criteria in fields.",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "trait_byPermission_hasPermissions": {
+          "name": "hasPermissions",
+          "in": "query",
+          "description": "A list of permissions that any returned users must possess.",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "trait_byMember_memberOf": {
+          "name": "memberOf",
+          "in": "query",
+          "description": "A list of permission names that any returned permission must be a sub-permission of.",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "trait_byOwner_ownedBy": {
+          "name": "ownedBy",
+          "in": "query",
+          "description": "A list of user names that any returned permissions must belong to.",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "trait_indexSelectable_indexField": {
+          "name": "indexField",
+          "in": "query",
+          "description": "Specify a field other than 'id' to look up the permission user by",
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

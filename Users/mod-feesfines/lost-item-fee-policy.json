@@ -1,0 +1,202 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Lost Item Fee Policies",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/lost-item-fees-policies": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return Lost Item Fee Policy list",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/lost-item-fee-policies"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get Lost Item Fee Policy list",
+          "operationId": "GET_lost-item-fees-policies"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Lost Item Fee policy created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/lost-item-fee-policy"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create new Lost Item Fee Policy",
+          "operationId": "POST_lost-item-fees-policies",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/lost-item-fee-policy"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/lost-item-fees-policies/{lostItemFeePolicyId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return Lost Item Fee Policy",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/lost-item-fee-policy"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get Lost Item Fee Policy by id",
+          "operationId": "GET_lost-item-fees-policies-lostItemFeePolicyId"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "Source record deleted"
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body, query parameter or constraint violation.",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Cannot delete in use fine policy"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "There is no source record for that lostItemFeePolicyId",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete Lost Item Fee Policy by id",
+          "operationId": "DELETE_lost-item-fees-policies-lostItemFeePolicyId"
+        },
+        "parameters": [
+          {
+            "name": "lostItemFeePolicyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "lost-item-fee-policy": {
+          "includePath": "lost-item-fee-policy.json",
+          "$ref": "#/components/schemas/Can not resolve lost-item-fee-policy.json"
+        },
+        "lost-item-fee-policies": {
+          "includePath": "lost-item-fee-policies.json",
+          "$ref": "#/components/schemas/Can not resolve lost-item-fee-policies.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,113 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Patron Block Conditions",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-users"
+      }
+    ],
+    "paths": {
+      "/patron-block-conditions": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of patron block conditions",
+          "operationId": "GET_patron-block-conditions"
+        }
+      },
+      "/patron-block-conditions/{patronBlockConditionId}": {
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Item successfully updated"
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to update <<resourcePathName|!singularize>> -- malformed JSON at 13:4"
+                  }
+                }
+              },
+              "hasParams": true
+            },
+            "404": {
+              "description": "Item with a given ID not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "<<resourcePathName|!singularize>> not found"
+                  }
+                }
+              },
+              "hasParams": true
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update <<resourcePathName|!singularize>> item with given {<<resourcePathName|!singularize>>Id}\n",
+          "operationId": "PUT_patron-block-conditions-patronBlockConditionId",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "exampleItem",
+                "schema": {
+                  "$ref": "#/components/schemas/patron-block-condition"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "patronBlockConditionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "patron-block-condition": {
+          "includePath": "patron-block-condition.json",
+          "$ref": "#/components/schemas/Can not resolve patron-block-condition.json"
+        },
+        "patron-block-conditions": {
+          "includePath": "patron-block-conditions.json",
+          "$ref": "#/components/schemas/Can not resolve patron-block-conditions.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

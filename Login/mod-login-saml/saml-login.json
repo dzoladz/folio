@@ -1,0 +1,360 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "SAML Login",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-login-saml"
+      }
+    ],
+    "paths": {
+      "/saml/regenerate": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SamlRegenerateResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Regenerate SAML configuration (keyfile and passwords). The response contains the sp-metadata.xml file",
+          "operationId": "GET_saml-regenerate"
+        }
+      },
+      "/saml/login": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Return with HTML page in case POST_BINDING is used",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SamlLogin"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Generates SAMLRequest and RelayState parameters for initiating a SAML login process",
+          "operationId": "POST_saml-login",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SamlLoginRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/saml/callback": {
+        "post": {
+          "responses": {
+            "302": {
+              "description": "Generate JWT token and set cookie",
+              "headers": {
+                "Set-Cookie": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-okapi-token": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Location": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Unauthorized"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Forbidden"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Redirect browser to sso-landing page with generated token.",
+          "operationId": "POST_saml-callback",
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/saml/check": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SamlCheck"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Module is not deployed",
+              "content": {
+                "text/html": {
+                  "schema": {
+                    "example": "Module is not deployed"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Decides if SSO login is configured properly, returns true or false",
+          "operationId": "GET_saml-check"
+        }
+      },
+      "/saml/configuration": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SamlConfig"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_saml-configuration"
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SamlConfig"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SamlValidateResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Save SAML module configuration",
+          "operationId": "PUT_saml-configuration",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SamlConfigRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/saml/validate": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/SamlValidateResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_saml-validate",
+          "parameters": [
+            {
+              "name": "type",
+              "in": "query",
+              "required": true,
+              "description": "The type of configuration directive",
+              "schema": {
+                "enum": [
+                  "idpurl",
+                  "okapiurl"
+                ],
+                "type": "string"
+              }
+            },
+            {
+              "name": "value",
+              "in": "query",
+              "required": true,
+              "description": "The value of configuration directive",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "SamlCheck": {
+          "includePath": "schemas/SamlCheck.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/SamlCheck.json"
+        },
+        "SamlLogin": {
+          "includePath": "schemas/SamlLogin.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/SamlLogin.json"
+        },
+        "SamlLoginRequest": {
+          "includePath": "schemas/SamlLoginRequest.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/SamlLoginRequest.json"
+        },
+        "SamlConfigRequest": {
+          "includePath": "schemas/SamlConfigRequest.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/SamlConfigRequest.json"
+        },
+        "SamlConfig": {
+          "includePath": "schemas/SamlConfig.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/SamlConfig.json"
+        },
+        "SamlRegenerateResponse": {
+          "includePath": "schemas/SamlRegenerateResponse.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/SamlRegenerateResponse.json"
+        },
+        "SamlValidateResponse": {
+          "includePath": "schemas/SamlValidateResponse.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/SamlValidateResponse.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

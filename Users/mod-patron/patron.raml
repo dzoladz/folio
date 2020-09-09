@@ -1,0 +1,302 @@
+#%RAML 1.0
+title: Patron Services
+baseUri: https://github.com/folio-org/mod-patron
+protocols: [ HTTPS ]
+version: v4.1
+
+documentation:
+  - title: Patron Services
+    content: |
+      This module allows 3rd party discovery services to perform patron
+      actions in FOLIO
+
+types:
+  account: !include account.json
+  hold: !include hold.json
+  loan: !include loan.json
+  charge: !include charge.json
+  money: !include money.json
+  item: !include item.json
+  errors: !include raml-util/schemas/errors.schema
+  error: !include raml-util/schemas/error.schema
+  parameters: !include raml-util/schemas/parameters.schema
+
+traits:
+  validate: !include raml-util/traits/validation.raml
+
+/patron:
+  displayName: Patron Services
+  description: |
+    Services that allow patron empowerment from 3rd party discovery services
+  /account:
+    /{id}:
+      displayName: Manage Accounts By Id
+      description: Service endpoints that manage accounts by an existing Id
+      uriParameters:
+        id:
+          description: The UUID of a FOLIO user
+          type: string
+          pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+      get:
+        description: Return account details for the specified FOLIO user id
+        queryParameters:
+          includeLoans:
+            description: |
+              Indicates whether or not to include the loans array in
+              the response
+            required: false
+            type: boolean
+            default: false
+          includeCharges:
+            description: |
+              Indicates whether or not to include the charges array in
+              the response
+            required: false
+            type: boolean
+            default: false
+          includeHolds:
+            description: |
+              Indicates whether or not to include the holds array in
+              the response
+            required: false
+            type: boolean
+            default: false
+        responses:
+          200:
+            description: Returns the user account info
+            body:
+              application/json:
+                schema: account
+                example: !include examples/account.json
+          400:
+            description: Bad request
+            body:
+              text/plain:
+                example: unable to process request -- constraint violation
+          401:
+            description: Not authorized to perform requested action
+            body:
+              text/plain:
+                example: unable to get account -- unauthorized
+          404:
+            description: Item with a given ID not found
+            body:
+              text/plain:
+                example: account not found
+          403:
+            description: Access Denied
+            body:
+              text/plain:
+                example: Access Denied
+          500:
+            description: Internal server error, e.g. due to misconfiguration
+            body:
+              text/plain:
+                example: internal server error, contact administrator
+      /item:
+        /{itemId}:
+          uriParameters:
+            itemId:
+              description: The UUID of a FOLIO item
+              type: string
+              pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+          /renew:
+            displayName: Renew a Loan
+            description: Service endpoint for loan renewal
+            post:
+              description: Renews a loan on the item for the user
+              is: [validate]
+              responses:
+                201:
+                  description: Returns the renewed loan data
+                  body:
+                    application/json:
+                      schema: loan
+                      example: !include examples/loan.json
+                400:
+                  description: Bad request
+                  body:
+                    text/plain:
+                      example: unable to process request -- constraint violation
+                401:
+                  description: Not authorized to perform requested action
+                  body:
+                    text/plain:
+                      example: unable to renew loan -- unauthorized
+                404:
+                  description: Item with a given ID not found
+                  body:
+                    text/plain:
+                      example: item not found
+                403:
+                  description: Access Denied
+                  body:
+                    text/plain:
+                      example: Access Denied
+                500:
+                  description: |
+                    Internal server error, e.g. due to misconfiguration
+                  body:
+                    text/plain:
+                      example: internal server error, contact administrator
+          /hold:
+            displayName: Hold Management
+            description: Services that provide hold management
+            post:
+              description: |
+                Creates a hold request on an existing item for the user
+              is: [validate]
+              body:
+                application/json:
+                  schema: hold
+                  example: !include examples/hold.json
+              responses:
+                201:
+                  description: |
+                    Returns data for a new hold request on the specified item
+                  body:
+                    application/json:
+                      schema: hold
+                      example: !include examples/hold.json
+                400:
+                  description: Bad request
+                  body:
+                    text/plain:
+                      example: unable to process request -- constraint violation
+                401:
+                  description: Not authorized to perform requested action
+                  body:
+                    text/plain:
+                      example: unable to create hold -- unauthorized
+                404:
+                  description: Item with a given ID not found
+                  body:
+                    text/plain:
+                      example: item not found
+                403:
+                  description: Access Denied
+                  body:
+                    text/plain:
+                      example: Access Denied
+                500:
+                  description: |
+                    Internal server error, e.g. due to misconfiguration
+                  body:
+                    text/plain:
+                      example: internal server error, contact administrator
+            /{holdId}:
+              displayName: Hold Management By Id
+              description: Services that provide hold management by Id
+              uriParameters:
+                holdId:
+                  description: The UUID of a FOLIO hold request
+                  type: string
+                  pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+      /instance:
+        /{instanceId}:
+          uriParameters:
+            instanceId:
+              description: The UUID of a FOLIO instance
+              type: string
+              pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+          /hold:
+            displayName: Hold Management
+            description: Services that provide hold management
+            post:
+              description: |
+                Creates a hold request on an existing item by instance ID for the user
+              is: [validate]
+              body:
+                application/json:
+                  schema: hold
+                  example: !include examples/hold.json
+              responses:
+                201:
+                  description: |
+                    Returns data for a new hold request on the selected item
+                  body:
+                    application/json:
+                      schema: hold
+                      example: !include examples/hold.json
+                400:
+                  description: Bad request
+                  body:
+                    text/plain:
+                      example: unable to process request -- constraint violation
+                401:
+                  description: Not authorized to perform requested action
+                  body:
+                    text/plain:
+                      example: unable to create hold -- unauthorized
+                404:
+                  description: Instance with a given ID not found
+                  body:
+                    text/plain:
+                      example: item not found
+                403:
+                  description: Access Denied
+                  body:
+                    text/plain:
+                      example: Access Denied
+                500:
+                  description: |
+                    Internal server error, e.g. due to misconfiguration
+                  body:
+                    text/plain:
+                      example: internal server error, contact administrator
+      /hold:
+        displayName: Hold Management
+        description: Services that provide hold management
+        /{holdId}:
+          uriParameters:
+            holdId:
+              description: The UUID of a FOLIO instance
+              type: string
+              pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+          /cancel:
+            post:
+              description: cancels the request
+              body:
+                application/json:
+                  schema: hold
+                  example: !include examples/hold.json
+              responses:
+                200:
+                  description: |
+                    Returns an updated hold request after cancelling
+                  body:
+                    application/json:
+                      schema: hold
+                      example: !include examples/hold.json
+                400:
+                  description: Bad request
+                  body:
+                    text/plain:
+                      example: |
+                        unable to process request -- constraint violation
+                401:
+                  description: Not authorized to perform requested action
+                  body:
+                    text/plain:
+                      example: unable to cancel hold -- unauthorized
+                403:
+                  description: Access Denied
+                  body:
+                    text/plain:
+                      example: access denied
+                404:
+                  description: Item with a given ID not found
+                  body:
+                    text/plain:
+                      example: hold not found
+                422:
+                  description: Validation error
+                  body:
+                    application/json:
+                      schema : errors
+                500:
+                  description: |
+                    Internal server error, e.g. due to misconfiguration
+                  body:
+                    text/plain:
+                      example: internal server error, contact administrator

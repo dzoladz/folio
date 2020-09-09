@@ -1,0 +1,301 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Event handlers API",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/automated-patron-blocks/handlers/fee-fine-balance-changed": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Event received successfully"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_automated-patron-blocks-handlers-fee-fine-balance-changed",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/fee-fine-balance-changed-event"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/automated-patron-blocks/handlers/item-checked-out": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Event received successfully"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_automated-patron-blocks-handlers-item-checked-out",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/item-checked-out-event"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/automated-patron-blocks/handlers/item-checked-in": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Event received successfully"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_automated-patron-blocks-handlers-item-checked-in",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/item-checked-in-event"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/automated-patron-blocks/handlers/item-declared-lost": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Event received successfully"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_automated-patron-blocks-handlers-item-declared-lost",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/item-declared-lost-event"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/automated-patron-blocks/handlers/item-claimed-returned": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Event received successfully"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_automated-patron-blocks-handlers-item-claimed-returned",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/item-claimed-returned-event"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/automated-patron-blocks/handlers/loan-due-date-changed": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Event received successfully"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_automated-patron-blocks-handlers-loan-due-date-changed",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loan-due-date-changed-event"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "userSummary": {
+          "includePath": "userSummary.json",
+          "$ref": "#/components/schemas/Can not resolve userSummary.json"
+        },
+        "fee-fine-balance-changed-event": {
+          "includePath": "events/fee-fine-balance-changed.json",
+          "$ref": "#/components/schemas/Can not resolve events/fee-fine-balance-changed.json"
+        },
+        "item-checked-out-event": {
+          "includePath": "events/item-checked-out.json",
+          "$ref": "#/components/schemas/Can not resolve events/item-checked-out.json"
+        },
+        "item-checked-in-event": {
+          "includePath": "events/item-checked-in.json",
+          "$ref": "#/components/schemas/Can not resolve events/item-checked-in.json"
+        },
+        "item-declared-lost-event": {
+          "includePath": "events/item-declared-lost.json",
+          "$ref": "#/components/schemas/Can not resolve events/item-declared-lost.json"
+        },
+        "item-claimed-returned-event": {
+          "includePath": "events/item-claimed-returned.json",
+          "$ref": "#/components/schemas/Can not resolve events/item-claimed-returned.json"
+        },
+        "loan-due-date-changed-event": {
+          "includePath": "events/loan-due-date-changed.json",
+          "$ref": "#/components/schemas/Can not resolve events/loan-due-date-changed.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

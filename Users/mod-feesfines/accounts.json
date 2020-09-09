@@ -1,0 +1,579 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Accounts",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-feesfines"
+      }
+    ],
+    "paths": {
+      "/accounts": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of accounts",
+          "operationId": "GET_accounts"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create an account",
+          "operationId": "POST_accounts"
+        }
+      },
+      "/accounts/{accountId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single account",
+          "operationId": "GET_accounts-accountId"
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/accounts/{accountId}/check-pay": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Action is allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/checkActionResponse"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Fee/fine was not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Fee/fine was not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Action is not allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/checkActionResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Checks if an action is allowed",
+          "operationId": "POST_accounts-accountId-check-pay",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/checkActionRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/accounts/{accountId}/check-waive": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Action is allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/checkActionResponse"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Fee/fine was not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Fee/fine was not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Action is not allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/checkActionResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Checks if an action is allowed",
+          "operationId": "POST_accounts-accountId-check-waive",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/checkActionRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/accounts/{accountId}/check-transfer": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Action is allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/checkActionResponse"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Fee/fine was not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Fee/fine was not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Action is not allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/checkActionResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Checks if an action is allowed",
+          "operationId": "POST_accounts-accountId-check-transfer",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/checkActionRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/accounts/{accountId}/check-refund": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Action is allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/checkActionResponse"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Fee/fine was not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Fee/fine was not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Action is not allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/checkActionResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Checks if an action is allowed",
+          "operationId": "POST_accounts-accountId-check-refund",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/checkActionRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/accounts/{accountId}/pay": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Action was performed successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/actionSuccessResponse"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Fee/fine was not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Fee/fine was not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Action is not allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/actionFailureResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, please contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Perform action",
+          "operationId": "POST_accounts-accountId-pay",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/actionRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/accounts/{accountId}/waive": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Action was performed successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/actionSuccessResponse"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Fee/fine was not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Fee/fine was not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Action is not allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/actionFailureResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, please contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Perform action",
+          "operationId": "POST_accounts-accountId-waive",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/actionRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/accounts/{accountId}/transfer": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Action was performed successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/actionSuccessResponse"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Fee/fine was not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Fee/fine was not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Action is not allowed",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/actionFailureResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, please contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Perform action",
+          "operationId": "POST_accounts-accountId-transfer",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/actionRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "account": {
+          "includePath": "accountdata.json",
+          "$ref": "#/components/schemas/Can not resolve accountdata.json"
+        },
+        "accountdataCollection": {
+          "includePath": "accountdataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve accountdataCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "patronNotice": {
+          "includePath": "patronNotice.json",
+          "$ref": "#/components/schemas/Can not resolve patronNotice.json"
+        },
+        "checkActionRequest": {
+          "includePath": "actions/checkActionRequest.json",
+          "$ref": "#/components/schemas/Can not resolve actions/checkActionRequest.json"
+        },
+        "checkActionResponse": {
+          "includePath": "actions/checkActionResponse.json",
+          "$ref": "#/components/schemas/Can not resolve actions/checkActionResponse.json"
+        },
+        "actionRequest": {
+          "includePath": "actions/actionRequest.json",
+          "$ref": "#/components/schemas/Can not resolve actions/actionRequest.json"
+        },
+        "actionSuccessResponse": {
+          "includePath": "actions/actionSuccessResponse.json",
+          "$ref": "#/components/schemas/Can not resolve actions/actionSuccessResponse.json"
+        },
+        "actionFailureResponse": {
+          "includePath": "actions/actionFailureResponse.json",
+          "$ref": "#/components/schemas/Can not resolve actions/actionFailureResponse.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

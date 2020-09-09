@@ -1,0 +1,115 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Fee Fine Actions",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-feesfines"
+      }
+    ],
+    "paths": {
+      "/feefineactions": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of feefineactions",
+          "operationId": "GET_feefineactions"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a feefineaction",
+          "operationId": "POST_feefineactions"
+        }
+      },
+      "/feefineactions/{feefineactionId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single feefineaction",
+          "operationId": "GET_feefineactions-feefineactionId"
+        },
+        "parameters": [
+          {
+            "name": "feefineactionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "account": {
+          "includePath": "accountdata.json",
+          "$ref": "#/components/schemas/Can not resolve accountdata.json"
+        },
+        "feefineaction": {
+          "includePath": "feefineactiondata.json",
+          "$ref": "#/components/schemas/Can not resolve feefineactiondata.json"
+        },
+        "feefineactiondataCollection": {
+          "includePath": "feefineactiondataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve feefineactiondataCollection.json"
+        },
+        "materialType": {
+          "includePath": "inventory/materialtype.json",
+          "$ref": "#/components/schemas/Can not resolve inventory/materialtype.json"
+        },
+        "item": {
+          "includePath": "inventory/item.json",
+          "$ref": "#/components/schemas/Can not resolve inventory/item.json"
+        },
+        "items": {
+          "includePath": "inventory/items.json",
+          "$ref": "#/components/schemas/Can not resolve inventory/items.json"
+        },
+        "holdings-record": {
+          "includePath": "inventory/holdingsrecord.json",
+          "$ref": "#/components/schemas/Can not resolve inventory/holdingsrecord.json"
+        },
+        "holdings-records": {
+          "includePath": "inventory/holdingsrecords.json",
+          "$ref": "#/components/schemas/Can not resolve inventory/holdingsrecords.json"
+        },
+        "instance": {
+          "includePath": "inventory/instance.json",
+          "$ref": "#/components/schemas/Can not resolve inventory/instance.json"
+        },
+        "location": {
+          "includePath": "inventory/location.json",
+          "$ref": "#/components/schemas/Can not resolve inventory/location.json"
+        },
+        "user": {
+          "includePath": "user.json",
+          "$ref": "#/components/schemas/Can not resolve user.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

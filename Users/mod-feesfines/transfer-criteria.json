@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Transfers criteria",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-feesfines"
+      }
+    ],
+    "paths": {
+      "/transfer-criterias": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of transfer criteria",
+          "operationId": "GET_transfer-criterias"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a transfer criteria",
+          "operationId": "POST_transfer-criterias"
+        }
+      },
+      "/transfer-criterias/{transferCriteriaId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single transfer criteria",
+          "operationId": "GET_transfer-criterias-transferCriteriaId"
+        },
+        "parameters": [
+          {
+            "name": "transferCriteriaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "transferCriteria": {
+          "includePath": "transfer-criteriadata.json",
+          "$ref": "#/components/schemas/Can not resolve transfer-criteriadata.json"
+        },
+        "transferCriteriaCollection": {
+          "includePath": "transfer-criteriadataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve transfer-criteriadataCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

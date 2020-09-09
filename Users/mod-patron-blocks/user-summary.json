@@ -1,0 +1,92 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Automated patron blocks",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-patron-blocks"
+      }
+    ],
+    "paths": {
+      "/user-summary/{userId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/user-summary.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/userSummary"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid user ID in request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Invalid user ID: \"2a424823-588a-45ee-9441-a6384b6614b2-invalid\""
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "UserSummary not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "UserSummary for user ID 2a424823-588a-45ee-9441-a6384b6614b1 not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_user-summary-userId"
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "userSummary": {
+          "includePath": "userSummary.json",
+          "$ref": "#/components/schemas/Can not resolve userSummary.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

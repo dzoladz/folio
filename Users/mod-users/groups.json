@@ -1,0 +1,70 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "User Groups",
+      "version": "v1.0.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-users"
+      }
+    ],
+    "paths": {
+      "/groups": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of groups",
+          "operationId": "GET_groups"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a group",
+          "operationId": "POST_groups"
+        }
+      },
+      "/groups/{groupId}": {
+        "parameters": [
+          {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "usergroup": {
+          "includePath": "usergroup.json",
+          "$ref": "#/components/schemas/Can not resolve usergroup.json"
+        },
+        "usergroups": {
+          "includePath": "usergroups.json",
+          "$ref": "#/components/schemas/Can not resolve usergroups.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

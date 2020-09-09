@@ -1,0 +1,847 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Login",
+    "version": "v7.0"
+  },
+  "servers": [
+    {
+      "url": "http://github.com/org/folio/mod-auth/login_module"
+    }
+  ],
+  "paths": {
+    "/authn/loginAttempts/{id}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginAttempts"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "User not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get login attempts for a single user",
+        "operationId": "GET_authn-loginAttempts-id"
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/authn/login": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {
+              "x-okapi-token": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "refreshtoken": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loginCredentials"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Bad request"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Get a new login token",
+        "operationId": "POST_authn-login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/loginCredentials"
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Forwarded-For",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/authn/update": {
+      "post": {
+        "responses": {
+          "204": {
+            "description": "Successful update"
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Bad request"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Unauthorized"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Self-update existing credentials.  N.B. A non-empty password must be provided.",
+        "operationId": "POST_authn-update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateCredentials"
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Forwarded-For",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/authn/credentials": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Bad request"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Add a new login to the system. N.B. A non-empty password must be provided.",
+        "operationId": "POST_authn-credentials",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/loginCredentials"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "User not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Remove a user's login credentials from the system",
+        "operationId": "DELETE_authn-credentials",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "description": "User Id",
+            "schema": {
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/authn/password/repeatable": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/passwordValid"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Validate password for repeatability",
+        "operationId": "POST_authn-password-repeatable",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/password"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/authn/reset-password": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/responseResetAction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Bad Request"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Resets password for user in record and deletes action record",
+        "operationId": "POST_authn-reset-password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/passwordReset"
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Forwarded-For",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/authn/password-reset-action": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/responseCreateAction"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Bad Request"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Saves action to storage",
+        "operationId": "POST_authn-password-reset-action",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/passwordCreate"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/authn/password-reset-action/{actionId}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/passwordCreate"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Bad Request"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Not Found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Retrieves action record by id",
+        "operationId": "GET_authn-password-reset-action-actionId"
+      },
+      "parameters": [
+        {
+          "name": "actionId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/authn/log/events": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/logEvents"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "No Content"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Event not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns a list of events retrieved from storage",
+        "operationId": "GET_authn-log-events",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/trait_pageable_length"
+          },
+          {
+            "$ref": "#/components/parameters/trait_pageable_start"
+          },
+          {
+            "$ref": "#/components/parameters/trait_queryable_query"
+          }
+        ]
+      },
+      "post": {
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/logResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "No Content"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Saves received event into the storage",
+        "operationId": "POST_authn-log-events",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/logEvent"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    },
+    "/authn/log/events/{id}": {
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/logResponse"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "No Content"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Event not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Event not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Removes events by filter",
+        "operationId": "DELETE_authn-log-events-id"
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/authn/credentials-existence": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/credentialsExistence"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns single property 'credentialsExist' with true, if user has local password",
+        "operationId": "GET_authn-credentials-existence",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "description": "User id",
+            "schema": {
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "credential": {
+        "includePath": "credentials.json",
+        "$ref": "#/components/schemas/Can not resolve credentials.json"
+      },
+      "loginCredentials": {
+        "includePath": "loginCredentials.json",
+        "$ref": "#/components/schemas/Can not resolve loginCredentials.json"
+      },
+      "updateCredentials": {
+        "includePath": "updateCredentials.json",
+        "$ref": "#/components/schemas/Can not resolve updateCredentials.json"
+      },
+      "loginAttempts": {
+        "includePath": "loginAttempts.json",
+        "$ref": "#/components/schemas/Can not resolve loginAttempts.json"
+      },
+      "errors": {
+        "includePath": "raml-util/schemas/errors.schema",
+        "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+      },
+      "credentialsHistory": {
+        "includePath": "credentialsHistory.json",
+        "$ref": "#/components/schemas/Can not resolve credentialsHistory.json"
+      },
+      "password": {
+        "includePath": "password.json",
+        "$ref": "#/components/schemas/Can not resolve password.json"
+      },
+      "passwordValid": {
+        "includePath": "passwordValid.json",
+        "$ref": "#/components/schemas/Can not resolve passwordValid.json"
+      },
+      "passwordReset": {
+        "includePath": "passwordResetAction.json",
+        "$ref": "#/components/schemas/Can not resolve passwordResetAction.json"
+      },
+      "passwordCreate": {
+        "includePath": "passwordCreateAction.json",
+        "$ref": "#/components/schemas/Can not resolve passwordCreateAction.json"
+      },
+      "responseCreateAction": {
+        "includePath": "responseCreateAction.json",
+        "$ref": "#/components/schemas/Can not resolve responseCreateAction.json"
+      },
+      "responseResetAction": {
+        "includePath": "responseResetAction.json",
+        "$ref": "#/components/schemas/Can not resolve responseResetAction.json"
+      },
+      "configurations": {
+        "includePath": "configurations.json",
+        "$ref": "#/components/schemas/Can not resolve configurations.json"
+      },
+      "configResponse": {
+        "includePath": "configResponse.json",
+        "$ref": "#/components/schemas/Can not resolve configResponse.json"
+      },
+      "logEvent": {
+        "includePath": "logEvent.json",
+        "$ref": "#/components/schemas/Can not resolve logEvent.json"
+      },
+      "logEvents": {
+        "includePath": "logEventCollection.json",
+        "$ref": "#/components/schemas/Can not resolve logEventCollection.json"
+      },
+      "logResponse": {
+        "includePath": "logResponse.json",
+        "$ref": "#/components/schemas/Can not resolve logResponse.json"
+      },
+      "credentialsExistence": {
+        "includePath": "credentialsExistence.json",
+        "$ref": "#/components/schemas/Can not resolve credentialsExistence.json"
+      }
+    },
+    "responses": {},
+    "parameters": {
+      "trait_pageable_length": {
+        "name": "length",
+        "in": "query",
+        "description": "The maximum number of results to return.",
+        "schema": {
+          "default": 10,
+          "minimum": 1,
+          "maximum": 2147483647,
+          "type": "integer"
+        }
+      },
+      "trait_pageable_start": {
+        "name": "start",
+        "in": "query",
+        "description": "The starting index in a list of results (starts at one).",
+        "schema": {
+          "default": 1,
+          "minimum": 1,
+          "maximum": 2147483647,
+          "type": "integer"
+        }
+      },
+      "trait_sortable_sortBy": {
+        "name": "sortBy",
+        "in": "query",
+        "description": "A comma-separated list of fieldnames to sort by",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "trait_queryable_query": {
+        "name": "query",
+        "in": "query",
+        "description": "A query string to filter users based on matching criteria in fields.",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {},
+    "links": {},
+    "callbacks": {}
+  }
+}

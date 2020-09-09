@@ -1,0 +1,70 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Address Types",
+      "version": "v1.0.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-users"
+      }
+    ],
+    "paths": {
+      "/addresstypes": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of address types",
+          "operationId": "GET_addresstypes"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create an address type",
+          "operationId": "POST_addresstypes"
+        }
+      },
+      "/addresstypes/{addresstypeId}": {
+        "parameters": [
+          {
+            "name": "addresstypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "addressType": {
+          "includePath": "addresstype.json",
+          "$ref": "#/components/schemas/Can not resolve addresstype.json"
+        },
+        "addresstypeCollection": {
+          "includePath": "addresstypeCollection.json",
+          "$ref": "#/components/schemas/Can not resolve addresstypeCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

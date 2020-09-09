@@ -1,0 +1,129 @@
+#%RAML 1.0
+title: Accounts
+version: v1
+baseUri: http://github.com/org/folio/mod-feesfines
+
+documentation:
+  - title: Accounts API
+    content: This documents the API calls that can be made to query and manage feefine of the system
+
+types:
+  account: !include accountdata.json
+  accountdataCollection: !include accountdataCollection.json
+  errors: !include raml-util/schemas/errors.schema
+  patronNotice: !include patronNotice.json
+  checkActionRequest: !include actions/checkActionRequest.json
+  checkActionResponse: !include actions/checkActionResponse.json
+  actionRequest: !include actions/actionRequest.json
+  actionSuccessResponse: !include actions/actionSuccessResponse.json
+  actionFailureResponse: !include actions/actionFailureResponse.json
+
+traits:
+  orderable: !include raml-util/traits/orderable.raml
+  pageable: !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+  language: !include raml-util/traits/language.raml
+  validate: !include raml-util/traits/validation.raml
+  facets: !include raml-util/traits/facets.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+  get-only: !include raml-util/rtypes/get-only.raml
+  post-empty-body: !include raml-util/rtypes/post-empty-body.raml
+  action:
+    description: "Performs an action on an account"
+    post:
+      is: [validate]
+      description: "Perform action"
+      body:
+        application/json:
+          type: actionRequest
+      responses:
+        201:
+          description: "Action was performed successfully"
+          body:
+            application/json:
+              type: actionSuccessResponse
+        404:
+          description: "Fee/fine was not found"
+          body:
+            text/plain:
+              example: "Fee/fine was not found"
+        422:
+          description: "Action is not allowed"
+          body:
+            application/json:
+              type: actionFailureResponse
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, please contact administrator"
+  check-action:
+    description: "Checks if the requested action is allowed"
+    post:
+      description: "Checks if an action is allowed"
+      body:
+        application/json:
+          type: checkActionRequest
+      responses:
+        200:
+          description: "Action is allowed"
+          body:
+            application/json:
+              type: checkActionResponse
+        404:
+          description: "Fee/fine was not found"
+          body:
+            text/plain:
+              example: "Fee/fine was not found"
+        422:
+          description: "Action is not allowed"
+          body:
+            application/json:
+              type: checkActionResponse
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+/accounts:
+  type:
+    collection:
+      exampleCollection: !include examples/account_collection.sample
+      exampleItem: !include examples/account.sample
+      schemaCollection: accountdataCollection
+      schemaItem: account
+  get:
+    is: [
+      searchable: {description: "with valid searchable fields", example: "active=true"},
+      orderable: {fieldsList: "field A, field B"},
+      pageable,
+      facets
+    ]
+    description: "Return a list of accounts"
+  post:
+    is: [validate]
+    description: "Create an account"
+  /{accountId}:
+    type:
+      collection-item:
+        exampleItem: !include examples/account.sample
+        schema: account
+    get:
+      description: "Get a single account"
+    /check-pay:
+      type: check-action
+    /check-waive:
+      type: check-action
+    /check-transfer:
+      type: check-action
+    /check-refund:
+      type: check-action
+    /pay:
+      type: action
+    /waive:
+      type: action
+    /transfer:
+      type: action

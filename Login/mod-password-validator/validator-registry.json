@@ -1,0 +1,229 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Validator Registry",
+      "version": "undefined"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-password-validator"
+      }
+    ],
+    "paths": {
+      "/tenant/rules": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ruleCollection"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of existing validation rules for a tenant",
+          "operationId": "GET_tenant-rules",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/trait_queryable_query"
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/rule"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add a rule to a tenant",
+          "operationId": "POST_tenant-rules",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rule"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/rule"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Rule not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Rule not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Enable/disable/change the rule",
+          "operationId": "PUT_tenant-rules",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rule"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/tenant/rules/{ruleId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/rule"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Rule not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Rule not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_tenant-rules-ruleId"
+        },
+        "parameters": [
+          {
+            "name": "ruleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "ruleCollection": {
+          "includePath": "ruleCollection.json",
+          "$ref": "#/components/schemas/Can not resolve ruleCollection.json"
+        },
+        "rule": {
+          "includePath": "rule.json",
+          "$ref": "#/components/schemas/Can not resolve rule.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {
+        "trait_queryable_query": {
+          "name": "query",
+          "in": "query",
+          "description": "A query string to filter rules based on matching criteria in fields.",
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }
