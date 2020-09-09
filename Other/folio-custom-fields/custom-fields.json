@@ -1,0 +1,239 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "folio-custom-fields",
+    "version": "v0.1"
+  },
+  "servers": [
+    {
+      "url": "http://github.com/folio-org/folio-custom-fields"
+    },
+    {
+      "url": "https://github.com/folio-org/folio-custom-fields"
+    }
+  ],
+  "paths": {
+    "/custom-fields": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "operationId": "POST_custom-fields"
+      },
+      "put": {
+        "responses": {
+          "204": {
+            "description": "All custom fields successfully updated"
+          },
+          "400": {
+            "description": "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "unable to update /custom-fields -- malformed JSON at 13:4"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "internal server error, contact administrator"
+                }
+              }
+            }
+          }
+        },
+        "description": "Update all custom fields and delete fields that are not mentioned in request\n",
+        "operationId": "PUT_custom-fields",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": "Can not resolve examples/customFieldCollection.sample",
+              "schema": {
+                "$ref": "#/components/schemas/putCustomFieldCollection"
+              }
+            }
+          },
+          "required": true
+        }
+      },
+      "get": {
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "operationId": "GET_custom-fields"
+      }
+    },
+    "/custom-fields/{id}/stats": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Returns statistic of custom field with the given id",
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/customFieldStatistic.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/customFieldStatistic"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized to perform requested action",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Unable to get retrieve statistic -- unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Custom field with the given id is not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Custom field not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error, e.g. due to misconfiguration",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error, contact administrator"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns usage statistic of custom field with the given id",
+        "operationId": "GET_custom-fields-id-stats"
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "/custom-fields/{id}/options/{optId}/stats": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Returns usage statistic of custom field option with the given optId",
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/customFieldOptionStatistic.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/customFieldOptionStatistic"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized to perform requested action",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Unable to get retrieve statistic -- unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Custom field with the given id is not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Custom field not found"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error, e.g. due to misconfiguration",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "example": "Internal server error, contact administrator"
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns usage statistic of custom field option with the given optId",
+        "operationId": "GET_custom-fields-id-options-optId-stats"
+      },
+      "parameters": [
+        {
+          "name": "optId",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "customFieldCollection": {
+        "includePath": "customFieldCollection.json",
+        "$ref": "#/components/schemas/Can not resolve customFieldCollection.json"
+      },
+      "putCustomFieldCollection": {
+        "includePath": "putCustomFieldCollection.json",
+        "$ref": "#/components/schemas/Can not resolve putCustomFieldCollection.json"
+      },
+      "customField": {
+        "includePath": "customField.json",
+        "$ref": "#/components/schemas/Can not resolve customField.json"
+      },
+      "customFieldStatistic": {
+        "includePath": "customFieldStatistic.json",
+        "$ref": "#/components/schemas/Can not resolve customFieldStatistic.json"
+      },
+      "customFieldOptionStatistic": {
+        "includePath": "customFieldOptionStatistic.json",
+        "$ref": "#/components/schemas/Can not resolve customFieldOptionStatistic.json"
+      },
+      "errors": {
+        "includePath": "raml-util/schemas/errors.schema",
+        "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+      }
+    },
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {},
+    "links": {},
+    "callbacks": {}
+  }
+}

@@ -1,0 +1,141 @@
+#%RAML 1.0
+
+title: folio-custom-fields
+version: v0.1
+protocols: [ HTTP, HTTPS ]
+baseUri: https://github.com/folio-org/folio-custom-fields
+
+documentation:
+  - title: folio-custom-fields, a library and common interface for custom fields to be used by several modules
+    content: |
+      FOLIO module library to store and maintain custom fields using Okapi's multiple interfaces feature.
+      All modules that use this library share the CRUD interface POST/PUT/GET/DELETE on /custom-fields and /custom-fields/$id endpoints.
+      The client must set the X-Okapi-Module-Id header, for details see
+      [Okapi multiples interfaces documentation](https://github.com/folio-org/okapi/blob/master/doc/guide.md#multiple-interfaces),
+      [folio-custom-fields introduction](https://github.com/folio-org/folio-custom-fields#introduction), and
+      [Custom Field backend demo](https://wiki.folio.org/pages/viewpage.action?spaceKey=FOLIJET&title=MODCFIELDS-39+-+Custom+Field+backend+demo).
+types:
+  customFieldCollection: !include customFieldCollection.json
+  putCustomFieldCollection: !include putCustomFieldCollection.json
+  customField: !include customField.json
+  customFieldStatistic: !include customFieldStatistic.json
+  customFieldOptionStatistic: !include customFieldOptionStatistic.json
+  errors: !include raml-util/schemas/errors.schema
+
+traits:
+  pageable:  !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+  validate: !include raml-util/traits/validation.raml
+  language: !include raml-util/traits/language.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+
+
+/custom-fields:
+  displayName: Custom Fields
+  type:
+    collection:
+      schemaCollection: customFieldCollection
+      schemaItem: customField
+      exampleCollection: !include examples/customFieldCollection.sample
+      exampleItem: !include examples/customField.sample
+  post:
+    is: [ validate ]
+  put:
+    description: |
+      Update all custom fields and delete fields that are not mentioned in request
+    body:
+      application/json:
+        type: putCustomFieldCollection
+        example:
+          strict: false
+          value: !include examples/customFieldCollection.sample
+    responses:
+      204:
+        description: "All custom fields successfully updated"
+      400:
+        description: "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response."
+        body:
+          text/plain:
+            example: |
+              "unable to update /custom-fields -- malformed JSON at 13:4"
+      500:
+        description: "Internal server error"
+        body:
+          text/plain:
+            example: "internal server error, contact administrator"
+  get:
+    is: [
+      searchable: {description: "Query should contain custom field attributes", example: "name=department"},
+      pageable,
+      validate
+    ]
+  /{id}:
+    displayName: Custom Fields
+    description: Get, Delete or Update a custom field
+    uriParameters:
+      id:
+        pattern : "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+    type:
+      collection-item:
+        schema: customField
+        exampleItem: !include examples/customField.sample
+    /stats:
+      displayName: Custom field usage statistic
+      get:
+        description: Returns usage statistic of custom field with the given id
+        is: [language]
+        responses:
+          200:
+            description: "Returns statistic of custom field with the given id"
+            body:
+              application/json:
+                type: customFieldStatistic
+                example:
+                  strict: false
+                  value: !include examples/customFieldStatistic.sample
+          401:
+            description: "Not authorized to perform requested action"
+            body:
+              text/plain:
+                example: "Unable to get retrieve statistic -- unauthorized"
+          404:
+            description: "Custom field with the given id is not found"
+            body:
+              text/plain:
+                example: "Custom field not found"
+          500:
+            description: "Internal server error, e.g. due to misconfiguration"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+    /options/{optId}/stats:
+      displayName: Custom field option usage statistic
+      get:
+        description: Returns usage statistic of custom field option with the given optId
+        responses:
+          200:
+            description: Returns usage statistic of custom field option with the given optId
+            body:
+              application/json:
+                type: customFieldOptionStatistic
+                example:
+                  strict: false
+                  value: !include examples/customFieldOptionStatistic.sample
+          401:
+            description: "Not authorized to perform requested action"
+            body:
+              text/plain:
+                example: "Unable to get retrieve statistic -- unauthorized"
+          404:
+            description: "Custom field with the given id is not found"
+            body:
+              text/plain:
+                example: "Custom field not found"
+          500:
+            description: "Internal server error, e.g. due to misconfiguration"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
