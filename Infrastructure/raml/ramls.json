@@ -1,0 +1,76 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "RAML API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8081/{version}",
+        "variables": {
+          "version": {
+            "default": "version"
+          }
+        }
+      }
+    ],
+    "paths": {
+      "/_/ramls": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "RAML",
+              "content": {
+                "application/raml+yaml": {
+                  "schema": {
+                    "example": "Can not resolve ../examples/mod-users/users.raml.sample"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "RAML with a given path not found"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get RAMLs for the given module defined by header X-Okapi-Module-Id.\nWithout path query param will return list of RAML paths.\nWith path query param will return the specific RAML with resolvable references.\n",
+          "operationId": "GET__-ramls",
+          "parameters": [
+            {
+              "name": "path",
+              "in": "query",
+              "description": "Path to specific RAML",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ../schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

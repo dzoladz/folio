@@ -1,0 +1,77 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Tags API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-tags"
+      }
+    ],
+    "paths": {
+      "/tags": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_tags"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_tags"
+        }
+      },
+      "/tags/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_tags-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "tag": {
+          "includePath": "tag.json",
+          "$ref": "#/components/schemas/Can not resolve tag.json"
+        },
+        "tagsCollection": {
+          "includePath": "tagsCollection.json",
+          "$ref": "#/components/schemas/Can not resolve tagsCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

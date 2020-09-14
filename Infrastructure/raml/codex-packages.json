@@ -1,0 +1,82 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Codex Packages",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-codex-ekb"
+      }
+    ],
+    "paths": {
+      "/codex-packages": {
+        "get": {
+          "responses": {
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to list packages -- unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_codex-packages"
+        }
+      },
+      "/codex-packages/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/codex-packages-sources": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "GET a list of source modules that implement codex-packages interface",
+          "operationId": "Codex sources"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "package": {
+          "includePath": "schemas/codex/package.json",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/codex/package.json"
+        },
+        "packageCollection": {
+          "includePath": "schemas/codex/packageCollection.json",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/codex/packageCollection.json"
+        },
+        "errors": {
+          "includePath": "schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/errors.schema"
+        },
+        "sourceCollection": {
+          "includePath": "schemas/codex/sourceCollection.json",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/codex/sourceCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

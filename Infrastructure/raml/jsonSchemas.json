@@ -1,0 +1,76 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "JSON Schema API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8081/{version}",
+        "variables": {
+          "version": {
+            "default": "version"
+          }
+        }
+      }
+    ],
+    "paths": {
+      "/_/jsonSchemas": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "JSON Schema",
+              "content": {
+                "application/schema+json": {
+                  "schema": {
+                    "example": "Can not resolve ../examples/mod-users/userdata.json.sample"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "JSON Schema with a given path not found"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get JSON Schemas for the given module defined by header X-Okapi-Module-Id.\nWithout path query param will return list of JSON Schema paths.\nWith path query param will return the specific JSON Schema with resolvable references.\n",
+          "operationId": "GET__-jsonSchemas",
+          "parameters": [
+            {
+              "name": "path",
+              "in": "query",
+              "description": "Path to specific JSON Schema",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ../schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

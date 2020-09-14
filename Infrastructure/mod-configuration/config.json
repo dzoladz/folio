@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Configurations",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/org/folio/lsp-apis"
+      },
+      {
+        "url": "http://github.com/org/folio/lsp-apis"
+      }
+    ],
+    "paths": {
+      "/configurations/entries": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_configurations-entries"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_configurations-entries"
+        }
+      },
+      "/configurations/entries/{entryId}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_configurations-entries-entryId"
+        },
+        "parameters": [
+          {
+            "name": "entryId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/configurations/audit": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_configurations-audit"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "configs": {
+          "includePath": "_schemas/kv_configurations.schema",
+          "$ref": "#/components/schemas/Can not resolve ../_schemas/kv_configurations.schema"
+        },
+        "config": {
+          "includePath": "_schemas/kv_configuration.schema",
+          "$ref": "#/components/schemas/Can not resolve ../_schemas/kv_configuration.schema"
+        },
+        "libraries": {
+          "includePath": "_schemas/library.schema",
+          "$ref": "#/components/schemas/Can not resolve ../_schemas/library.schema"
+        },
+        "audits": {
+          "includePath": "_schemas/audits.schema",
+          "$ref": "#/components/schemas/Can not resolve ../_schemas/audits.schema"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ../raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

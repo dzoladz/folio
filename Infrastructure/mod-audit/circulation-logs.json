@@ -1,0 +1,92 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Circulation Audit Logs API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-audit"
+      }
+    ],
+    "paths": {
+      "/audit-data/circulation/logs": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_audit-data-circulation-logs"
+        }
+      },
+      "/audit-data/circulation/event/handler": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": ""
+            },
+            "422": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_audit-data-circulation-event-handler",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "logRecordCollection": {
+          "includePath": "logRecordCollection.json",
+          "$ref": "#/components/schemas/Can not resolve logRecordCollection.json"
+        },
+        "logEventPayload": {
+          "includePath": "schemas/logEventPayload.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/logEventPayload.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "error": {
+          "includePath": "raml-util/schemas/error.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/error.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

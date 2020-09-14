@@ -1,0 +1,268 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "e-BookMobile API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8081/"
+      }
+    ],
+    "paths": {
+      "/rmbtests/books": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "data": {
+                      "id": "SbBGk",
+                      "title": "Stiff: The Curious Lives of Human Cadavers",
+                      "description": "aaaaaa",
+                      "genre": "science",
+                      "author": "Mary Roach",
+                      "link": "http://e-bookmobile.com/books/Stiff"
+                    },
+                    "success": true,
+                    "status": 200,
+                    "metadata": {
+                      "createdDate": "2017-04-01T23:11:00.000Z",
+                      "createdByUserId": "dee12548-9cee-45fa-bbae-675c1cc0ce3b"
+                    }
+                  },
+                  "schema": {
+                    "$ref": "#/components/schemas/book"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_rmbtests-books",
+          "parameters": [
+            {
+              "name": "author",
+              "in": "query",
+              "required": true,
+              "description": "An author's full name",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "publicationDate",
+              "in": "query",
+              "required": true,
+              "description": "The date released for the first time in the US",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "rating",
+              "in": "query",
+              "description": "Average rating (1-5) submitted by users",
+              "schema": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "edition",
+              "in": "query",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "isbn",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "minLength": 10,
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_rmbtests-books",
+          "parameters": [
+            {
+              "name": "access_token",
+              "in": "query",
+              "required": true,
+              "description": "Token giving you permission to make call",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "headers": {
+                "Location": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/book.sample"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_rmbtests-books",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/book"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/rmbtests/test": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "headers": {
+                "Location": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": ""
+            },
+            "422": {
+              "description": ""
+            },
+            "500": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_rmbtests-test",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/book"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/books"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": ""
+            },
+            "422": {
+              "description": ""
+            },
+            "500": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_rmbtests-test",
+          "parameters": [
+            {
+              "name": "query",
+              "in": "query",
+              "description": "CQL query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "options": {
+          "responses": {
+            "200": {
+              "description": "Return with appropriate CORS headers"
+            }
+          },
+          "description": "Preflight CORS for /rmbtests/test",
+          "operationId": "OPTIONS_rmbtests-test"
+        }
+      },
+      "/rmbtests/testStream": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": ""
+            },
+            "400": {
+              "description": ""
+            },
+            "500": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_rmbtests-testStream",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "book": {
+          "includePath": "book.schema",
+          "$ref": "#/components/schemas/Can not resolve book.schema"
+        },
+        "books": {
+          "includePath": "books.schema",
+          "$ref": "#/components/schemas/Can not resolve books.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

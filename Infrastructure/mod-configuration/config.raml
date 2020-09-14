@@ -1,0 +1,71 @@
+#%RAML 1.0
+title: Configurations
+version: v1
+baseUri: http://github.com/org/folio/lsp-apis
+protocols: [ HTTPS ]
+
+documentation:
+  - title: Configuration API updating system wide configurations
+    content: <b>This documents the API calls that can be made to update configurations in the system</b>
+
+types:
+  configs: !include ../_schemas/kv_configurations.schema
+  config: !include ../_schemas/kv_configuration.schema
+  libraries: !include ../_schemas/library.schema
+  audits: !include ../_schemas/audits.schema
+  errors: !include ../raml-util/schemas/errors.schema
+
+traits:
+  orderable: !include ../raml-util/traits/orderable.raml
+  pageable:  !include ../raml-util/traits/pageable.raml
+  searchable: !include ../raml-util/traits/searchable.raml
+  language: !include ../raml-util/traits/language.raml
+  validate: !include ../raml-util/traits/validation.raml
+  facets: !include ../raml-util/traits/facets.raml
+
+resourceTypes:
+  collection: !include ../raml-util/rtypes/collection.raml
+  collection-item: !include ../raml-util/rtypes/item-collection.raml
+  get-only: !include ../raml-util/rtypes/get-only.raml
+
+/configurations:
+  /entries:
+    displayName: Configurations
+    description: <ul><li>Retrieve configurations for all modules associated with a specific institution.</li><li>Add a module to the configuration tables</li></ul><br>The JWT token limits the returned configurations to those of the calling institution
+    type:
+      collection:
+        schemaCollection: configs
+        schemaItem: config
+        exampleCollection: !include ../_examples/kv_configurations.sample
+        exampleItem: !include ../_examples/kv_configuration.sample
+    get:
+      is: [
+        searchable: {description: "with valid searchable fields: for example module = CIRCULATION", example: "scope.institution_id=aaa"},
+        pageable,
+        validate,
+        facets
+      ]
+    post:
+      is: [validate]
+    /{entryId}:
+      displayName: Module configurations
+      description: Get, Delete or Update a specific entry
+      type:
+        collection-item:
+          schema: config
+          exampleItem: !include ../_examples/kv_configuration.sample
+      put:
+        is: [validate]
+  /audit:
+    displayName: Audit Configurations
+    description: Retrieve entries from the audit configuration table.
+    type:
+      get-only:
+        schema: audits
+        exampleCollection: !include ../_examples/audits.sample
+    get:
+      is: [
+        searchable: {description: "with valid searchable fields: for example module = CIRCULATION", example: "scope.institution_id=aaa"},
+        pageable,
+        validate
+      ]

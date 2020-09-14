@@ -1,0 +1,410 @@
+#%RAML 1.0
+
+title: Admin API
+baseUri: http://localhost:8081
+version: v1
+
+traits:
+  log-level: !include traits/log-level.raml
+  upload-handler: !include traits/upload-handler.raml
+  history: !include traits/history.raml
+  dbname: !include traits/dbname.raml
+  secret-key: !include traits/secret-key.raml
+  slow-query: !include traits/slow-query.raml
+  pid: !include traits/pid.raml
+
+/admin:
+  /importSQL:
+    description: Uploads a file and saves it to a directory configured on the server
+    post:
+      description: |
+          Uploads a file and saves it to a directory configured on the server
+      body:
+        application/octet-stream:
+      responses:
+        200:
+          description: "Saved"
+          headers:
+            Location:
+              description: URI to the created <<resourcePathName|!singularize>> item
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+              example: |
+                "unable to add <<resourcePathName|!singularize>>"
+        500:
+          description: "Internal server error, e.g. due to misconfiguration"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /loglevel:
+    put:
+      description: Set logging level for all loggers in the JVM or just for a specific package / class
+      is: [log-level]
+      responses:
+        200:
+          description: "Returns packages with log level of the updated packages"
+          body:
+            application/json:
+              example: "{\"package\" : \"log level\" , \"package2\" : \"log level\"}"
+        500:
+          description: "Internal server error, e.g. due to misconfiguration"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+    get:
+      description: Get the logging level for all loggers in the JVM
+      responses:
+        200:
+          description: "Returns packages with log level"
+          body:
+            application/json:
+              example: "{\"package\" : \"log level\" , \"package2\" : \"log level\"}"
+        500:
+          description: "Internal server error, e.g. due to misconfiguration"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /jstack:
+    put:
+      description: dumps jstacks every N seconds to a jstack file to find potential bottlenecks. Looking at this |
+        file you can see if there are functions blocking for too long
+      responses:
+        204:
+          description: "Jstack request successful"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+    get:
+      description: Get stack trace
+      responses:
+        200:
+          description: "Returns the stack trace of all threads in the JVM"
+          body:
+            text/html:
+              example: "Text....."
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /memory:
+    get:
+      description: Get JVM memory info
+      is: [history]
+      responses:
+        200:
+          description: "Returns JVM memory info"
+          body:
+            text/html:
+              example: "Text....."
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /postgres_maintenance:
+    post:
+      description: run one of the following maintenance jobs on the Postgres DB. |
+        analyze, vacuum, vacuum analyze, vacuum verbose
+      queryParameters:
+        table:
+          description: Table name to run command on
+          required: true
+        command:
+          description: |
+            The command to run
+          enum: [ANALYZE, VACUUM, VACUUM_ANALYZE, VACUUM_VERBOSE]
+          default: ANALYZE
+          required: false
+      responses:
+        201:
+          description: "Command requested successful"
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /postgres_active_sessions:
+    get:
+      description: Get active PostgreSQL sessions
+      is: [dbname]
+      responses:
+        200:
+          description: |
+            Returns active sessions with the following information. |
+              process ID of the currently connected user to the database. |
+              name of the database to which the user is currently connected. |
+              the full text of the SQL query that is being executed by the client. |
+              etc...
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /postgres_load:
+    get:
+      description: Get load information on PostgreSQL
+      is: [ dbname]
+      responses:
+        200:
+          description: |
+            Returns load with the following information. |
+              Number of active connections. |
+              Number of rollbacks and commits issued. |
+              Number of blocks read ( block = an 8kb segment information the file storing the table. ). |
+              Number of buffer hits (cache) |
+              Note that the function calls SELECT pg_stat_reset(); to clear stats, waits 10 seconds, and |
+              then returns with the info collected during those 10 seconds
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /postgres_table_access_stats:
+    get:
+      description: Get access stats on the PostgreSQL tables
+      responses:
+        200:
+          description: |
+            Returns info about how the tables are being accessed either sequential or index scans
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /postgres_table_size:
+    get:
+      description: amount of disk usage for a specific database and its associated tables and indexes.
+      is: [dbname]
+      responses:
+        200:
+          description: |
+            Returns info for every table in format - table | table size | index size
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /table_index_usage:
+    get:
+      description: table index usage rates per table
+      responses:
+        200:
+          description: |
+            Returns index usage info for every table
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /cache_hit_rates:
+    get:
+      description: cache hit rates
+      responses:
+        200:
+          description: |
+            cache hit rates
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /slow_queries:
+    get:
+      description: Check for currently running queries that have been executing longer than X seconds
+      is: [slow-query]
+      responses:
+        200:
+          description: |
+            List of slow queries
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /total_db_size:
+    get:
+      description: Returns the size of the entire database for example, db_size = 711 MB
+      is: [dbname]
+      responses:
+        200:
+          description: |
+            Returns the size of the entire database
+          body:
+            application/json:
+              example: "{\"db_size\" : \"711 MB\"}"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /db_cache_summary:
+    get:
+      description: Returns a list of the tables / indexes in the shared_buffers (cache) and their size. This is |
+        an expensive API from a DB resource perspective and should not run frequently (every few hours should suffice)
+      responses:
+        200:
+          description: |
+            Returns a list of the tables / indexes in the shared_buffers
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /list_locking_queries:
+    get:
+      description: Returns a list of queries in transactions that are blocking other queries. The result includes
+        the blocking query, the query being blocked, and their pids
+      is: [dbname]
+      responses:
+        200:
+          body:
+            application/json:
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /kill_query:
+    delete:
+      description: Stops a query from running based on its PID using the pg_terminate_backend command
+      is: [pid]
+      responses:
+        204:
+          description: "Query terminated successfully"
+        404:
+          description: "PID not found"
+          body:
+            text/plain:
+              example: |
+                "<<resourcePathName|!singularize>> not found"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /postgres_drop_indexes:
+    put:
+      description: Drop indexes, useful before a large batch load, tenantid will be used to select the correct schema to use
+      responses:
+        204:
+          description: "Indexes dropped"
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+              example: |
+                "No indexes to delete"
+        500:
+          description: "Internal server error, e.g. due to misconfiguration"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /postgres_create_indexes:
+    put:
+      description: Create indexes, useful if prior to a large batch load the indexes were dropped, tenantid will be used to select the correct schema to use
+      responses:
+        204:
+          description: "Indexes created"
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+              example: |
+                "example message"
+        500:
+          description: "Internal server error, e.g. due to misconfiguration"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /set_AES_key:
+    post:
+      description: Sets the AES secret key that the postgres config file password was encrypted with. The key will only be checked |
+        when the configuration file is read in and the DB connection is created
+      is: [secret-key]
+      responses:
+        204:
+          description: "Secret key set"
+  /get_password:
+    post:
+      description: The API takes the secret key passed in and the x-okapi-tenant header and returns the DB password generated for |
+        that tenant's schema
+      is: [secret-key]
+      responses:
+        200:
+          description: "returned password"
+          body:
+            text/plain:
+              example: "as35235+df+df/ggr"
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+              example: |
+                "unable to add <<resourcePathName|!singularize>>"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /health:
+    get:
+      description: The API returns 200 if service is up and responding. Should be overridden |
+        by individual services that want to actually run some business logic to determine health.
+      responses:
+        200:
+          body:
+            "any/any":
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+              example: |
+                ""
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+  /module_stats:
+    get:
+      description: The API returns service specific statistics. Should be overridden |
+        by individual services that run a set of business logic functions / gather stats and return.
+      responses:
+        200:
+          description: "returned status"
+          body:
+            text/plain:
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+              example: |
+                ""
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"

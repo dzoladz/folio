@@ -1,0 +1,328 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Template engine",
+      "version": "v2.2"
+    },
+    "servers": [
+      {
+        "url": "http://api.example.com/{version}",
+        "variables": {
+          "version": {
+            "default": "version"
+          }
+        }
+      }
+    ],
+    "paths": {
+      "/templates": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/template"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add a new template",
+          "operationId": "POST_templates",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/template"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/templatesCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of templates",
+          "operationId": "GET_templates",
+          "parameters": [
+            {
+              "$ref": "#/components/parameters/trait_queryable_query"
+            }
+          ]
+        }
+      },
+      "/templates/{templateId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/template"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Template not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Template not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get template by id",
+          "operationId": "GET_templates-templateId"
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/template"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Template not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Template not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Modify a template",
+          "operationId": "PUT_templates-templateId",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/template"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "404": {
+              "description": "Template not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Template not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete template by id",
+          "operationId": "DELETE_templates-templateId"
+        },
+        "parameters": [
+          {
+            "name": "templateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/template-request": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/templateProcessingResult"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "process specified template using given context",
+          "operationId": "POST_template-request",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/templateProcessingRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "template": {
+          "includePath": "template.json",
+          "$ref": "#/components/schemas/Can not resolve template.json"
+        },
+        "templatesCollection": {
+          "includePath": "templatesCollection.json",
+          "$ref": "#/components/schemas/Can not resolve templatesCollection.json"
+        },
+        "templateProcessingRequest": {
+          "includePath": "templateProcessingRequest.json",
+          "$ref": "#/components/schemas/Can not resolve templateProcessingRequest.json"
+        },
+        "templateProcessingResult": {
+          "includePath": "templateProcessingResult.json",
+          "$ref": "#/components/schemas/Can not resolve templateProcessingResult.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "configuration": {
+          "includePath": "configuration.json",
+          "$ref": "#/components/schemas/Can not resolve configuration.json"
+        },
+        "configurations": {
+          "includePath": "configurations.json",
+          "$ref": "#/components/schemas/Can not resolve configurations.json"
+        }
+      },
+      "responses": {},
+      "parameters": {
+        "trait_queryable_query": {
+          "name": "query",
+          "in": "query",
+          "description": "A query string to filter templates based on matching criteria in fields.",
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

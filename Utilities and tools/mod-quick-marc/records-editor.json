@@ -1,0 +1,167 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "quickMARC Editor Records",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-quick-marc"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-quick-marc"
+      }
+    ],
+    "paths": {
+      "/records-editor/records": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "MARC record successfully updated",
+              "content": {
+                "application/json": {
+                  "example": "sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/quickMarcJson"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve raml-storage/raml-util/examples/error.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "MARC record with a given ID not found",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve raml-storage/raml-util/examples/error.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve raml-storage/raml-util/examples/error.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get MARC record by instanceId",
+          "operationId": "GET_records-editor-records",
+          "parameters": [
+            {
+              "name": "instanceId",
+              "in": "query",
+              "required": true,
+              "description": "UUID of the instance that is related to the MARC record",
+              "schema": {
+                "$ref": "#/components/schemas/UUID"
+              }
+            }
+          ]
+        }
+      },
+      "/records-editor/records/{id}": {
+        "put": {
+          "responses": {
+            "202": {
+              "description": "MARC record accepted for updating"
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve raml-storage/raml-util/examples/error.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve raml-storage/raml-util/examples/error.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Edit MARC record",
+          "operationId": "PUT_records-editor-records-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "sample",
+                "schema": {
+                  "$ref": "#/components/schemas/quickMarcJson"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a record"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "quickMarcJson": {
+          "includePath": "schemas/quick_marc_json.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/quick_marc_json.json"
+        },
+        "sample": {
+          "includePath": "examples/quick_marc_json.sample",
+          "$ref": "#/components/schemas/Can not resolve examples/quick_marc_json.sample"
+        },
+        "error": {
+          "includePath": "raml-storage/raml-util/schemas/error.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/error.schema"
+        },
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

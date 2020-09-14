@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Notes API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-notes"
+      }
+    ],
+    "paths": {
+      "/notes": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_notes"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_notes"
+        }
+      },
+      "/notes/{id}": {
+        "get": {
+          "responses": {
+            "400": {
+              "description": "Bad request"
+            },
+            "401": {
+              "description": "Not authorized to perform requested action"
+            }
+          },
+          "operationId": "GET_notes-id"
+        },
+        "put": {
+          "responses": {
+            "400": {
+              "description": "Bad request"
+            },
+            "401": {
+              "description": "Not authorized to perform requested action"
+            }
+          },
+          "operationId": "PUT_notes-id"
+        },
+        "delete": {
+          "responses": {
+            "400": {
+              "description": "Bad request"
+            },
+            "401": {
+              "description": "Not authorized to perform requested action"
+            }
+          },
+          "operationId": "DELETE_notes-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "note": {
+          "includePath": "types/notes/note.json",
+          "$ref": "#/components/schemas/Can not resolve types/notes/note.json"
+        },
+        "link": {
+          "includePath": "types/notes/link.json",
+          "$ref": "#/components/schemas/Can not resolve types/notes/link.json"
+        },
+        "noteCollection": {
+          "includePath": "types/notes/noteCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/notes/noteCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

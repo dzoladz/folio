@@ -1,0 +1,67 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Codex",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-codex-ekb"
+      }
+    ],
+    "paths": {
+      "/codex-instances": {
+        "get": {
+          "responses": {
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to list instances -- unauthorized"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_codex-instances"
+        }
+      },
+      "/codex-instances/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "instance": {
+          "includePath": "schemas/codex/instance.json",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/codex/instance.json"
+        },
+        "instanceCollection": {
+          "includePath": "schemas/codex/instanceCollection.json",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/codex/instanceCollection.json"
+        },
+        "errors": {
+          "includePath": "schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

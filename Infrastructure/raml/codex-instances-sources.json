@@ -1,0 +1,41 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Codex Instances Sources",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-codex-ekb"
+      }
+    ],
+    "paths": {
+      "/codex-instances-sources": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "GET a list of source modules that implement codex-instances-sources interface",
+          "operationId": "Codex instances sources"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "sourceCollection": {
+          "includePath": "schemas/codex/sourceCollection.json",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/codex/sourceCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,71 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Note Types",
+      "version": "v1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-notes"
+      }
+    ],
+    "paths": {
+      "/note-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of note types",
+          "operationId": "GET_note-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a note type",
+          "operationId": "POST_note-types"
+        }
+      },
+      "/note-types/{typeId}": {
+        "parameters": [
+          {
+            "name": "typeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "noteTypeCollection": {
+          "includePath": "types/notetypes/noteTypeCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/notetypes/noteTypeCollection.json"
+        },
+        "noteType": {
+          "includePath": "types/notetypes/noteTypeItem.json",
+          "$ref": "#/components/schemas/Can not resolve types/notetypes/noteTypeItem.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

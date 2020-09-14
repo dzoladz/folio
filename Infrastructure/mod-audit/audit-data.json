@@ -1,0 +1,117 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Audit API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-audit"
+      }
+    ],
+    "paths": {
+      "/audit-data": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_audit-data"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_audit-data"
+        }
+      },
+      "/audit-data/{id}": {
+        "get": {
+          "responses": {
+            "400": {
+              "description": "Bad request"
+            },
+            "401": {
+              "description": "Not authorized to perform requested action"
+            }
+          },
+          "operationId": "GET_audit-data-id"
+        },
+        "put": {
+          "responses": {
+            "400": {
+              "description": "Bad request"
+            },
+            "401": {
+              "description": "Not authorized to perform requested action"
+            }
+          },
+          "operationId": "PUT_audit-data-id"
+        },
+        "delete": {
+          "responses": {
+            "400": {
+              "description": "Bad request"
+            },
+            "401": {
+              "description": "Not authorized to perform requested action"
+            }
+          },
+          "operationId": "DELETE_audit-data-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "audit": {
+          "includePath": "audit.json",
+          "$ref": "#/components/schemas/Can not resolve audit.json"
+        },
+        "auditCollection": {
+          "includePath": "auditCollection.json",
+          "$ref": "#/components/schemas/Can not resolve auditCollection.json"
+        },
+        "logRecordCollection": {
+          "includePath": "logRecordCollection.json",
+          "$ref": "#/components/schemas/Can not resolve logRecordCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "error": {
+          "includePath": "raml-util/schemas/error.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/error.schema"
+        },
+        "parameters": {
+          "includePath": "raml-util/schemas/parameters.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/parameters.schema"
+        },
+        "metadata": {
+          "includePath": "raml-util/schemas/metadata.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/metadata.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

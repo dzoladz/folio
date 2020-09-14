@@ -1,0 +1,94 @@
+#%RAML 1.0
+
+title: Audit API
+baseUri: https://github.com/folio-org/mod-audit
+version: v1
+
+documentation:
+  - title: mod-audit API
+    content: This documents the API calls that can be made to query and manage audit records
+
+types:
+  audit: !include audit.json
+  auditCollection: !include auditCollection.json
+  logRecordCollection: !include logRecordCollection.json
+  errors: !include raml-util/schemas/errors.schema
+  error: !include raml-util/schemas/error.schema
+  parameters: !include raml-util/schemas/parameters.schema
+  metadata: !include raml-util/schemas/metadata.schema
+traits:
+  validate: !include raml-util/traits/validation.raml
+  language: !include raml-util/traits/language.raml
+  pageable:  !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+  collection-get: !include raml-util/rtypes/collection-get.raml
+
+/audit-data:
+  displayName: Audit data
+  description: Get existing audit records or Create a new audit record
+  type:
+    collection:
+      schemaCollection: auditCollection
+      schemaItem: audit
+      exampleCollection:
+        strict: false
+        value: !include examples/auditCollection.sample.json
+      exampleItem:
+        strict: false
+        value: !include examples/audit.sample.json
+
+  post:
+    is: [
+      validate
+    ]
+  get:
+    is: [
+      searchable: {description: "with valid searchable fields: for example link = 1234", example: "link=/users/1234"},
+      pageable,
+      validate
+    ]
+    responses:
+  /{id}:
+    displayName: Audit data by id
+    description: Get, Delete or Update a specific audit record
+    type:
+      collection-item:
+        schema: audit
+        exampleItem:
+          strict: false
+          value: !include examples/audit.sample.json
+    get:
+      responses:
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+        401:
+          description: "Not authorized to perform requested action"
+          body:
+            text/plain:
+    put:
+      is: [validate]
+      responses:
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+        401:
+          description: "Not authorized to perform requested action"
+          body:
+            text/plain:
+    delete:
+      responses:
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+        401:
+          description: "Not authorized to perform requested action"
+          body:
+            text/plain:

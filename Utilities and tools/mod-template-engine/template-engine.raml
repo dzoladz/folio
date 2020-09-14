@@ -1,0 +1,147 @@
+#%RAML 1.0
+
+title: Template engine
+baseUri: http://api.example.com/{version}
+version: v2.2
+
+
+documentation:
+  - title: mod-template-engine API
+    content: This module dedicated for storing templates and generating text, html, xml, doc, docx etc from the template.
+
+types:
+  template: !include template.json
+  templatesCollection: !include templatesCollection.json
+  templateProcessingRequest: !include templateProcessingRequest.json
+  templateProcessingResult: !include templateProcessingResult.json
+  errors: !include raml-util/schemas/errors.schema
+  configuration: !include configuration.json
+  configurations: !include configurations.json
+
+traits:
+  pageable: !include ./raml-util/traits/pageable.raml
+  queryable:
+      queryParameters:
+        query:
+          description: "A query string to filter templates based on matching criteria in fields."
+          required: false
+          type: string
+  validate: !include ./raml-util/traits/validation.raml
+
+/templates:
+  post:
+    is: [validate]
+    description: Add a new template
+    body:
+      application/json:
+        type: template
+    responses:
+      201:
+        body:
+          application/json:
+            type: template
+      400:
+        description: "Bad request"
+        body:
+          text/plain:
+            example: "Bad request"
+      500:
+        description: "Internal server error"
+        body:
+          text/plain:
+            example: "Internal server error"
+  get:
+    description: Get a list of templates
+    is: [
+      pageable,
+      queryable
+    ]
+    responses:
+      200:
+        body:
+          application/json:
+            type: templatesCollection
+      400:
+        description: "Bad request"
+        body:
+          text/plain:
+            example: "Bad request"
+      500:
+        description: "Internal server error"
+        body:
+          text/plain:
+            example: "Internal server error"
+  /{templateId}:
+    get:
+      description: Get template by id
+      responses:
+        200:
+          body:
+            application/json:
+              type: template
+        404:
+          description: "Template not found"
+          body:
+            text/plain:
+              example: "Template not found"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+    put:
+      description: Modify a template
+      body:
+        application/json:
+         type: template
+      responses:
+        200:
+          body:
+            application/json:
+              type: template
+        404:
+          description: "Template not found"
+          body:
+            text/plain:
+                example: "Template not found"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+    delete:
+      description: Delete template by id
+      responses:
+        204:
+          body:
+            text/plain: !!null
+        404:
+          description: "Template not found"
+          body:
+            text/plain:
+              example: "Template not found"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+/template-request:
+  post:
+    is: [validate]
+    description: process specified template using given context
+    body:
+      application/json:
+        type: templateProcessingRequest
+    responses:
+      200:
+        body:
+          application/json:
+            type: templateProcessingResult
+      400:
+        body:
+          text/plain:
+            example: "Bad request"
+      500:
+        body:
+          text/plain:
+            example: "Internal server error"

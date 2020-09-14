@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Users",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-users"
+      }
+    ],
+    "paths": {
+      "/users": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of users",
+          "operationId": "GET_users"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a user",
+          "operationId": "POST_users"
+        }
+      },
+      "/users/{userId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a single user",
+          "operationId": "GET_users-userId"
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "userdata": {
+          "includePath": "schemas/tagged-record-example/userdata.json",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/tagged-record-example/userdata.json"
+        },
+        "userdataCollection": {
+          "includePath": "schemas/tagged-record-example/userdataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/tagged-record-example/userdataCollection.json"
+        },
+        "errors": {
+          "includePath": "schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ../../schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

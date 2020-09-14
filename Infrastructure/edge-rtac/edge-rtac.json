@@ -1,0 +1,80 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Edge API - Real Time Availability Check",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/edge-rtac"
+      }
+    ],
+    "paths": {
+      "/prod/rtac/folioRTAC": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Success",
+              "content": {
+                "application/xml": {
+                  "schema": {
+                    "$ref": "#/components/schemas/holdings"
+                  }
+                }
+              }
+            }
+          },
+          "description": "RTAC for the specified holding id",
+          "operationId": "GET_prod-rtac-folioRTAC",
+          "parameters": [
+            {
+              "name": "mms_id",
+              "in": "query",
+              "required": true,
+              "description": "The UUID of a FOLIO instance",
+              "schema": {
+                "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "apikey",
+              "in": "query",
+              "required": true,
+              "description": "API Key",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/admin/health": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "description": "Health Check",
+          "operationId": "GET_admin-health"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "holdings": {
+          "includePath": "holdings.xsd",
+          "$ref": "#/components/schemas/Can not resolve holdings.xsd"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }
