@@ -1,0 +1,48 @@
+#%RAML 1.0
+title: "Orders Storage"
+baseUri: http://github.com/org/folio/mod-orders-storage
+version: v3.2
+
+documentation:
+  - title: Pieces
+    content: <b>CRUD API to manage Pieces.  This API is intended for internal use only.  Please use the /orders/pieces, /orders/receiving, /orders/check-in, and /orders/receiving-history APIs provided by mod-orders instead.</b>
+
+types:
+    piece: !include acq-models/mod-orders-storage/schemas/piece.json
+    piece_collection: !include acq-models/mod-orders-storage/schemas/piece_collection.json
+    UUID:
+     type: string
+     pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+
+traits:
+    orderable: !include raml-util/traits/orderable.raml
+    pageable:  !include raml-util/traits/pageable.raml
+    searchable: !include raml-util/traits/searchable.raml
+    language: !include raml-util/traits/language.raml
+
+resourceTypes:
+    collection: !include raml-util/rtypes/collection.raml
+    collection-item: !include raml-util/rtypes/item-collection.raml
+
+/orders-storage/pieces:
+  type:
+    collection:
+      exampleCollection: !include acq-models/mod-orders-storage/examples/piece_collection.sample
+      exampleItem: !include acq-models/mod-orders-storage/examples/piece_post.sample
+      schemaCollection: piece_collection
+      schemaItem: piece
+  get:
+    description: Get list of pieces
+    is: [
+      searchable: {description: "with valid searchable fields: for example code", example: "[\"code\", \"MEDGRANT\", \"=\"]"},
+      pageable
+    ]
+  /{id}:
+    uriParameters:
+      id:
+        description: The UUID of a Piece
+        type: UUID
+    type:
+      collection-item:
+        exampleItem: !include acq-models/mod-orders-storage/examples/piece_get.sample
+        schema: piece

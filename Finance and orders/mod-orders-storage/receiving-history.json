@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-orders-storage",
+      "version": "v3.2"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders-storage/receiving-history": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of receiving history",
+          "operationId": "GET_orders-storage-receiving-history"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "receiving-history": {
+          "includePath": "acq-models/mod-orders-storage/schemas/receiving_history.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/receiving_history.json"
+        },
+        "receiving-history-collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/receiving_history_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/receiving_history_collection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,76 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Data export",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-data-export"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-data-export"
+      }
+    ],
+    "paths": {
+      "/data-export/mapping-profiles": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_data-export-mapping-profiles"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-export-mapping-profiles"
+        }
+      },
+      "/data-export/mapping-profiles/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a mapping Profile"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "mappingProfile": {
+          "includePath": "schemas/profiles/mappingProfile.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/profiles/mappingProfile.json"
+        },
+        "mappingProfileCollection": {
+          "includePath": "schemas/profiles/mappingProfileCollection.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/profiles/mappingProfileCollection.json"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

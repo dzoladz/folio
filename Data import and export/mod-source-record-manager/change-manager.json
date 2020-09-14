@@ -1,0 +1,597 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Change Manager",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/change-manager/jobExecutions": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/initJobExecutionsRsDto"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Initialize JobExecutions",
+          "operationId": "POST_change-manager-jobExecutions",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/initJobExecutionsRqDto"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/change-manager/jobExecutions/{id}": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/jobExecution"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_change-manager-jobExecutions-id"
+        },
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/jobExecution"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get JobExecution by id",
+          "operationId": "GET_change-manager-jobExecutions-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/change-manager/jobExecutions/{id}/children": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/jobExecutionCollection"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get children JobExecutions by parent id, by default returns all existing children JobExecutions, in order to limit the collection parameter limit should be explicitly specified",
+          "operationId": "GET_change-manager-jobExecutions-id-children",
+          "parameters": [
+            {
+              "name": "limit",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "default": 2147483647,
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/change-manager/jobExecutions/{id}/status": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/jobExecution"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update JobExecution status",
+          "operationId": "PUT_change-manager-jobExecutions-id-status",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/statusDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/change-manager/jobExecutions/{id}/jobProfile": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/jobExecution"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Set JobProfile for JobExecution",
+          "operationId": "PUT_change-manager-jobExecutions-id-jobProfile",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/jobProfileInfo"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/change-manager/jobExecutions/{id}/records": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Receive chunk of raw records",
+          "operationId": "POST_change-manager-jobExecutions-id-records",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rawRecordsDto"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "defaultMapping",
+              "in": "query",
+              "required": true,
+              "description": "Boolean value which defines a mapping",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete JobExecution and associated records in SRS",
+          "operationId": "DELETE_change-manager-jobExecutions-id-records"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/change-manager/parsedRecords": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/parsedRecordDto"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Retrieve ParsedRecord by instanceId",
+          "operationId": "GET_change-manager-parsedRecords",
+          "parameters": [
+            {
+              "name": "instanceId",
+              "in": "query",
+              "required": true,
+              "description": "instanceId parameter",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/change-manager/parsedRecords/{id}": {
+        "put": {
+          "responses": {
+            "202": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_change-manager-parsedRecords-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/parsedRecordDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "jobExecution": {
+          "includePath": "raml-storage/schemas/mod-source-record-manager/jobExecution.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-manager/jobExecution.json"
+        },
+        "fileDto": {
+          "includePath": "raml-storage/schemas/dto/fileDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/fileDto.json"
+        },
+        "initJobExecutionsRqDto": {
+          "includePath": "raml-storage/schemas/dto/initJobExecutionsRqDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/initJobExecutionsRqDto.json"
+        },
+        "initJobExecutionsRsDto": {
+          "includePath": "raml-storage/schemas/dto/initJobExecutionsRsDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/initJobExecutionsRsDto.json"
+        },
+        "rawRecordsDto": {
+          "includePath": "raml-storage/schemas/dto/rawRecordsDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/rawRecordsDto.json"
+        },
+        "parsedRecordDto": {
+          "includePath": "raml-storage/schemas/dto/parsedRecordDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/parsedRecordDto.json"
+        },
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        },
+        "jobExecutionCollection": {
+          "includePath": "raml-storage/schemas/mod-source-record-manager/jobExecutionCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-manager/jobExecutionCollection.json"
+        },
+        "statusDto": {
+          "includePath": "raml-storage/schemas/dto/statusDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/statusDto.json"
+        },
+        "snapshot": {
+          "includePath": "raml-storage/schemas/mod-source-record-storage/snapshot.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-storage/snapshot.json"
+        },
+        "record": {
+          "includePath": "raml-storage/schemas/dto/record.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/record.json"
+        },
+        "recordCollection": {
+          "includePath": "raml-storage/schemas/dto/recordCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/recordCollection.json"
+        },
+        "jobProfileInfo": {
+          "includePath": "raml-storage/schemas/common/profileInfo.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/common/profileInfo.json"
+        },
+        "instance": {
+          "includePath": "instance.json",
+          "$ref": "#/components/schemas/Can not resolve instance.json"
+        },
+        "instances": {
+          "includePath": "instances.json",
+          "$ref": "#/components/schemas/Can not resolve instances.json"
+        },
+        "instancesBatchResponse": {
+          "includePath": "instances-batch-response.json",
+          "$ref": "#/components/schemas/Can not resolve instances-batch-response.json"
+        },
+        "userInfo": {
+          "includePath": "raml-storage/schemas/common/userInfo.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/common/userInfo.json"
+        },
+        "journalRecord": {
+          "includePath": "raml-storage/schemas/mod-source-record-manager/journalRecord.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-manager/journalRecord.json"
+        },
+        "dataImportEventTypes": {
+          "includePath": "raml-storage/schemas/common/dataImportEventTypes.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/common/dataImportEventTypes.json"
+        },
+        "jobExecutionProgress": {
+          "includePath": "raml-storage/schemas/mod-source-record-manager/jobExecutionProgress.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-manager/jobExecutionProgress.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

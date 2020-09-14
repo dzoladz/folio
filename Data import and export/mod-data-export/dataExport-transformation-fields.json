@@ -1,0 +1,32 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Data export",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-data-export"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-data-export"
+      }
+    ],
+    "paths": {},
+    "components": {
+      "schemas": {
+        "transformationFieldCollection": {
+          "includePath": "schemas/transformationFieldCollection.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/transformationFieldCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

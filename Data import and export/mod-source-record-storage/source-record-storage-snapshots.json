@@ -1,0 +1,116 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Source Record Storage Snapshot API",
+      "version": "v3.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/source-storage/snapshots": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_source-storage-snapshots"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_source-storage-snapshots",
+          "parameters": [
+            {
+              "name": "status",
+              "in": "query",
+              "description": "Snapshot status to filter by",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "orderBy",
+              "in": "query",
+              "description": "Sort Snapshots",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "/source-storage/snapshots/{jobExecutionId}": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/snapshot"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_source-storage-snapshots-jobExecutionId"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "description": "Deletes snapshot and all related records",
+          "operationId": "DELETE_source-storage-snapshots-jobExecutionId"
+        },
+        "parameters": [
+          {
+            "name": "jobExecutionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "snapshot": {
+          "includePath": "raml-storage/schemas/mod-source-record-storage/snapshot.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-storage/snapshot.json"
+        },
+        "snapshotCollection": {
+          "includePath": "raml-storage/schemas/mod-source-record-storage/snapshotCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-storage/snapshotCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

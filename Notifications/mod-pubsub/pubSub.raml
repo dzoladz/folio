@@ -1,0 +1,228 @@
+#%RAML 1.0
+
+title: Pub-sub
+version: v0.1
+protocols: [ HTTP, HTTPS ]
+baseUri: http://localhost
+
+documentation:
+  - title: PubSub API
+    content: API for event-driven approach
+
+types:
+  errors: !include raml-util/schemas/errors.schema
+  eventDescriptor: !include eventDescriptor.json
+  eventDescriptorCollection: !include eventDescriptorCollection.json
+  event: !include event.json
+  messagingDescriptor: !include messagingDescriptor.json
+  publisherDescriptor: !include publisherDescriptor.json
+  subscriberDescriptor: !include subscriberDescriptor.json
+  messagingModule: !include messagingModule.json
+  messagingModuleCollection: !include messagingModuleCollection.json
+  auditMessage: !include auditMessage.json
+  auditMessagePayload: !include auditMessagePayload.json
+  auditMessageCollection: !include auditMessageCollection.json
+
+traits:
+  validate: !include raml-util/traits/validation.raml
+  language: !include raml-util/traits/language.raml
+  pageable:  !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+
+/pubsub:
+  /event-types:
+    displayName: Event Types
+    description: API for managing Event Types
+    type:
+      collection:
+        schemaCollection: eventDescriptorCollection
+        schemaItem: eventDescriptor
+        exampleCollection: !include examples/eventDescriptorCollection.sample
+        exampleItem: !include examples/eventDescriptor.sample
+    post:
+      description: Create new event type
+      is: [validate]
+    get:
+      description: Get a list of evet type descriptors
+    /{eventTypeName}:
+      displayName: Event Type
+      description: Get, Delete or Update a specific Event Type descriptor
+      type:
+        collection-item:
+          schema: eventDescriptor
+          exampleItem: !include examples/eventDescriptor.sample
+      put:
+        is: [validate]
+        responses:
+          200:
+            body:
+              application/json:
+                type: eventDescriptor
+      delete:
+        responses:
+          204:
+      /publishers:
+        displayName: Publishers
+        description: API for managing Publishers
+        get:
+          description: API to retrieve registered Publishers
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: messagingModuleCollection
+        delete:
+          description: Remove publisher declaration for certain event type
+          queryParameters:
+            moduleId:
+              description: Publisher module name and version
+              required: true
+              type: string
+              example: mod-pubsub-1.0.0
+          responses:
+            204:
+      /subscribers:
+        displayName: Subscribers
+        description: API for managing Subscribers
+        get:
+          description: API to retrieve registered Subscribers
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: messagingModuleCollection
+        delete:
+          description:  API to remove Subscriber declaration for certain event type
+          queryParameters:
+            moduleId:
+              description: Subscriber module name and version
+              required: true
+              type: string
+              example: mod-pubsub-1.0.0
+          responses:
+            204:
+    /declare:
+      /publisher:
+        displayName: Publishers
+        description: API for managing Publishers
+        post:
+          description: Declare a publisher for a set of event types
+          body:
+            application/json:
+              schema: publisherDescriptor
+          responses:
+            201:
+            400:
+              body:
+                application/json:
+                  schema: errors
+            500:
+              description: "Internal server error"
+              body:
+                text/plain:
+                  example: "Internal server error"
+      /subscriber:
+        displayName: Subscribers
+        description: Declare a subscriber for a set of event types
+        post:
+          body:
+            application/json:
+              schema: subscriberDescriptor
+          responses:
+            201:
+            400:
+              body:
+                application/json:
+                  schema: errors
+            500:
+              description: "Internal server error"
+              body:
+                text/plain:
+                  example: "Internal server error"
+  /history:
+    displayName: Activity history
+    description: API to retrieve the activity history performed by the event manager
+    get:
+      description: Get activity history
+      queryParameters:
+        startDate:
+          description: start date of the period of time for which audit messages are required
+          required: true
+          type: string
+          pattern: \d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d+)?Z?
+          example: 2019-09-20T12:00:00
+        endDate:
+          description: end date of the period of time for which audit messages are required
+          required: true
+          type: string
+          pattern: \d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d(?:\.\d+)?Z?
+          example: 2019-09-27T12:00:00
+        eventId:
+          description: eventId by which audit messages should be filtered
+          required: false
+          type: string
+        eventType:
+          description: eventType by which audit messages should be filtered
+          required: false
+          type: string
+        correlationId:
+          description: correlationId by which audit messages should be filtered
+          required: false
+          type: string
+      responses:
+        200:
+          body:
+            application/json:
+              schema: auditMessageCollection
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+              example: "Bad request"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+  /audit-messages/{eventId}/payload:
+    displayName: Audit Message Payload
+    description: API to retrieve audit message payload
+    get:
+      description: Get audit message payload by event id
+      responses:
+        200:
+          body:
+            application/json:
+              schema: auditMessagePayload
+        404:
+          description: "Not found"
+          body:
+            text/plain:
+              example: "Not found"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+  /publish:
+    displayName: Publish event
+    description: API used by publishers to send events
+    post:
+      body:
+        application/json:
+          schema: event
+      responses:
+        204:
+        400:
+          body:
+            application/json:
+              schema: errors
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"

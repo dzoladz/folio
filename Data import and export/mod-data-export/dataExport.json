@@ -1,0 +1,171 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Data export",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-data-export"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-data-export"
+      }
+    ],
+    "paths": {
+      "/data-export/export": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Starts the export process",
+          "operationId": "POST_data-export-export",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve samples/exportRequest.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/exportRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/data-export/job-executions": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-export-job-executions"
+        }
+      },
+      "/data-export/job-executions/{jobExecutionId}/download/{exportFileId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve samples/fileDownload.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/fileDownload"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact Administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_data-export-job-executions-jobExecutionId-download-exportFileId"
+        },
+        "parameters": [
+          {
+            "name": "jobExecutionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exportFileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "fileDefinition": {
+          "includePath": "schemas/fileDefinition.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fileDefinition.json"
+        },
+        "exportRequest": {
+          "includePath": "schemas/exportRequest.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/exportRequest.json"
+        },
+        "jobExecutionCollection": {
+          "includePath": "schemas/jobExecutionCollection.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/jobExecutionCollection.json"
+        },
+        "jobExecution": {
+          "includePath": "schemas/jobExecution.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/jobExecution.json"
+        },
+        "fileDownload": {
+          "includePath": "schemas/fileDownload.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fileDownload.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

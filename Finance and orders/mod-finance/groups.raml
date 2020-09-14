@@ -1,0 +1,73 @@
+#%RAML 1.0
+
+title: Finance group
+version: v1
+protocols: [ HTTP, HTTPS ]
+baseUri: https://github.com/folio-org/mod-finance
+
+documentation:
+  - title: Group API
+    content: This documents the API calls that can be made to manage groups
+
+types:
+  group: !include acq-models/mod-finance/schemas/group.json
+  groupsCollection: !include acq-models/mod-finance/schemas/group_collection.json
+  groupExpenseClassTotalsCollection: !include acq-models/mod-finance/schemas/group_expense_class_totals_collection.json
+  errors: !include raml-util/schemas/errors.schema
+  UUID:
+    type: string
+    pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+
+traits:
+  validate: !include raml-util/traits/validation.raml
+  language: !include raml-util/traits/language.raml
+  pageable:  !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection-with-json-response.raml
+  collection-item: !include raml-util/rtypes/item-collection-with-json-response.raml
+  collection-get: !include raml-util/rtypes/collection-get-with-json-response.raml
+
+/finance/groups:
+  displayName: Finance groups
+  description: Finance groups APIs
+  type:
+    collection:
+      schemaCollection: groupsCollection
+      schemaItem: group
+      exampleCollection: !include acq-models/mod-finance/examples/group_collection.sample
+      exampleItem: !include acq-models/mod-finance/examples/group.sample
+  post:
+    is: [validate]
+  get:
+    is: [
+      pageable,
+      searchable: {description: "with valid searchable fields: for example code", example: "[\"code\", \"MEDGRANT\", \"=\"]"}
+    ]
+  /{id}:
+    uriParameters:
+      id:
+        description: The UUID of a group
+        type: UUID
+    displayName: Group
+    description: Get, Delete or Update a specific group
+    type:
+      collection-item:
+        schema: group
+        exampleItem: !include acq-models/mod-finance/examples/group.sample
+    put:
+      is: [validate]
+    /expense-classes-totals:
+      displayName: Expense classes totals
+      description: Get expense classes totals within a given group
+      type:
+        collection-get:
+          exampleCollection: !include acq-models/mod-finance/examples/group_expense_class_totals_collection.sample
+          schemaCollection: groupExpenseClassTotalsCollection
+      get:
+        queryParameters:
+          fiscalYearId:
+            description: The UUID of a fiscal year
+            type: UUID
+            required: true

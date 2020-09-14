@@ -1,0 +1,80 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Batch Vouchers",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-invoice-storage"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-invoice-storage"
+      }
+    ],
+    "paths": {
+      "/batch-voucher/batch-vouchers/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Returns item with a given ID",
+              "content": {
+                "application/xml": {
+                  "schema": {
+                    "example": "Can not resolve examples/batch_voucher_sample.xml"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_batch-voucher-batch-vouchers-id",
+          "parameters": [
+            {
+              "name": "Accept",
+              "in": "header",
+              "required": true,
+              "description": "either application/xml or application/json",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a batch voucher"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "batchVoucher": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/batch_voucher.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/batch_voucher.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

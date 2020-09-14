@@ -1,0 +1,44 @@
+#%RAML 1.0
+title: Patron Notice API
+baseUri: https://github.com/folio-org/mod-notify
+version: v1.1
+
+documentation:
+  - title: mod-notify API
+    content: This documents the API calls that can be made to post patron notices for users
+
+types:
+  errors: !include raml-util/schemas/errors.schema
+  notifySendRequest: !include notifySendRequest.json
+  patronNoticeEntity: !include patronNotice.json
+  templateProcessingRequest: !include templateProcessingRequest.json
+  templateProcessingResult: !include templateProcessingResult.json
+
+traits:
+  language: !include raml-util/traits/language.raml
+
+/patron-notice:
+  displayName: Patron Notice
+  description: API for sendig Patron Notices
+  post:
+    description: Send patron notice
+    is: [language]
+    body:
+      application/json:
+        type: patronNoticeEntity
+        example: !include examples/patronNotice.sample
+    responses:
+      200:
+        description: Patron notice successfully sent
+      422:
+        description: Unprocessable entity, e.g. incorrect template id or recipient id
+        body:
+          application/json:
+            type: errors
+      500:
+        description: Internal Server Error
+        body:
+          text/plain:
+            example: "Internal server error"
+
+

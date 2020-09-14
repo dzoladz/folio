@@ -1,0 +1,222 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Data export",
+      "version": "v3.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-data-export"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-data-export"
+      }
+    ],
+    "paths": {
+      "/data-export/file-definitions": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/fileDefinition"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "API to create file definition to use it for the file uploading",
+          "operationId": "POST_data-export-file-definitions",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve samples/fileDefinition.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/fileDefinition"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/data-export/file-definitions/{fileDefinitionId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/fileDefinition"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Method to get file definition by id",
+          "operationId": "GET_data-export-file-definitions-fileDefinitionId"
+        },
+        "parameters": [
+          {
+            "name": "fileDefinitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-export/file-definitions/{fileDefinitionId}/upload": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/fileDefinition"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Method to upload file",
+          "operationId": "POST_data-export-file-definitions-fileDefinitionId-upload",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "fileDefinitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "fileDefinition": {
+          "includePath": "schemas/fileDefinition.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fileDefinition.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

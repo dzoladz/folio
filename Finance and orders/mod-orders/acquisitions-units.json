@@ -1,0 +1,143 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Acquisitions units",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders"
+      }
+    ],
+    "paths": {
+      "/acquisitions-units/units": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create new acquisitions unit",
+          "operationId": "POST_acquisitions-units-units"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of acquisitions units. In case client does not specify search criteria by \"isDeleted\" property, the logic will search for records with \"isDeleted==false\"",
+          "operationId": "GET_acquisitions-units-units"
+        }
+      },
+      "/acquisitions-units/units/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update acquisitions unit",
+          "operationId": "PUT_acquisitions-units-units-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "In order to avoid reference integrity issues when deleting acquisition units that are assigned to records, the logic implements a \"soft delete\". Update acquisitions unit setting the \"isDeleted\" field to true",
+          "operationId": "DELETE_acquisitions-units-units-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an acquisitions unit"
+          }
+        ]
+      },
+      "/acquisitions-units/memberships": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create new acquisitions units membership",
+          "operationId": "POST_acquisitions-units-memberships"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of acquisitions units memberships",
+          "operationId": "GET_acquisitions-units-memberships"
+        }
+      },
+      "/acquisitions-units/memberships/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update acquisitions units membership",
+          "operationId": "PUT_acquisitions-units-memberships-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an acquisitions units membership"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "acquisitions-unit": {
+          "includePath": "acq-models/acquisitions-unit/schemas/acquisitions_unit.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/acquisitions-unit/schemas/acquisitions_unit.json"
+        },
+        "acquisitions-unit-membership": {
+          "includePath": "acq-models/acquisitions-unit/schemas/acquisitions_unit_membership.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/acquisitions-unit/schemas/acquisitions_unit_membership.json"
+        },
+        "acquisitions-unit-collection": {
+          "includePath": "acq-models/acquisitions-unit/schemas/acquisitions_unit_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/acquisitions-unit/schemas/acquisitions_unit_collection.json"
+        },
+        "acquisitions-unit-membership-collection": {
+          "includePath": "acq-models/acquisitions-unit/schemas/acquisitions_unit_membership_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/acquisitions-unit/schemas/acquisitions_unit_membership_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

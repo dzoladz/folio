@@ -1,0 +1,184 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-orders-storage",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders-storage/configuration/reasons-for-closure": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create new reason for closure",
+          "operationId": "POST_orders-storage-configuration-reasons-for-closure"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of reasons for closure",
+          "operationId": "GET_orders-storage-configuration-reasons-for-closure"
+        }
+      },
+      "/orders-storage/configuration/reasons-for-closure/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update reason for closure",
+          "operationId": "PUT_orders-storage-configuration-reasons-for-closure-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a reason for closure"
+          }
+        ]
+      },
+      "/orders-storage/configuration/prefixes": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create new prefix",
+          "operationId": "POST_orders-storage-configuration-prefixes"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of prefixes",
+          "operationId": "GET_orders-storage-configuration-prefixes"
+        }
+      },
+      "/orders-storage/configuration/prefixes/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update prefix",
+          "operationId": "PUT_orders-storage-configuration-prefixes-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a prefix"
+          }
+        ]
+      },
+      "/orders-storage/configuration/suffixes": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create new suffix",
+          "operationId": "POST_orders-storage-configuration-suffixes"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of suffixes",
+          "operationId": "GET_orders-storage-configuration-suffixes"
+        }
+      },
+      "/orders-storage/configuration/suffixes/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update suffix",
+          "operationId": "PUT_orders-storage-configuration-suffixes-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a suffix"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "reason_for_closure": {
+          "includePath": "acq-models/mod-orders-storage/schemas/reason_for_closure.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/reason_for_closure.json"
+        },
+        "reason_for_closure_collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/reason_for_closure_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/reason_for_closure_collection.json"
+        },
+        "prefix": {
+          "includePath": "acq-models/mod-orders-storage/schemas/prefix.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/prefix.json"
+        },
+        "prefix_collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/prefix_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/prefix_collection.json"
+        },
+        "suffix": {
+          "includePath": "acq-models/mod-orders-storage/schemas/suffix.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/suffix.json"
+        },
+        "suffix_collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/suffix_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/suffix_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

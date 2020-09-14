@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Organizations",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-organizations-storage"
+      }
+    ],
+    "paths": {
+      "/organizations-storage/emails": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of emails",
+          "operationId": "GET_organizations-storage-emails"
+        }
+      },
+      "/organizations-storage/emails/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a Email"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "email": {
+          "includePath": "acq-models/mod-orgs/schemas/email.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orgs/schemas/email.json"
+        },
+        "email_collection": {
+          "includePath": "acq-models/mod-orgs/schemas/email_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orgs/schemas/email_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

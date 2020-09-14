@@ -1,0 +1,96 @@
+#%RAML 1.0
+
+title: Data export
+version: v2.0
+protocols: [ HTTP, HTTPS ]
+baseUri: https://github.com/folio-org/mod-data-export
+
+documentation:
+  - title: Data export API
+    content: API for exporting MARC records
+
+types:
+  errors: !include raml-util/schemas/errors.schema
+  fileDefinition: !include schemas/fileDefinition.json
+  exportRequest: !include schemas/exportRequest.json
+  jobExecutionCollection: !include schemas/jobExecutionCollection.json
+  jobExecution: !include schemas/jobExecution.json
+  fileDownload: !include schemas/fileDownload.json
+
+traits:
+  validate: !include raml-util/traits/validation.raml
+  pageable:  !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+  language: !include raml-util/traits/language.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection-get.raml
+
+/data-export:
+  /export:
+    displayName: Export manager service
+    description: Method to start export for MARC records
+    post:
+      description: Starts the export process
+      is: [validate]
+      body:
+        application/json:
+          type: exportRequest
+          example:
+            value: !include samples/exportRequest.sample
+      responses:
+        204:
+        400:
+          description: "Bad request"
+          body:
+             text/plain:
+               example: "Bad request"
+        422:
+          description: "Unprocessable Entity"
+          body:
+            application/json:
+              type: errors
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+  /job-executions:
+    displayName: JobExecutions
+    description: API for getting JobExecutions by query
+    type:
+      collection:
+        schemaCollection: jobExecutionCollection
+        exampleCollection: !include samples/jobExecutionCollection.sample
+    get:
+      is: [
+        searchable: {
+        description:
+          "with valid searchable fields", example: "status=SUCCESS"
+        },
+        pageable,
+        validate
+      ]
+    /{jobExecutionId}/download/{exportFileId}:
+       displayName: File Download Link
+       description: API for getting the link to download files
+       get:
+         responses:
+           200:
+             body:
+               application/json:
+                 type: fileDownload
+                 example:
+                   value: !include samples/fileDownload.sample
+           400:
+             description: "Bad request, e.g. malformed request body or query parameter"
+             body:
+               text/plain:
+                 example: "Bad request"
+           500:
+             description: "Internal server error, e.g. due to misconfiguration"
+             body:
+               text/plain:
+                 example: "Internal server error, contact Administrator"
+
+   

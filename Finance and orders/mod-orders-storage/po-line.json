@@ -1,0 +1,62 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-orders",
+      "version": "v9.2"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders-storage/po-lines": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of po lines",
+          "operationId": "GET_orders-storage-po-lines"
+        }
+      },
+      "/orders-storage/po-lines/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a PO Line"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "po-line": {
+          "includePath": "acq-models/mod-orders-storage/schemas/po_line.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/po_line.json"
+        },
+        "po-line-collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/po_line_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/po_line_collection.json"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

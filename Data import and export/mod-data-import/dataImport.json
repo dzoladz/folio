@@ -1,0 +1,531 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Data import",
+      "version": "v3.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/data-import/uploadDefinitions": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_data-import-uploadDefinitions"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a list of definitions",
+          "operationId": "GET_data-import-uploadDefinitions"
+        }
+      },
+      "/data-import/uploadDefinitions/{uploadDefinitionId}": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/uploadDefinition"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_data-import-uploadDefinitions-uploadDefinitionId"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_data-import-uploadDefinitions-uploadDefinitionId"
+        },
+        "parameters": [
+          {
+            "name": "uploadDefinitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import/uploadDefinitions/{uploadDefinitionId}/files": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/uploadDefinition"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_data-import-uploadDefinitions-uploadDefinitionId-files",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/fileDefinition"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "uploadDefinitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import/uploadDefinitions/{uploadDefinitionId}/files/{fileId}": {
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "404": {
+              "description": "File not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "File not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete file by id",
+          "operationId": "DELETE_data-import-uploadDefinitions-uploadDefinitionId-files-fileId"
+        },
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/uploadDefinition"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Upload file",
+          "operationId": "POST_data-import-uploadDefinitions-uploadDefinitionId-files-fileId",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uploadDefinitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import/uploadDefinitions/{uploadDefinitionId}/processFiles": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Starts the file processing",
+          "operationId": "POST_data-import-uploadDefinitions-uploadDefinitionId-processFiles",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/processFilesRqDto"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "defaultMapping",
+              "in": "query",
+              "required": true,
+              "description": "Boolean value which defines a mapping",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "uploadDefinitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import/fileExtensions": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-fileExtensions"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_data-import-fileExtensions"
+        }
+      },
+      "/data-import/fileExtensions/{id}": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/fileExtension"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_data-import-fileExtensions-id"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_data-import-fileExtensions-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import/fileExtensions/restore/default": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/fileExtensionCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Restore fileExtension settings to default",
+          "operationId": "POST_data-import-fileExtensions-restore-default"
+        }
+      },
+      "/data-import/dataTypes": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/dataTypeCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of data types",
+          "operationId": "GET_data-import-dataTypes"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "error": {
+          "includePath": "raml-storage/raml-util/schemas/error.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/error.schema"
+        },
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        },
+        "fileDefinition": {
+          "includePath": "raml-storage/schemas/mod-data-import/fileDefinition.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import/fileDefinition.json"
+        },
+        "uploadDefinition": {
+          "includePath": "raml-storage/schemas/mod-data-import/uploadDefinition.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import/uploadDefinition.json"
+        },
+        "definitionCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import/uploadDefinitionCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import/uploadDefinitionCollection.json"
+        },
+        "initJobExecutionsRqDto": {
+          "includePath": "raml-storage/schemas/dto/initJobExecutionsRqDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/initJobExecutionsRqDto.json"
+        },
+        "initJobExecutionsRsDto": {
+          "includePath": "raml-storage/schemas/dto/initJobExecutionsRsDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/initJobExecutionsRsDto.json"
+        },
+        "jobExecution": {
+          "includePath": "raml-storage/schemas/mod-source-record-manager/jobExecution.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-manager/jobExecution.json"
+        },
+        "jobExecutionCollection": {
+          "includePath": "raml-storage/schemas/mod-source-record-manager/jobExecutionCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-manager/jobExecutionCollection.json"
+        },
+        "statusDto": {
+          "includePath": "raml-storage/schemas/dto/statusDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/statusDto.json"
+        },
+        "processFilesRqDto": {
+          "includePath": "raml-storage/schemas/dto/processFilesRqDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/processFilesRqDto.json"
+        },
+        "rawRecordsDto": {
+          "includePath": "raml-storage/schemas/dto/rawRecordsDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/rawRecordsDto.json"
+        },
+        "jobProfile": {
+          "includePath": "raml-storage/schemas/common/profileInfo.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/common/profileInfo.json"
+        },
+        "fileExtension": {
+          "includePath": "raml-storage/schemas/mod-data-import/fileExtension.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import/fileExtension.json"
+        },
+        "fileExtensionCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import/fileExtensionCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import/fileExtensionCollection.json"
+        },
+        "dataTypeCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import/dataTypeCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import/dataTypeCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

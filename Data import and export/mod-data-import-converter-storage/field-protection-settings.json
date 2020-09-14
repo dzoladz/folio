@@ -1,0 +1,94 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Field Protection Settings",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/field-protection-settings/marc": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_field-protection-settings-marc"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_field-protection-settings-marc"
+        }
+      },
+      "/field-protection-settings/marc/{id}": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/marcFieldProtectionSetting"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_field-protection-settings-marc-id"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_field-protection-settings-marc-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        },
+        "marcFieldProtectionSetting": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/marc-field-protection/marcFieldProtectionSetting.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/marc-field-protection/marcFieldProtectionSetting.json"
+        },
+        "marcFieldProtectionSettingsCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/marc-field-protection/marcFieldProtectionSettingsCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/marc-field-protection/marcFieldProtectionSettingsCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

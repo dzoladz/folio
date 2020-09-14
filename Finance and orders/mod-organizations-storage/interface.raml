@@ -1,0 +1,94 @@
+#%RAML 1.0
+title: "Organizations"
+baseUri: https://github.com/folio-org/mod-organizations-storage
+version: v2.0
+
+documentation:
+  - title: Interfaces
+    content: <b>CRUD APIs used to manage interfaces.</b>
+
+types:
+    interface: !include acq-models/mod-orgs/schemas/interface.json
+    interface_collection: !include acq-models/mod-orgs/schemas/interface_collection.json
+    interface_credential: !include acq-models/mod-orgs/schemas/interface_credential.json
+    errors: !include raml-util/schemas/errors.schema
+    UUID:
+      type: string
+      pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+
+traits:
+    orderable: !include raml-util/traits/orderable.raml
+    pageable:  !include raml-util/traits/pageable.raml
+    searchable: !include raml-util/traits/searchable.raml
+    language: !include raml-util/traits/language.raml
+    validate: !include raml-util/traits/validation.raml
+
+resourceTypes:
+    collection: !include raml-util/rtypes/collection.raml
+    collection-item: !include raml-util/rtypes/item-collection.raml
+
+
+/organizations-storage/interfaces:
+  type:
+    collection:
+      exampleCollection: !include acq-models/mod-orgs/examples/interface_collection.sample
+      exampleItem: !include acq-models/mod-orgs/examples/interface_post.sample
+      schemaCollection: interface_collection
+      schemaItem: interface
+  is: [validate]
+  get:
+    description: Get list of interfaces
+    is: [
+      searchable: {description: "with valid searchable fields: for example code", example: "[\"code\", \"MEDGRANT\", \"=\"]"},
+      pageable
+    ]
+  /{id}:
+    uriParameters:
+      id:
+        description: The UUID of a Interface
+        type: UUID
+    type:
+      collection-item:
+        exampleItem: !include acq-models/mod-orgs/examples/interface_get.sample
+        schema: interface
+    is: [validate]
+
+    /credentials:
+      displayName: Interface Credential
+      description: Manage interface credential
+      type:
+        collection-item:
+          exampleItem: !include acq-models/mod-orgs/examples/interface_credential_get.sample
+          schema: interface_credential
+      post:
+        description: Create a new interface credential
+        body:
+          application/json:
+            type: interface_credential
+            example:
+              strict: false
+              value: !include acq-models/mod-orgs/examples/interface_credential_get.sample
+        responses:
+          201:
+            description: "Returns a newly created interface credential, with server-controlled fields like 'id' populated"
+            headers:
+              Location:
+                description: URI to the created interface credential
+            body:
+              application/json:
+                example: !include acq-models/mod-orgs/examples/interface_credential_get.sample
+          400:
+            description: "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response."
+            body:
+              text/plain:
+                example: "unable to add interface credential -- malformed JSON at 13:3"
+          401:
+            description: "Not authorized to perform requested action"
+            body:
+              text/plain:
+                example: "unable to create interface credential -- unauthorized"
+          500:
+            description: "Internal server error, e.g. due to misconfiguration"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"

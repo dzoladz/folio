@@ -1,0 +1,262 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Voucher",
+      "version": "v2.3"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-invoice"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-invoice"
+      }
+    ],
+    "paths": {
+      "/voucher/vouchers": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Retrieve a list of voucher items.",
+          "operationId": "GET_voucher-vouchers"
+        }
+      },
+      "/voucher/vouchers/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a voucher with given {id}",
+          "operationId": "GET_voucher-vouchers-id"
+        },
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Voucher successfully updated"
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Voucher with a given ID not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update a voucher with given {Id}",
+          "operationId": "PUT_voucher-vouchers-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve acq-models/mod-invoice-storage/examples/voucher.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/voucher"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an voucher"
+          }
+        ]
+      },
+      "/voucher/voucher-lines": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Retrieve a list of voucher lines.",
+          "operationId": "GET_voucher-voucher-lines"
+        }
+      },
+      "/voucher/voucher-lines/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return an voucher line with given {id}",
+          "operationId": "GET_voucher-voucher-lines-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a voucher line with given {id}",
+          "operationId": "PUT_voucher-voucher-lines-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve acq-models/mod-invoice-storage/examples/voucher_line.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/voucherLine"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a voucher line"
+          }
+        ]
+      },
+      "/voucher/voucher-number/start/{value}": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Start value successfully updated"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/errors_500.sample"
+                  }
+                }
+              }
+            }
+          },
+          "description": "(Re)set the start value of the voucher number sequence",
+          "operationId": "POST_voucher-voucher-number-start-value"
+        },
+        "parameters": [
+          {
+            "name": "value",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/voucher/voucher-number/start": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/sequenceNumber"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/errors_500.sample"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get the current start value of the voucher number sequence",
+          "operationId": "GET_voucher-voucher-number-start"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "sequenceNumber": {
+          "includePath": "acq-models/common/schemas/sequence_number.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/common/schemas/sequence_number.json"
+        },
+        "voucherLine": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/voucher_line.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/voucher_line.json"
+        },
+        "voucherLineCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/voucher_line_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/voucher_line_collection.json"
+        },
+        "voucher": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/voucher.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/voucher.json"
+        },
+        "voucherCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/voucher_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/voucher_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

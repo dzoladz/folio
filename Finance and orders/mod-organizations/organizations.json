@@ -1,0 +1,98 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Organizations",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-organizations"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-organizations"
+      }
+    ],
+    "paths": {
+      "/organizations/organizations": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of organizations",
+          "operationId": "GET_organizations-organizations"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post an organization",
+          "operationId": "POST_organizations-organizations"
+        }
+      },
+      "/organizations/organizations/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update an organization with id",
+          "operationId": "PUT_organizations-organizations-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve acq-models/mod-orgs/examples/organization_post.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/organization"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an organization"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "organization": {
+          "includePath": "acq-models/mod-orgs/schemas/organization.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orgs/schemas/organization.json"
+        },
+        "organizationCollection": {
+          "includePath": "acq-models/mod-orgs/schemas/organization_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orgs/schemas/organization_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

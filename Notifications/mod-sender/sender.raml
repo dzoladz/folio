@@ -1,0 +1,31 @@
+#%RAML 1.0
+
+title: Mod sender
+baseUri: http://api.example.com/{version}
+version: v1
+
+types:
+  notification: !include notification.json
+  emailEntity: !include email_entity.json
+  user: !include userdata.json
+
+/message-delivery:
+  post:
+    description: Send prepered notification to delivery channels
+    body:
+      application/json:
+        type: notification
+    responses:
+      204:
+        body:
+          text/plain: !!null
+      400:
+        description: "Bad request"
+        body:
+          text/plain:
+            example: "Bad request"
+      500:
+        description: "Internal server error"
+        body:
+          text/plain:
+            example: "Internal server error"

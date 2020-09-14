@@ -1,0 +1,259 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Batch voucher export configurations",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-invoice"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-invoice"
+      }
+    ],
+    "paths": {
+      "/batch-voucher/export-configurations": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of batch voucher export configurations",
+          "operationId": "GET_batch-voucher-export-configurations"
+        }
+      },
+      "/batch-voucher/export-configurations/{id}/credentials": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Returns the newly created credentials, with server-controlled fields like 'id' populated",
+              "headers": {
+                "Location": {
+                  "description": "URI to the created credentials",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve acq-models/mod-invoice-storage/examples/credentials.sample"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create a credentials record",
+          "operationId": "POST_batch-voucher-export-configurations-id-credentials",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve acq-models/mod-invoice-storage/examples/credentials.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/credentials"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Returns item with a given ID",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve acq-models/mod-invoice-storage/examples/credentials.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/credentials"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Item with a given ID not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get the credentials for the specified export_configuration",
+          "operationId": "GET_batch-voucher-export-configurations-id-credentials"
+        },
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Credentials successfully updated"
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Credentials with a given ID not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Edit a credentials record",
+          "operationId": "PUT_batch-voucher-export-configurations-id-credentials",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve acq-models/mod-invoice-storage/examples/credentials.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/credentials"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a batch voucher export configuration"
+          }
+        ]
+      },
+      "/batch-voucher/export-configurations/{id}/credentials/test": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Return message from FTP server",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve acq-models/common/examples/message.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/message"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Test that you can connect to and log into the uploadURI with the configured credentials",
+          "operationId": "POST_batch-voucher-export-configurations-id-credentials-test"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a batch voucher export configuration"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "exportConfig": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/export_configuration.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/export_configuration.json"
+        },
+        "exportConfigCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/export_configuration_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/export_configuration_collection.json"
+        },
+        "credentials": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/credentials.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/credentials.json"
+        },
+        "message": {
+          "includePath": "acq-models/common/schemas/message.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/common/schemas/message.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

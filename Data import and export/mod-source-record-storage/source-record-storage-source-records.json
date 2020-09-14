@@ -1,0 +1,337 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Source Record Storage Source Record API",
+      "version": "v3.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/source-storage/source-records": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/sourceRecordCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of Source Records",
+          "operationId": "GET_source-storage-source-records",
+          "parameters": [
+            {
+              "name": "recordId",
+              "in": "query",
+              "description": "Filter by Record Id",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "snapshotId",
+              "in": "query",
+              "description": "Filter by Snapshot Id",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "instanceId",
+              "in": "query",
+              "description": "Filter by Instance Id",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "instanceHrid",
+              "in": "query",
+              "description": "Filter by Instance Hrid",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "recordType",
+              "in": "query",
+              "description": "Filter by Record Type",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "suppressFromDiscovery",
+              "in": "query",
+              "description": "Filter by suppress from discovery",
+              "schema": {
+                "type": "boolean"
+              },
+              "x-annotation-ramltojaxrs.types": {
+                "plugins": [
+                  {
+                    "name": "core.box"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "deleted",
+              "in": "query",
+              "required": true,
+              "description": "Filter by records with state ACTUAL OR state DELETED OR leader 05 status d, s, or x",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              },
+              "x-annotation-ramltojaxrs.types": {
+                "plugins": [
+                  {
+                    "name": "core.box"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "leaderRecordStatus",
+              "in": "query",
+              "description": "Filter by MARC leader 05 status",
+              "schema": {
+                "pattern": "^[a|c|d|n|p|o|s|x]{1}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "updatedAfter",
+              "in": "query",
+              "description": "Start date to filter after, inclusive",
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            {
+              "name": "updatedBefore",
+              "in": "query",
+              "description": "End date to filter before, inclusive",
+              "schema": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            {
+              "name": "orderBy",
+              "in": "query",
+              "description": "Sort records",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/sourceRecordCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of Source Records from list of ids",
+          "operationId": "POST_source-storage-source-records",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "idType",
+              "in": "query",
+              "description": "Type of id for Record lookup",
+              "schema": {
+                "default": "RECORD",
+                "type": "string"
+              }
+            },
+            {
+              "name": "deleted",
+              "in": "query",
+              "required": true,
+              "description": "Filter by records with state ACTUAL OR state DELETED OR leader 05 status d, s, or x",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              },
+              "x-annotation-ramltojaxrs.types": {
+                "plugins": [
+                  {
+                    "name": "core.box"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "/source-storage/source-records/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/sourceRecord"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "selection condition of sourceRecords by which id will be searched record",
+          "operationId": "GET_source-storage-source-records-id",
+          "parameters": [
+            {
+              "name": "idType",
+              "in": "query",
+              "description": "Type of id for record lookup",
+              "schema": {
+                "default": "RECORD",
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "sourceRecord": {
+          "includePath": "raml-storage/schemas/dto/sourceRecord.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/sourceRecord.json"
+        },
+        "sourceRecordCollection": {
+          "includePath": "raml-storage/schemas/dto/sourceRecordCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/sourceRecordCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,93 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Source Record Storage Event Handlers API",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/source-storage/handlers/data-import": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_source-storage-handlers-data-import",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/source-storage/handlers/updated-record": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_source-storage-handlers-updated-record",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        },
+        "dataImportEventPayload": {
+          "includePath": "raml-storage/schemas/common/dataImportEventPayload.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/common/dataImportEventPayload.json"
+        },
+        "entityType": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/entityType.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/entityType.json"
+        },
+        "dataImportEventTypes": {
+          "includePath": "raml-storage/schemas/common/dataImportEventTypes.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/common/dataImportEventTypes.json"
+        },
+        "parsedRecordDto": {
+          "includePath": "raml-storage/schemas/dto/parsedRecordDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/parsedRecordDto.json"
+        },
+        "data": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/mapping-profile-detail/marcData.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/mapping-profile-detail/marcData.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

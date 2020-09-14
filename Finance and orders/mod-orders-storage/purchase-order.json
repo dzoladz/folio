@@ -1,0 +1,62 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-orders-storage",
+      "version": "v7"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders-storage/purchase-orders": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of purchase orders",
+          "operationId": "GET_orders-storage-purchase-orders"
+        }
+      },
+      "/orders-storage/purchase-orders/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a Purchase Order"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "purchase-order": {
+          "includePath": "acq-models/mod-orders-storage/schemas/purchase_order.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/purchase_order.json"
+        },
+        "purchase-order-collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/purchase_order_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/purchase_order_collection.json"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

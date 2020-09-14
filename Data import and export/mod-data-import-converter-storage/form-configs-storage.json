@@ -1,0 +1,95 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "FlexibleForms Configs Storage",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/converter-storage/forms/configs": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create new form config",
+          "operationId": "POST_converter-storage-forms-configs"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_converter-storage-forms-configs"
+        }
+      },
+      "/converter-storage/forms/configs/{formName}": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/formConfig"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_converter-storage-forms-configs-formName"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_converter-storage-forms-configs-formName"
+        },
+        "parameters": [
+          {
+            "name": "formName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        },
+        "formConfig": {
+          "includePath": "raml-storage/schemas/common/formConfig.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/common/formConfig.json"
+        },
+        "formConfigCollection": {
+          "includePath": "raml-storage/schemas/common/formConfigCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/common/formConfigCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

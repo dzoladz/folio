@@ -1,0 +1,188 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Notifications API",
+      "version": "v2.1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-notify"
+      }
+    ],
+    "paths": {
+      "/notify": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_notify"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_notify"
+        }
+      },
+      "/notify/_username/{username}": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Created",
+              "headers": {
+                "Location": {
+                  "description": "URI to the notification",
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Okapi-Trace": {
+                  "description": "Okapi trace and timing",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/notification"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "500": {
+              "description": "Server Error"
+            }
+          },
+          "description": "Send notification to the user by user name",
+          "operationId": "POST_notify-_username-username",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/notify.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/notification"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/notify/_self": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_notify-_self"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "404": {
+              "description": "Not found"
+            },
+            "500": {
+              "description": "Server Error"
+            }
+          },
+          "operationId": "DELETE_notify-_self",
+          "parameters": [
+            {
+              "name": "olderthan",
+              "in": "query",
+              "description": "Delete all seen notifications not modified since this timestamp",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/notify/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_notify-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "notification": {
+          "includePath": "notify.json",
+          "$ref": "#/components/schemas/Can not resolve notify.json"
+        },
+        "notifyCollection": {
+          "includePath": "notifyCollection.json",
+          "$ref": "#/components/schemas/Can not resolve notifyCollection.json"
+        },
+        "notifySendRequest": {
+          "includePath": "notifySendRequest.json",
+          "$ref": "#/components/schemas/Can not resolve notifySendRequest.json"
+        },
+        "eventEntityCollection": {
+          "includePath": "event_entity_collection.json",
+          "$ref": "#/components/schemas/Can not resolve event_entity_collection.json"
+        },
+        "templateProcessingRequest": {
+          "includePath": "templateProcessingRequest.json",
+          "$ref": "#/components/schemas/Can not resolve templateProcessingRequest.json"
+        },
+        "templateProcessingResult": {
+          "includePath": "templateProcessingResult.json",
+          "$ref": "#/components/schemas/Can not resolve templateProcessingResult.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

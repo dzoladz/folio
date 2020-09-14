@@ -1,0 +1,58 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Invoice Storage",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-invoice-storage"
+      }
+    ],
+    "paths": {
+      "/invoice-storage/invoice-number": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/sequenceNumber"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get generated invoice number",
+          "operationId": "GET_invoice-storage-invoice-number"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "sequenceNumber": {
+          "includePath": "acq-models/common/schemas/sequence_number.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/common/schemas/sequence_number.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

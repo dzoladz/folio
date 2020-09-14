@@ -1,0 +1,481 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Pub-sub",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/pubsub/event-types": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create new event type",
+          "operationId": "POST_pubsub-event-types"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get a list of evet type descriptors",
+          "operationId": "GET_pubsub-event-types"
+        }
+      },
+      "/pubsub/event-types/{eventTypeName}": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/eventDescriptor"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_pubsub-event-types-eventTypeName"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_pubsub-event-types-eventTypeName"
+        },
+        "parameters": [
+          {
+            "name": "eventTypeName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/pubsub/event-types/{eventTypeName}/publishers": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/messagingModuleCollection"
+                  }
+                }
+              }
+            }
+          },
+          "description": "API to retrieve registered Publishers",
+          "operationId": "GET_pubsub-event-types-eventTypeName-publishers"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "description": "Remove publisher declaration for certain event type",
+          "operationId": "DELETE_pubsub-event-types-eventTypeName-publishers",
+          "parameters": [
+            {
+              "name": "moduleId",
+              "in": "query",
+              "required": true,
+              "description": "Publisher module name and version",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "eventTypeName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/pubsub/event-types/{eventTypeName}/subscribers": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/messagingModuleCollection"
+                  }
+                }
+              }
+            }
+          },
+          "description": "API to retrieve registered Subscribers",
+          "operationId": "GET_pubsub-event-types-eventTypeName-subscribers"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "description": "API to remove Subscriber declaration for certain event type",
+          "operationId": "DELETE_pubsub-event-types-eventTypeName-subscribers",
+          "parameters": [
+            {
+              "name": "moduleId",
+              "in": "query",
+              "required": true,
+              "description": "Subscriber module name and version",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "eventTypeName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/pubsub/event-types/declare/publisher": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": ""
+            },
+            "400": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Declare a publisher for a set of event types",
+          "operationId": "POST_pubsub-event-types-declare-publisher",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/publisherDescriptor"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/pubsub/event-types/declare/subscriber": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": ""
+            },
+            "400": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_pubsub-event-types-declare-subscriber",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/subscriberDescriptor"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/pubsub/history": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/auditMessageCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get activity history",
+          "operationId": "GET_pubsub-history",
+          "parameters": [
+            {
+              "name": "startDate",
+              "in": "query",
+              "required": true,
+              "description": "start date of the period of time for which audit messages are required",
+              "schema": {
+                "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
+                "type": "string"
+              }
+            },
+            {
+              "name": "endDate",
+              "in": "query",
+              "required": true,
+              "description": "end date of the period of time for which audit messages are required",
+              "schema": {
+                "pattern": "\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d(?:\\.\\d+)?Z?",
+                "type": "string"
+              }
+            },
+            {
+              "name": "eventId",
+              "in": "query",
+              "description": "eventId by which audit messages should be filtered",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "eventType",
+              "in": "query",
+              "description": "eventType by which audit messages should be filtered",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "correlationId",
+              "in": "query",
+              "description": "correlationId by which audit messages should be filtered",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/pubsub/audit-messages/{eventId}/payload": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/auditMessagePayload"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get audit message payload by event id",
+          "operationId": "GET_pubsub-audit-messages-eventId-payload"
+        },
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/pubsub/publish": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_pubsub-publish",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/event"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "eventDescriptor": {
+          "includePath": "eventDescriptor.json",
+          "$ref": "#/components/schemas/Can not resolve eventDescriptor.json"
+        },
+        "eventDescriptorCollection": {
+          "includePath": "eventDescriptorCollection.json",
+          "$ref": "#/components/schemas/Can not resolve eventDescriptorCollection.json"
+        },
+        "event": {
+          "includePath": "event.json",
+          "$ref": "#/components/schemas/Can not resolve event.json"
+        },
+        "messagingDescriptor": {
+          "includePath": "messagingDescriptor.json",
+          "$ref": "#/components/schemas/Can not resolve messagingDescriptor.json"
+        },
+        "publisherDescriptor": {
+          "includePath": "publisherDescriptor.json",
+          "$ref": "#/components/schemas/Can not resolve publisherDescriptor.json"
+        },
+        "subscriberDescriptor": {
+          "includePath": "subscriberDescriptor.json",
+          "$ref": "#/components/schemas/Can not resolve subscriberDescriptor.json"
+        },
+        "messagingModule": {
+          "includePath": "messagingModule.json",
+          "$ref": "#/components/schemas/Can not resolve messagingModule.json"
+        },
+        "messagingModuleCollection": {
+          "includePath": "messagingModuleCollection.json",
+          "$ref": "#/components/schemas/Can not resolve messagingModuleCollection.json"
+        },
+        "auditMessage": {
+          "includePath": "auditMessage.json",
+          "$ref": "#/components/schemas/Can not resolve auditMessage.json"
+        },
+        "auditMessagePayload": {
+          "includePath": "auditMessagePayload.json",
+          "$ref": "#/components/schemas/Can not resolve auditMessagePayload.json"
+        },
+        "auditMessageCollection": {
+          "includePath": "auditMessageCollection.json",
+          "$ref": "#/components/schemas/Can not resolve auditMessageCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

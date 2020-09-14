@@ -1,0 +1,446 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Orders",
+      "version": "v8.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-orders"
+      }
+    ],
+    "paths": {
+      "/orders/composite-orders": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_orders-composite-orders"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post a purchase order (PO) and a number of PO lines; record fund transactions corresponding to the order. Only in case an acquisition unit has to be assigned to the Order it is required that user should have extra permission orders.acquisitions-units-assignments.item.post to create an purchase order.",
+          "operationId": "POST_orders-composite-orders"
+        }
+      },
+      "/orders/composite-orders/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a purchase order with given {id}",
+          "operationId": "GET_orders-composite-orders-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a purchase order with given {id}\n- if request does not include po_lines or includes \"po_lines\": [] or \"po_lines\": null - update just purchase order summary\n- if request includes array of \"po_lines\" - update PO lines as per request\n",
+          "operationId": "PUT_orders-composite-orders-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete a purchase order with given {id}",
+          "operationId": "DELETE_orders-composite-orders-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a purchase order"
+          }
+        ]
+      },
+      "/orders/order-lines": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_orders-order-lines"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post a PO lines to corresponding PO",
+          "operationId": "POST_orders-order-lines"
+        }
+      },
+      "/orders/order-lines/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a purchase order line with given {id}",
+          "operationId": "GET_orders-order-lines-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a purchase order line with given {id}",
+          "operationId": "PUT_orders-order-lines-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete a purchase order line with given {id}",
+          "operationId": "DELETE_orders-order-lines-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a purchase order line"
+          }
+        ]
+      },
+      "/orders/po-number": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve acq-models/mod-orders/examples/po_number_get.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/po-number"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get generated PO number",
+          "operationId": "GET_orders-po-number"
+        }
+      },
+      "/orders/po-number/validate": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Valid PO Number"
+            },
+            "400": {
+              "description": "Bad request, e.g. existing PO Number. Details of the error provided in the response.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve raml-util/examples/errors.sample"
+                  }
+                }
+              }
+            }
+          },
+          "description": "validate if the PO Number is unique and matches the pattern specified",
+          "operationId": "POST_orders-po-number-validate",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve acq-models/mod-orders/examples/po_number_get.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/po-number"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/orders/receive": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Receive items spanning one or more PO lines",
+          "operationId": "POST_orders-receive"
+        }
+      },
+      "/orders/check-in": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Check-in items spanning one or more po_lines in this order",
+          "operationId": "POST_orders-check-in"
+        }
+      },
+      "/orders/receiving-history": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get receiving history matching the provided criteria",
+          "operationId": "Receiving history"
+        }
+      },
+      "/orders/pieces": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create piece record",
+          "operationId": "POST_orders-pieces"
+        }
+      },
+      "/orders/pieces/{id}": {
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Piece record successfully updated"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to create Piece -- Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Request id does not exists"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to create Piece -- Internal server error, e.g. due to misconfiguration"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update a piece record with given {id}",
+          "operationId": "PUT_orders-pieces-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve acq-models/mod-orders-storage/examples/piece_get.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/piece"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "Piece record successfully deleted"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to delete Piece -- Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Request id does not exists"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to delete Piece -- Internal server error, e.g. due to misconfiguration"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete a piece with given {id}",
+          "operationId": "DELETE_orders-pieces-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a piece record"
+          }
+        ]
+      },
+      "/orders/order-templates": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create new order template",
+          "operationId": "POST_orders-order-templates"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of order templates",
+          "operationId": "GET_orders-order-templates"
+        }
+      },
+      "/orders/order-templates/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update order template",
+          "operationId": "PUT_orders-order-templates-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an Order Template"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "composite-purchase-order": {
+          "includePath": "acq-models/mod-orders/schemas/composite_purchase_order.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders/schemas/composite_purchase_order.json"
+        },
+        "purchase-order-collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/purchase_order_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/purchase_order_collection.json"
+        },
+        "purchase_order": {
+          "includePath": "acq-models/mod-orders-storage/schemas/purchase_order.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/purchase_order.json"
+        },
+        "composite-po-line": {
+          "includePath": "acq-models/mod-orders/schemas/composite_po_line.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders/schemas/composite_po_line.json"
+        },
+        "po-line-collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/po_line_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/po_line_collection.json"
+        },
+        "po-line": {
+          "includePath": "acq-models/mod-orders-storage/schemas/po_line.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/po_line.json"
+        },
+        "checkin-collection": {
+          "includePath": "acq-models/mod-orders/schemas/checkinCollection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders/schemas/checkinCollection.json"
+        },
+        "receiving-collection": {
+          "includePath": "acq-models/mod-orders/schemas/receivingCollection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders/schemas/receivingCollection.json"
+        },
+        "receiving-results": {
+          "includePath": "acq-models/mod-orders/schemas/receivingResults.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders/schemas/receivingResults.json"
+        },
+        "receiving-history-collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/receiving_history_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/receiving_history_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "po-number": {
+          "includePath": "acq-models/mod-orders/schemas/po_number.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders/schemas/po_number.json"
+        },
+        "piece": {
+          "includePath": "acq-models/mod-orders-storage/schemas/piece.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/piece.json"
+        },
+        "order-template": {
+          "includePath": "acq-models/mod-orders-storage/schemas/order_template.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/order_template.json"
+        },
+        "order-template-collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/order_template_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/order_template_collection.json"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

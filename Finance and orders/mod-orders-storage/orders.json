@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-orders-storage",
+      "version": "v7"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders-storage/orders": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of purchase orders",
+          "operationId": "GET_orders-storage-orders"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "purchase_order": {
+          "includePath": "acq-models/mod-orders-storage/schemas/purchase_order.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/purchase_order.json"
+        },
+        "purchase_order_collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/purchase_order_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/purchase_order_collection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

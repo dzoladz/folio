@@ -1,0 +1,84 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Mod sender",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://api.example.com/{version}",
+        "variables": {
+          "version": {
+            "default": "version"
+          }
+        }
+      }
+    ],
+    "paths": {
+      "/message-delivery": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Send prepered notification to delivery channels",
+          "operationId": "POST_message-delivery",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/notification"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "notification": {
+          "includePath": "notification.json",
+          "$ref": "#/components/schemas/Can not resolve notification.json"
+        },
+        "emailEntity": {
+          "includePath": "email_entity.json",
+          "$ref": "#/components/schemas/Can not resolve email_entity.json"
+        },
+        "user": {
+          "includePath": "userdata.json",
+          "$ref": "#/components/schemas/Can not resolve userdata.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

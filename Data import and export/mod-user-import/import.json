@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "User import",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-user-import"
+      }
+    ],
+    "paths": {
+      "/user-import": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Return OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/importResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/importResponse"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create or update a list of users",
+          "operationId": "POST_user-import",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/userdataimportCollection.json",
+                "schema": {
+                  "$ref": "#/components/schemas/userdataimportCollection"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "userdataimportCollection": {
+          "includePath": "schemas/userdataimportCollection.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/userdataimportCollection.json"
+        },
+        "importResponse": {
+          "includePath": "schemas/importResponse.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/importResponse.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

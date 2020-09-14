@@ -1,0 +1,42 @@
+#%RAML 1.0
+title: "Event config"
+baseUri: https://github.com/folio-org/mod-event-config
+version: v1
+
+documentation:
+  - title: Event config
+    content: <b>CRUD APIs for event configuration.</b>
+
+types:
+  event_config_entity: !include event_config_entity.json
+  event_config_collection: !include event_config_collection.json
+
+traits:
+  pageable:  !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+  language: !include raml-util/traits/language.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+
+
+/eventConfig:
+  type:
+    collection:
+      exampleCollection: !include examples/event_config_collection.sample
+      exampleItem: !include examples/event_config_entity.sample
+      schemaCollection: event_config_collection
+      schemaItem: event_config_entity
+  get:
+    description: Get list of funds
+    is: [
+      searchable: {description: "searchable using CQL",
+                             example: "name==RESET_PASSWORD_EVENT"},
+      pageable
+    ]
+  /{id}:
+    type:
+      collection-item:
+        exampleItem: !include examples/event_config_entity.sample
+        schema: event_config_entity

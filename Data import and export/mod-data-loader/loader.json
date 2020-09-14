@@ -1,0 +1,382 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Loader API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8081/{version}",
+        "variables": {
+          "version": {
+            "default": "version"
+          }
+        }
+      }
+    ],
+    "paths": {
+      "/load/marc-rules": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Saved",
+              "headers": {
+                "Location": {
+                  "description": "URI to the created <<resourcePathName|!singularize>> item",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "hasParams": true
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to add <<resourcePathName|!singularize>>"
+                  }
+                }
+              },
+              "hasParams": true
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Uploads a rules.json file and saves it per tenant in memory only!\n",
+          "operationId": "POST_load-marc-rules",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "example": "Can not resolve rules.json",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": false
+          }
+        },
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Get",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve rules.json"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to add <<resourcePathName|!singularize>>"
+                  }
+                }
+              },
+              "hasParams": true
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_load-marc-rules"
+        }
+      },
+      "/load/marc-data": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Saved",
+              "headers": {
+                "X-Unprocessed": {
+                  "description": "line number of unprocessed (failed) records within attached file",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to add <<resourcePathName|!singularize>>"
+                  }
+                }
+              },
+              "hasParams": true
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Uploads a file and saves it to the specified tenant's instance table\n",
+          "operationId": "POST_load-marc-data",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": false
+          },
+          "parameters": [
+            {
+              "name": "storageURL",
+              "in": "query",
+              "required": true,
+              "description": "host and port of the inventory storage module",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "bulkSize",
+              "in": "query",
+              "description": "loader will batch this amount of records together into a transaction and persist",
+              "schema": {
+                "default": 50000,
+                "type": "integer"
+              }
+            },
+            {
+              "name": "storeSource",
+              "in": "query",
+              "description": "a source marc record (json) will be stored in a separate table outside of the instance",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "get": {
+          "responses": {
+            "405": {
+              "description": "Not implemented",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not implemented"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_load-marc-data"
+        }
+      },
+      "/load/marc-data/test": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "the result will be an id|instance json result"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to add <<resourcePathName|!singularize>>"
+                  }
+                }
+              },
+              "hasParams": true
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Uploads a file with 1..n binary Marc records and returns those records as instance jsons. No data is saved to the database\n",
+          "operationId": "POST_load-marc-data-test",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": false
+          }
+        }
+      },
+      "/load/static": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Saved",
+              "headers": {
+                "X-Unprocessed": {
+                  "description": "line number of unprocessed (failed) records within attached file",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to add <<resourcePathName|!singularize>>"
+                  }
+                }
+              },
+              "hasParams": true
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Uploads a file with 1..n static records and saves it to the specified tenant's table\n",
+          "operationId": "POST_load-static",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": false
+          },
+          "parameters": [
+            {
+              "name": "storageURL",
+              "in": "query",
+              "required": true,
+              "description": "host and port of the inventory storage module",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "get": {
+          "responses": {
+            "405": {
+              "description": "Not implemented",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not implemented"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_load-static"
+        }
+      },
+      "/load/static/test": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "the result will be an id|json result"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to add <<resourcePathName|!singularize>>"
+                  }
+                }
+              },
+              "hasParams": true
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Uploads a file with 1..n static records. No data is saved to the database\n",
+          "operationId": "POST_load-static-test",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": false
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "type": "string"
+        },
+        "error.schema": {
+          "type": "string"
+        },
+        "parameters.schema": {
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

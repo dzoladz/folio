@@ -1,0 +1,121 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Source Record Storage event handlers API",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/change-manager/handlers/created-inventory-instance": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_change-manager-handlers-created-inventory-instance",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/change-manager/handlers/processing-result": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_change-manager-handlers-processing-result",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/change-manager/handlers/qm-completed": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_change-manager-handlers-qm-completed",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/change-manager/handlers/qm-error": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_change-manager-handlers-qm-error",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        },
+        "dataImportEventPayload": {
+          "includePath": "raml-storage/schemas/common/dataImportEventPayload.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/common/dataImportEventPayload.json"
+        },
+        "sourceRecordState": {
+          "includePath": "sourceRecordState.json",
+          "$ref": "#/components/schemas/Can not resolve sourceRecordState.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

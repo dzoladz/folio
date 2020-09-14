@@ -1,0 +1,287 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Source Record Storage Record API",
+      "version": "v3.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/source-storage/records": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_source-storage-records"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_source-storage-records",
+          "parameters": [
+            {
+              "name": "snapshotId",
+              "in": "query",
+              "description": "Filter by Snapshot Id",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "state",
+              "in": "query",
+              "description": "Filter by State",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "orderBy",
+              "in": "query",
+              "description": "Sort Records",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "/source-storage/records/{id}": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/record"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_source-storage-records-id"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_source-storage-records-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/source-storage/records/{id}/formatted": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/record"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get Record with formatted content",
+          "operationId": "GET_source-storage-records-id-formatted",
+          "parameters": [
+            {
+              "name": "idType",
+              "in": "query",
+              "description": "Type of Id for Record lookup",
+              "schema": {
+                "default": "RECORD",
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/source-storage/records/{id}/suppress-from-discovery": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": ""
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update Record suppress from discovery additional information",
+          "operationId": "PUT_source-storage-records-id-suppress-from-discovery",
+          "parameters": [
+            {
+              "name": "idType",
+              "in": "query",
+              "description": "Type of Id for Record lookup",
+              "schema": {
+                "default": "RECORD",
+                "type": "string"
+              }
+            },
+            {
+              "name": "suppress",
+              "in": "query",
+              "description": "Whether to suppress or unsuppress from discovery",
+              "schema": {
+                "default": true,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errorRecord": {
+          "includePath": "raml-storage/schemas/mod-source-record-storage/errorRecord.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-storage/errorRecord.json"
+        },
+        "errorRecordCollection": {
+          "includePath": "raml-storage/schemas/mod-source-record-storage/errorRecordCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-storage/errorRecordCollection.json"
+        },
+        "parsedRecord": {
+          "includePath": "raml-storage/schemas/mod-source-record-storage/parsedRecord.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-storage/parsedRecord.json"
+        },
+        "parsedRecordCollection": {
+          "includePath": "raml-storage/schemas/mod-source-record-storage/parsedRecordCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-storage/parsedRecordCollection.json"
+        },
+        "rawRecord": {
+          "includePath": "raml-storage/schemas/mod-source-record-storage/rawRecord.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-storage/rawRecord.json"
+        },
+        "rawRecordCollection": {
+          "includePath": "raml-storage/schemas/mod-source-record-storage/rawRecordCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-source-record-storage/rawRecordCollection.json"
+        },
+        "record": {
+          "includePath": "raml-storage/schemas/dto/record.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/record.json"
+        },
+        "recordCollection": {
+          "includePath": "raml-storage/schemas/dto/recordCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/dto/recordCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

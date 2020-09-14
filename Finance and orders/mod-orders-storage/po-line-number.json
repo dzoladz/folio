@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Orders Storage",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders-storage/po-line-number": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/po-line-number"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Unable to generate purchase order line number"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact Administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get purchase order line number",
+          "operationId": "GET_orders-storage-po-line-number",
+          "parameters": [
+            {
+              "name": "purchaseOrderId",
+              "in": "query",
+              "required": true,
+              "description": "Purchase Order Id",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "po-line-number": {
+          "includePath": "acq-models/common/schemas/sequence_number.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/common/schemas/sequence_number.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

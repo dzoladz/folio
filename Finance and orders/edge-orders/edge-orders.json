@@ -1,0 +1,255 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Edge API - Orders",
+      "version": "v2"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/edge-orders"
+      }
+    ],
+    "paths": {
+      "/orders/validate": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Success. The response body depends on the \"type\" query argument in the request (GOBI or other)."
+            },
+            "400": {
+              "description": "Bad Request.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/error.json"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Access Denied.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/error.json"
+                  }
+                }
+              }
+            },
+            "408": {
+              "description": "Request Timeout.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/error.json"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error.",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Validate that the API Key provided can be used to place an order.",
+          "operationId": "GET_orders-validate",
+          "parameters": [
+            {
+              "name": "type",
+              "in": "query",
+              "required": true,
+              "description": "purchasing system type",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "apikey",
+              "in": "query",
+              "required": true,
+              "description": "API Key",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Success. The response body depends on the \"type\" query argument in the request (GOBI or other)."
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/error.json"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Access Denied",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/error.json"
+                  }
+                }
+              }
+            },
+            "408": {
+              "description": "Request Timeout",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/error.json"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Validate that the API Key provided can be used to place an order.",
+          "operationId": "POST_orders-validate",
+          "parameters": [
+            {
+              "name": "type",
+              "in": "query",
+              "required": true,
+              "description": "purchasing system type",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "apikey",
+              "in": "query",
+              "required": true,
+              "description": "API Key",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/orders": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Success.  The response body depends on the \"type\" query argument in the request (GOBI or other)."
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/error.json"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Access Denied",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/error.json"
+                  }
+                }
+              }
+            },
+            "408": {
+              "description": "Request Timeout",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve examples/error.json"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Place an order.",
+          "operationId": "POST_orders",
+          "parameters": [
+            {
+              "name": "Accept",
+              "in": "header",
+              "description": "Any valid accept header for third party Vendor",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "type",
+              "in": "query",
+              "required": true,
+              "description": "purchasing system type",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "apikey",
+              "in": "query",
+              "required": true,
+              "description": "API Key",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/admin/health": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "description": "Health Check",
+          "operationId": "GET_admin-health"
+        }
+      }
+    },
+    "components": {
+      "schemas": {},
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

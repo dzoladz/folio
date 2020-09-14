@@ -1,0 +1,257 @@
+#%RAML 1.0
+
+title: Data import
+version: v3.0
+protocols: [ HTTP, HTTPS ]
+baseUri: http://localhost
+
+documentation:
+  - title: Data import API
+    content: API for uploading source records and processing them
+
+types:
+  error: !include raml-storage/raml-util/schemas/error.schema
+  errors: !include raml-storage/raml-util/schemas/errors.schema
+  fileDefinition: !include raml-storage/schemas/mod-data-import/fileDefinition.json
+  uploadDefinition: !include raml-storage/schemas/mod-data-import/uploadDefinition.json
+  definitionCollection: !include raml-storage/schemas/mod-data-import/uploadDefinitionCollection.json
+  initJobExecutionsRqDto: !include raml-storage/schemas/dto/initJobExecutionsRqDto.json
+  initJobExecutionsRsDto: !include raml-storage/schemas/dto/initJobExecutionsRsDto.json
+  jobExecution: !include raml-storage/schemas/mod-source-record-manager/jobExecution.json
+  jobExecutionCollection: !include raml-storage/schemas/mod-source-record-manager/jobExecutionCollection.json
+  statusDto: !include raml-storage/schemas/dto/statusDto.json
+  processFilesRqDto: !include raml-storage/schemas/dto/processFilesRqDto.json
+  rawRecordsDto: !include raml-storage/schemas/dto/rawRecordsDto.json
+  jobProfile: !include raml-storage/schemas/common/profileInfo.json
+  fileExtension: !include raml-storage/schemas/mod-data-import/fileExtension.json
+  fileExtensionCollection: !include raml-storage/schemas/mod-data-import/fileExtensionCollection.json
+  dataTypeCollection: !include raml-storage/schemas/mod-data-import/dataTypeCollection.json
+
+traits:
+  validate: !include raml-storage/raml-util/traits/validation.raml
+  language: !include raml-storage/raml-util/traits/language.raml
+  pageable:  !include raml-storage/raml-util/traits/pageable.raml
+  searchable: !include raml-storage/raml-util/traits/searchable.raml
+
+resourceTypes:
+  collection: !include raml-storage/raml-util/rtypes/collection.raml
+  collection-item: !include raml-storage/raml-util/rtypes/item-collection.raml
+
+/data-import:
+  /uploadDefinitions:
+    displayName: Upload Definition
+    description: File Upload Definition API
+    type:
+      collection:
+        schemaCollection: definitionCollection
+        schemaItem: uploadDefinition
+        exampleCollection: !include raml-storage/examples/mod-data-import/uploadDefinitionCollection.sample
+        exampleItem: !include raml-storage/examples/mod-data-import/uploadDefinition.sample
+    post:
+      is: [validate]
+    get:
+      description: Get a list of definitions
+      is: [
+        searchable: {
+          description:
+            "with valid searchable fields: for example id=67dfac11-1caf-4470-9ad1-d533f6360bdd",
+          example:
+            "id=67dfac11-1caf-4470-9ad1-d533f6360bdd"
+        },
+        pageable,
+        validate
+      ]
+    /{uploadDefinitionId}:
+      displayName: Upload Definition
+      description: Get, Delete or Update a specific Upload Definition
+      type:
+        collection-item:
+          schema: uploadDefinition
+          exampleItem: !include raml-storage/examples/mod-data-import/uploadDefinition.sample
+      put:
+        is: [validate]
+        responses:
+          200:
+            body:
+              application/json:
+                type: uploadDefinition
+      delete:
+        responses:
+          204:
+      /files:
+        post:
+          is: [validate]
+          body:
+            application/json:
+              type: fileDefinition
+          responses:
+            201:
+              body:
+                application/json:
+                  type: uploadDefinition
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Bad request"
+            422:
+              description: "Unprocessable Entity"
+              body:
+                application/json:
+                  type: errors
+            500:
+              description: "Internal server error"
+              body:
+                text/plain:
+                  example: "Internal server error"
+        /{fileId}:
+          delete:
+            description: Delete file by id
+            responses:
+              204:
+              404:
+                description: "File not found"
+                body:
+                  text/plain:
+                    example: "File not found"
+              500:
+                description: "Internal server error"
+                body:
+                  text/plain:
+                    example: "Internal server error"
+          post:
+            description: Upload file
+            body:
+                application/octet-stream:
+            responses:
+              200:
+                body:
+                  application/json:
+                    type: uploadDefinition
+              400:
+                description: "Bad request"
+                body:
+                  text/plain:
+                    example: "Bad request"
+              404:
+                description: "Not found"
+                body:
+                  text/plain:
+                    example: "Not found"
+              500:
+                description: "Internal server error"
+                body:
+                  text/plain:
+                    example: "Internal server error"
+      /processFiles:
+        displayName: File processing service
+        description: File processing API
+        post:
+          description: Starts the file processing
+          is: [validate]
+          queryParameters:
+            defaultMapping:
+              description: Boolean value which defines a mapping
+              type: boolean
+              default: false
+          body:
+            application/json:
+              type: processFilesRqDto
+          responses:
+            204:
+            400:
+              description: "Bad request"
+              body:
+                 text/plain:
+                   example: "Bad request"
+            422:
+              description: "Unprocessable Entity"
+              body:
+                application/json:
+                  type: errors
+            500:
+              description: "Internal server error"
+              body:
+                text/plain:
+                  example: "Internal server error"
+  /fileExtensions:
+    displayName: File Extension
+    description: API for managing file extensions
+    type:
+      collection:
+        schemaCollection: fileExtensionCollection
+        schemaItem: fileExtension
+        exampleCollection: !include raml-storage/examples/mod-data-import/fileExtensionCollection.sample
+        exampleItem: !include raml-storage/examples/mod-data-import/fileExtension.sample
+    get:
+      is: [
+        searchable: {
+          description:
+            "with valid searchable fields: for example importBlocked=true",
+          example:
+            "importBlocked=true"
+        },
+        pageable,
+        validate
+      ]
+    post:
+      is: [validate]
+    /{id}:
+      displayName: File Extension
+      description: Get, Delete or Update a specific File Extension
+      type:
+        collection-item:
+          schema: fileExtension
+          exampleItem: !include raml-storage/examples/mod-data-import/fileExtension.sample
+      put:
+        is: [validate]
+        responses:
+          200:
+            body:
+              application/json:
+                type: fileExtension
+      delete:
+        responses:
+          204:
+    /restore:
+      /default:
+        post:
+          description: Restore fileExtension settings to default
+          responses:
+            200:
+              body:
+                application/json:
+                  type: fileExtensionCollection
+            400:
+              description: "Bad request"
+              body:
+                text/plain:
+                  example: "Bad request"
+            422:
+              description: "Unprocessable Entity"
+              body:
+                application/json:
+                  type: errors
+            500:
+              description: "Internal server error"
+              body:
+                text/plain:
+                  example: "Internal server error"
+  /dataTypes:
+    get:
+      description: Get a list of data types
+      responses:
+        200:
+          body:
+            application/json:
+              type: dataTypeCollection
+        400:
+          description: "Bad request"
+          body:
+            text/plain:
+              example: "Bad request"
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"

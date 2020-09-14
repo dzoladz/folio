@@ -1,0 +1,41 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-orders-storage",
+      "version": "v3"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders-storage/order-lines": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of po lines matching a query that can contain fields from purchase_order or/and po_line",
+          "operationId": "GET_orders-storage-order-lines"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "po_line_collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/po_line_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/po_line_collection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

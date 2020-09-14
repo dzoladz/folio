@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Orders Storage",
+      "version": "v2"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders-storage/po-number": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/po-number"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Unable to generate purchase order number"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get generated purchase order number",
+          "operationId": "GET_orders-storage-po-number"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "po-number": {
+          "includePath": "acq-models/common/schemas/sequence_number.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/common/schemas/sequence_number.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,127 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Invoice Storage",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-invoice-storage"
+      }
+    ],
+    "paths": {
+      "/voucher-storage/voucher-number": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/sequenceNumber"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get generated voucher number",
+          "operationId": "GET_voucher-storage-voucher-number"
+        }
+      },
+      "/voucher-storage/voucher-number/start": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/sequenceNumber"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get voucher number start",
+          "operationId": "GET_voucher-storage-voucher-number-start"
+        }
+      },
+      "/voucher-storage/voucher-number/start/{value}": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Start value successfully updated"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "(Re)set the start value of the voucher number sequence",
+          "operationId": "POST_voucher-storage-voucher-number-start-value"
+        },
+        "parameters": [
+          {
+            "name": "value",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "sequenceNumber": {
+          "includePath": "acq-models/common/schemas/sequence_number.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/common/schemas/sequence_number.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

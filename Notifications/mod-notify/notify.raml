@@ -1,0 +1,125 @@
+#%RAML 1.0
+
+title: Notifications API
+baseUri: https://github.com/folio-org/mod-notify
+version: v2.1
+
+documentation:
+  - title: mod-notify API
+    content: This documents the API calls that can be made to post notifications for users, and to get them
+
+types:
+  notification: !include notify.json
+  notifyCollection: !include notifyCollection.json
+  notifySendRequest: !include notifySendRequest.json
+  eventEntityCollection: !include event_entity_collection.json
+  templateProcessingRequest: !include templateProcessingRequest.json
+  templateProcessingResult: !include templateProcessingResult.json
+  errors: !include raml-util/schemas/errors.schema
+
+traits:
+  validate: !include raml-util/traits/validation.raml
+  language: !include raml-util/traits/language.raml
+  pageable:  !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+
+/notify:
+  displayName: Notifications
+  description: Notifications from the system to some user
+  type:
+    collection:
+      schemaCollection: notifyCollection
+      schemaItem: notification
+      exampleCollection: !include examples/notifyCollection.sample
+      exampleItem: !include examples/notify.sample
+
+  post:
+    is: [validate]
+  get:
+    is: [
+      searchable: {description: "with valid searchable fields: for example link = 1234", example: "link=/users/1234"},
+      pageable,
+      validate
+    ]
+  /_username/{username}:
+    description: "Send notification to the user by user name"
+    post:
+      description: "Send notification to the user by user name"
+      is: [ validate, language ]
+      body:
+        application/json:
+          type: notification
+          example: !include examples/notify.sample
+      responses:
+        201:
+          description: Created
+          headers:
+            Location:
+              description: URI to the notification
+            X-Okapi-Trace:
+              description: Okapi trace and timing
+          body:
+            application/json:
+              schema: notification
+        400:
+          description: Bad Request
+          body:
+            text/plain:
+        500:
+          description: Server Error
+          body:
+            text/plain:
+
+  /_self:
+    displayName: Notifications addressed to the current user
+    type:
+      collection:
+        schemaCollection: notifyCollection
+        schemaItem: notification
+        exampleCollection: !include examples/notifyCollection.sample
+        exampleItem: !include examples/notify.sample
+    get:
+      is: [
+        searchable: {description: "with valid searchable fields: for example link = 1234", example: "link=/users/1234"},
+        pageable,
+        validate
+      ]
+    delete:
+      is : [
+        validate, language
+      ]
+      queryParameters:
+        olderthan:
+          description: Delete all seen notifications not modified since this timestamp
+          required: false
+          type: string
+          example: "2017-12-25"
+      responses:
+        204:
+          description: No Content
+        404:
+          description: Not found
+          body:
+            text/plain:
+        400:
+          description: Bad Request
+          body:
+            text/plain:
+        500:
+          description: Server Error
+          body:
+            text/plain:
+
+  /{id}:
+    displayName: Notifications
+    description: Get, Delete or Update a specific notification
+    type:
+      collection-item:
+        schema: notification
+        exampleItem: !include examples/notify.sample
+    put:
+      is: [validate]

@@ -1,0 +1,102 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Email API",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/email": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "success",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "200 Ok"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Send email notifications",
+          "operationId": "POST_email",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/emailEntity"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get emails",
+          "operationId": "GET_email"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "emailEntity": {
+          "includePath": "email_entity.json",
+          "$ref": "#/components/schemas/Can not resolve email_entity.json"
+        },
+        "emailEntries": {
+          "includePath": "email_entity_collections.json",
+          "$ref": "#/components/schemas/Can not resolve email_entity_collections.json"
+        },
+        "configurations": {
+          "includePath": "configurations.json",
+          "$ref": "#/components/schemas/Can not resolve configurations.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

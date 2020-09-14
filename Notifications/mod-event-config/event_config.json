@@ -1,0 +1,57 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Event config",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-event-config"
+      }
+    ],
+    "paths": {
+      "/eventConfig": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of funds",
+          "operationId": "GET_eventConfig"
+        }
+      },
+      "/eventConfig/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "event_config_entity": {
+          "includePath": "event_config_entity.json",
+          "$ref": "#/components/schemas/Can not resolve event_config_entity.json"
+        },
+        "event_config_collection": {
+          "includePath": "event_config_collection.json",
+          "$ref": "#/components/schemas/Can not resolve event_config_collection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

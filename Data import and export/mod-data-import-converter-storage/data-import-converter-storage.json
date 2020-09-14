@@ -1,0 +1,983 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Data Import Converter Storage",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/data-import-profiles/jobProfiles": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_data-import-profiles-jobProfiles",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/jobProfileUpdateDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-jobProfiles",
+          "parameters": [
+            {
+              "name": "showDeleted",
+              "in": "query",
+              "description": "selection condition of Job Profiles by field 'deleted'",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "withRelations",
+              "in": "query",
+              "description": "Load profile with related child and parent profiles",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      "/data-import-profiles/jobProfiles/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-jobProfiles-id",
+          "parameters": [
+            {
+              "name": "withRelations",
+              "in": "query",
+              "description": "Load profile with related child and parent profiles",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/jobProfile"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_data-import-profiles-jobProfiles-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/jobProfileUpdateDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "409": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_data-import-profiles-jobProfiles-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import-profiles/matchProfiles": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_data-import-profiles-matchProfiles",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/matchProfileUpdateDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-matchProfiles",
+          "parameters": [
+            {
+              "name": "showDeleted",
+              "in": "query",
+              "description": "selection condition of Match Profiles by field 'deleted'",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "withRelations",
+              "in": "query",
+              "description": "Load profile with related child and parent profiles",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      "/data-import-profiles/matchProfiles/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-matchProfiles-id",
+          "parameters": [
+            {
+              "name": "withRelations",
+              "in": "query",
+              "description": "Load profile with related child and parent profiles",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/matchProfile"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_data-import-profiles-matchProfiles-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/matchProfileUpdateDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "409": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_data-import-profiles-matchProfiles-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import-profiles/mappingProfiles": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_data-import-profiles-mappingProfiles",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/mappingProfileUpdateDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-mappingProfiles",
+          "parameters": [
+            {
+              "name": "showDeleted",
+              "in": "query",
+              "description": "selection condition of Mapping Profiles by field 'deleted'",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "withRelations",
+              "in": "query",
+              "description": "Load profile with related child and parent profiles",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      "/data-import-profiles/mappingProfiles/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-mappingProfiles-id",
+          "parameters": [
+            {
+              "name": "withRelations",
+              "in": "query",
+              "description": "Load profile with related child and parent profiles",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/mappingProfile"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_data-import-profiles-mappingProfiles-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/mappingProfileUpdateDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "409": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_data-import-profiles-mappingProfiles-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import-profiles/actionProfiles": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_data-import-profiles-actionProfiles",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/actionProfileUpdateDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-actionProfiles",
+          "parameters": [
+            {
+              "name": "showDeleted",
+              "in": "query",
+              "description": "selection condition of Action Profiles by field 'deleted'",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "withRelations",
+              "in": "query",
+              "description": "Load profile with related child and parent profiles",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      "/data-import-profiles/actionProfiles/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-actionProfiles-id",
+          "parameters": [
+            {
+              "name": "withRelations",
+              "in": "query",
+              "description": "Load profile with related child and parent profiles",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/actionProfile"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_data-import-profiles-actionProfiles-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/actionProfileUpdateDto"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            },
+            "409": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_data-import-profiles-actionProfiles-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import-profiles/profileAssociations": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_data-import-profiles-profileAssociations",
+          "parameters": [
+            {
+              "name": "master",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify master profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "detail",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify detail profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-profileAssociations",
+          "parameters": [
+            {
+              "name": "master",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify master profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "detail",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify detail profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/data-import-profiles/profileAssociations/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_data-import-profiles-profileAssociations-id",
+          "parameters": [
+            {
+              "name": "master",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify master profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "detail",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify detail profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileAssociation"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_data-import-profiles-profileAssociations-id",
+          "parameters": [
+            {
+              "name": "master",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify master profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "detail",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify detail profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_data-import-profiles-profileAssociations-id",
+          "parameters": [
+            {
+              "name": "master",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify master profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "detail",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify detail profile type in association",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import-profiles/profileAssociations/{id}/details": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileSnapshotWrapper"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_data-import-profiles-profileAssociations-id-details",
+          "parameters": [
+            {
+              "name": "masterType",
+              "in": "query",
+              "required": true,
+              "description": "It needs to identify master profile type for an id",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "detailType",
+              "in": "query",
+              "description": "It filters returned type of details. For example you need to get only MATCH_PROFILEs for a JOB_PROFILE but the JOB_PROFILE has ACTION_PROFILEs too. So use it as filter for a return type",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import-profiles/profileAssociations/{id}/masters": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileSnapshotWrapper"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_data-import-profiles-profileAssociations-id-masters",
+          "parameters": [
+            {
+              "name": "detailType",
+              "in": "query",
+              "required": true,
+              "description": "Type of detail profile",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "masterType",
+              "in": "query",
+              "description": "It filters returned type of masters. For example you need to get only JOB_PROFILEs for a MATCH_PROFILE but the MATCH_PROFILE has ACTION_PROFILEs too. So use it as filter for a return type",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import-profiles/jobProfileSnapshots/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileSnapshotWrapper"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Method to get Job Profile Snapshot by id",
+          "operationId": "GET_data-import-profiles-jobProfileSnapshots-id"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileSnapshotWrapper"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Method to create Job Profile Snapshot by Job Profile id",
+          "operationId": "POST_data-import-profiles-jobProfileSnapshots-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/data-import-profiles/entityTypes": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/entityTypeCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of entity types",
+          "operationId": "GET_data-import-profiles-entityTypes"
+        }
+      },
+      "/data-import-profiles/profileSnapshots/{profileId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/profileSnapshotWrapper"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a profile snapshot structure for specified profile id and type. Acceptable profileType values are JOB_PROFILE, ACTION_PROFILE, MATCH_PROFILE, MAPPING_PROFILE.",
+          "operationId": "GET_data-import-profiles-profileSnapshots-profileId",
+          "parameters": [
+            {
+              "name": "profileType",
+              "in": "query",
+              "required": true,
+              "description": "Indicates profile type",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "jobProfileId",
+              "in": "query",
+              "description": "Indicates job profile id, should be specified when {profileType} parameter has value JOB_PROFILE or MATCH_PROFILE",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        },
+        "jobProfile": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/jobProfile.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/jobProfile.json"
+        },
+        "jobProfileCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/jobProfileCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/jobProfileCollection.json"
+        },
+        "jobProfileUpdateDto": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/jobProfileUpdateDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/jobProfileUpdateDto.json"
+        },
+        "matchProfile": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/matchProfile.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/matchProfile.json"
+        },
+        "matchProfileCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/matchProfileCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/matchProfileCollection.json"
+        },
+        "matchProfileUpdateDto": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/matchProfileUpdateDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/matchProfileUpdateDto.json"
+        },
+        "mappingProfile": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/mappingProfile.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/mappingProfile.json"
+        },
+        "mappingProfileCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/mappingProfileCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/mappingProfileCollection.json"
+        },
+        "mappingProfileUpdateDto": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/mappingProfileUpdateDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/mappingProfileUpdateDto.json"
+        },
+        "actionProfile": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/actionProfile.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/actionProfile.json"
+        },
+        "actionProfileCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/actionProfileCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/actionProfileCollection.json"
+        },
+        "actionProfileUpdateDto": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/actionProfileUpdateDto.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/actionProfileUpdateDto.json"
+        },
+        "profileAssociation": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/profileAssociation.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/profileAssociation.json"
+        },
+        "profileAssociationCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/profileAssociationCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/profileAssociationCollection.json"
+        },
+        "profileSnapshotType": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/profileSnapshotType.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/profileSnapshotType.json"
+        },
+        "profileSnapshotWrapper": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/profileSnapshotWrapper.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/profileSnapshotWrapper.json"
+        },
+        "entityTypeCollection": {
+          "includePath": "raml-storage/schemas/mod-data-import-converter-storage/entityTypeCollection.json",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/schemas/mod-data-import-converter-storage/entityTypeCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

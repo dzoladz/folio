@@ -1,0 +1,152 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Invoices",
+      "version": "v4.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-invoice-storage"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-invoice-storage"
+      }
+    ],
+    "paths": {
+      "/invoice-storage/invoices": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of invoices",
+          "operationId": "GET_invoice-storage-invoices"
+        }
+      },
+      "/invoice-storage/invoices/{id}/documents": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of documents",
+          "operationId": "GET_invoice-storage-invoices-id-documents"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an invoice"
+          }
+        ]
+      },
+      "/invoice-storage/invoices/{id}/documents/{documentId}": {
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a document"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an invoice"
+          }
+        ]
+      },
+      "/invoice-storage/invoice-lines": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of invoice lines",
+          "operationId": "GET_invoice-storage-invoice-lines"
+        }
+      },
+      "/invoice-storage/invoice-lines/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_invoice-storage-invoice-lines-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an invoice line"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "invoiceDocument": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/document.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/document.json"
+        },
+        "documentCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/document_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/document_collection.json"
+        },
+        "invoice": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/invoice.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/invoice.json"
+        },
+        "invoiceCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/invoice_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/invoice_collection.json"
+        },
+        "invoiceLine": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/invoice_line.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/invoice_line.json"
+        },
+        "invoiceLineCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/invoice_line_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/invoice_line_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "sequenceNumber": {
+          "includePath": "acq-models/common/schemas/sequence_number.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/common/schemas/sequence_number.json"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

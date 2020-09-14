@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Organizations",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-organizations-storage"
+      }
+    ],
+    "paths": {
+      "/organizations-storage/phone-numbers": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of phone_numbers",
+          "operationId": "GET_organizations-storage-phone-numbers"
+        }
+      },
+      "/organizations-storage/phone-numbers/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a Phone Number"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "phone_number": {
+          "includePath": "acq-models/mod-orgs/schemas/phone_number.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orgs/schemas/phone_number.json"
+        },
+        "phone_number_collection": {
+          "includePath": "acq-models/mod-orgs/schemas/phone_number_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orgs/schemas/phone_number_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

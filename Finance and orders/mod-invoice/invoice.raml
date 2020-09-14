@@ -1,0 +1,188 @@
+#%RAML 1.0
+
+title: Invoice
+version: v5.0
+protocols: [ HTTP, HTTPS ]
+baseUri: http://localhost
+
+documentation:
+  - title: Invoice API
+    content: This documents the API calls that can be made to manage invoices
+
+types:
+  invoice: !include acq-models/mod-invoice-storage/schemas/invoice.json
+  invoiceCollection: !include acq-models/mod-invoice-storage/schemas/invoice_collection.json
+  invoiceDocument: !include acq-models/mod-invoice-storage/schemas/document.json
+  documentCollection: !include acq-models/mod-invoice-storage/schemas/document_collection.json
+  invoiceLine: !include acq-models/mod-invoice-storage/schemas/invoice_line.json
+  invoiceLineCollection: !include acq-models/mod-invoice-storage/schemas/invoice_line_collection.json
+
+  errors: !include raml-util/schemas/errors.schema
+  UUID:
+    type: string
+    pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$
+
+traits:
+  validate: !include raml-util/traits/validation.raml
+  language: !include raml-util/traits/language.raml
+  pageable:  !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection-with-json-response.raml
+  collection-item: !include raml-util/rtypes/item-collection-with-json-response.raml
+  get-delete: !include raml-util/rtypes/get-delete-with-json-response.raml
+  get-only: !include raml-util/rtypes/get-only-with-json-response.raml
+
+/invoice:
+  /invoices:
+    displayName: Invoice
+    description: Manage Invoices
+    type:
+      collection:
+        schemaCollection: invoiceCollection
+        schemaItem: invoice
+        exampleCollection: !include acq-models/mod-invoice-storage/examples/invoice_collection.sample
+        exampleItem: !include acq-models/mod-invoice-storage/examples/invoice.sample
+
+    post:
+      description: Post invoice. Only in case an acquisition unit has to be assigned to the invoice, it is required that user should have extra permission invoices.acquisitions-units-assignments.assign to create an Invoice.
+      is: [validate]
+    get:
+      is: [ pageable, searchable: {description: "using CQL (indexes for invoice)", example: "invoiceLineStatus==\"Open\""}, validate ]
+    /{id}:
+      uriParameters:
+        id:
+          description: The UUID of an invoice
+          type: UUID
+      displayName: Invoice
+      description: Get, Delete or Update a specific invoice
+      type:
+        collection-item:
+          schema: invoice
+          exampleItem: !include acq-models/mod-invoice-storage/examples/invoice.sample
+      get:
+        description: Return an invoice with given {id}
+      put:
+        description: Update invoice. Only in case an acquisition units list has to be changed, it is required that user should have extra permission invoices.acquisitions-units-assignments.manage to update an Invoice.
+        is: [validate]
+      delete:
+        description: Delete an invoice with given {id}
+
+      /documents:
+        displayName: Document
+        description: Manage documents associated with invoice
+        type:
+          get-only:
+            schema: documentCollection
+            exampleCollection: !include acq-models/mod-invoice-storage/examples/document_collection.sample
+        get:
+          description: Get list of documents
+          is: [
+            pageable,
+            searchable: {description: "with valid searchable fields: for example metadata.createdDate", example: "metadata.createdDate > '2018-07-19T00:00:00.000+0000'"},
+          ]
+        post:
+          description: Post document attachment/link;
+          is: [validate, language]
+          body:
+            application/octet-stream:
+          responses:
+            201:
+              description: "Returns a newly created item, with server-controlled fields like 'id' populated"
+              headers:
+                Location:
+                  description: URI to the created Invoice Document item
+              body:
+                application/json:
+                  example: !include acq-models/mod-invoice-storage/examples/document.sample
+            400:
+              description: "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response."
+              body:
+                application/json:
+                  example:
+                    strict: false
+                    value: !include raml-util/examples/errors.sample
+                text/plain:
+                  example: |
+                    "unable to add Invoice Document -- malformed JSON at 13:3"
+            401:
+              description: "Not authorized to perform requested action"
+              body:
+                application/json:
+                  example:
+                    strict: false
+                    value: !include raml-util/examples/errors.sample
+                text/plain:
+                  example: "unable to create Invoice Document -- unauthorized"
+            413:
+              description: "Invoice Document too large "
+              body:
+                application/json:
+                  example:
+                    strict: false
+                    value: !include raml-util/examples/errors.sample
+                text/plain:
+                  example: "unable to create Invoice Document -- unauthorized"
+            500:
+              description: "Internal server error, e.g. due to misconfiguration"
+              body:
+                application/json:
+                  example:
+                    strict: false
+                    value: !include raml-util/examples/errors.sample
+                text/plain:
+                  example: "Internal server error, contact administrator"
+        /{documentId}:
+          description: Get and Delete a specific document attachments/links. Update operation is not allowed
+          uriParameters:
+            documentId:
+              description: The UUID of a document
+              type: UUID
+          type:
+            get-delete:
+              schema: invoiceDocument
+              exampleItem: !include acq-models/mod-invoice-storage/examples/document.sample
+
+  /invoice-lines:
+    displayName: Invoice Lines
+    description: Manage Invoice lines
+    type:
+      collection:
+        schemaCollection: invoiceLineCollection
+        schemaItem: invoiceLine
+        exampleCollection: !include acq-models/mod-invoice-storage/examples/invoice_line_collection.sample
+        exampleItem: !include acq-models/mod-invoice-storage/examples/invoice_line.sample
+    is: [validate]
+    get:
+      is: [ pageable, searchable: {description: "using CQL (indexes for invoice lines)", example: "status==\"Open\""}, validate ]
+    post:
+      description: Post an invoice lines to corresponding invoice
+    /{id}:
+      displayName: Invoice Line
+      description: Manage invoice line by id
+      uriParameters:
+        id:
+          description: The UUID of a invoice line
+          type: UUID
+      type:
+        collection-item:
+          exampleItem: !include acq-models/mod-invoice-storage/examples/invoice_line.sample
+          schema: invoiceLine
+      is: [validate]
+      get:
+        description: Return an invoice line with given {id}
+      put:
+        description: Update an invoice line with given {id}
+      delete:
+        description: Delete an invoice line with given {id}
+  /invoice-number:
+    displayName: Invoice Number
+    description: Manage Invoice Number
+    type:
+      get-only:
+        schema: invoiceCollection
+        exampleCollection: !include acq-models/mod-invoice-storage/examples/invoice_collection.sample
+    get:
+      description: Get system generated Invoice Number
+      is: [validate]

@@ -1,0 +1,109 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Vouchers",
+      "version": "v2.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-invoice-storage"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-invoice-storage"
+      }
+    ],
+    "paths": {
+      "/voucher-storage/vouchers": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of vouchers",
+          "operationId": "GET_voucher-storage-vouchers"
+        }
+      },
+      "/voucher-storage/vouchers/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a voucher"
+          }
+        ]
+      },
+      "/voucher-storage/voucher-lines": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of voucher lines",
+          "operationId": "GET_voucher-storage-voucher-lines"
+        }
+      },
+      "/voucher-storage/voucher-lines/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_voucher-storage-voucher-lines-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an voucher line"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "voucher": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/voucher.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/voucher.json"
+        },
+        "voucherCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/voucher_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/voucher_collection.json"
+        },
+        "voucherLine": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/voucher_line.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/voucher_line.json"
+        },
+        "voucherLineCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/voucher_line_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/voucher_line_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

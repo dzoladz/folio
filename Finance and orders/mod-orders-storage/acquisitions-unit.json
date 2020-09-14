@@ -1,0 +1,116 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Orders Storage",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/acquisitions-units-storage/units": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create new acquisitions unit",
+          "operationId": "POST_acquisitions-units-storage-units"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of acquisitions units",
+          "operationId": "GET_acquisitions-units-storage-units"
+        }
+      },
+      "/acquisitions-units-storage/units/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update acquisitions unit",
+          "operationId": "PUT_acquisitions-units-storage-units-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a acquisitions unit"
+          }
+        ]
+      },
+      "/acquisitions-units-storage/memberships": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of acquisitions units memberships",
+          "operationId": "GET_acquisitions-units-storage-memberships"
+        }
+      },
+      "/acquisitions-units-storage/memberships/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a acquisitions unit membership"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "acquisitions-unit": {
+          "includePath": "acq-models/acquisitions-unit/schemas/acquisitions_unit.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/acquisitions-unit/schemas/acquisitions_unit.json"
+        },
+        "acquisitions-unit-collection": {
+          "includePath": "acq-models/acquisitions-unit/schemas/acquisitions_unit_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/acquisitions-unit/schemas/acquisitions_unit_collection.json"
+        },
+        "acquisitions-unit-membership": {
+          "includePath": "acq-models/acquisitions-unit/schemas/acquisitions_unit_membership.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/acquisitions-unit/schemas/acquisitions_unit_membership.json"
+        },
+        "acquisitions-unit-membership-collection": {
+          "includePath": "acq-models/acquisitions-unit/schemas/acquisitions_unit_membership_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/acquisitions-unit/schemas/acquisitions_unit_membership_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

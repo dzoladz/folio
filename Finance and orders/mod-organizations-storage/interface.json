@@ -1,0 +1,135 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Organizations",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-organizations-storage"
+      }
+    ],
+    "paths": {
+      "/organizations-storage/interfaces": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of interfaces",
+          "operationId": "GET_organizations-storage-interfaces"
+        }
+      },
+      "/organizations-storage/interfaces/{id}/credentials": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Returns a newly created interface credential, with server-controlled fields like 'id' populated",
+              "headers": {
+                "Location": {
+                  "description": "URI to the created interface credential",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve acq-models/mod-orgs/examples/interface_credential_get.sample"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to add interface credential -- malformed JSON at 13:3"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to create interface credential -- unauthorized"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create a new interface credential",
+          "operationId": "POST_organizations-storage-interfaces-id-credentials",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve acq-models/mod-orgs/examples/interface_credential_get.sample",
+                "schema": {
+                  "$ref": "#/components/schemas/interface_credential"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a Interface"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "interface": {
+          "includePath": "acq-models/mod-orgs/schemas/interface.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orgs/schemas/interface.json"
+        },
+        "interface_collection": {
+          "includePath": "acq-models/mod-orgs/schemas/interface_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orgs/schemas/interface_collection.json"
+        },
+        "interface_credential": {
+          "includePath": "acq-models/mod-orgs/schemas/interface_credential.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orgs/schemas/interface_credential.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

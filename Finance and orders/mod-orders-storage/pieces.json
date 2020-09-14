@@ -1,0 +1,62 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Orders Storage",
+      "version": "v3.2"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders-storage/pieces": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of pieces",
+          "operationId": "GET_orders-storage-pieces"
+        }
+      },
+      "/orders-storage/pieces/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a Piece"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "piece": {
+          "includePath": "acq-models/mod-orders-storage/schemas/piece.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/piece.json"
+        },
+        "piece_collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/piece_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/piece_collection.json"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

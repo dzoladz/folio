@@ -1,0 +1,308 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Invoice",
+      "version": "v5.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/invoice/invoices": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post invoice. Only in case an acquisition unit has to be assigned to the invoice, it is required that user should have extra permission invoices.acquisitions-units-assignments.assign to create an Invoice.",
+          "operationId": "POST_invoice-invoices"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_invoice-invoices"
+        }
+      },
+      "/invoice/invoices/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return an invoice with given {id}",
+          "operationId": "GET_invoice-invoices-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update invoice. Only in case an acquisition units list has to be changed, it is required that user should have extra permission invoices.acquisitions-units-assignments.manage to update an Invoice.",
+          "operationId": "PUT_invoice-invoices-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete an invoice with given {id}",
+          "operationId": "DELETE_invoice-invoices-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an invoice"
+          }
+        ]
+      },
+      "/invoice/invoices/{id}/documents": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of documents",
+          "operationId": "GET_invoice-invoices-id-documents"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Returns a newly created item, with server-controlled fields like 'id' populated",
+              "headers": {
+                "Location": {
+                  "description": "URI to the created Invoice Document item",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "example": "Can not resolve acq-models/mod-invoice-storage/examples/document.sample"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to add Invoice Document -- malformed JSON at 13:3"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to create Invoice Document -- unauthorized"
+                  }
+                }
+              }
+            },
+            "413": {
+              "description": "Invoice Document too large ",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to create Invoice Document -- unauthorized"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Post document attachment/link;",
+          "operationId": "POST_invoice-invoices-id-documents",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an invoice"
+          }
+        ]
+      },
+      "/invoice/invoices/{id}/documents/{documentId}": {
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a document"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of an invoice"
+          }
+        ]
+      },
+      "/invoice/invoice-lines": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_invoice-invoice-lines"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post an invoice lines to corresponding invoice",
+          "operationId": "POST_invoice-invoice-lines"
+        }
+      },
+      "/invoice/invoice-lines/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return an invoice line with given {id}",
+          "operationId": "GET_invoice-invoice-lines-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update an invoice line with given {id}",
+          "operationId": "PUT_invoice-invoice-lines-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete an invoice line with given {id}",
+          "operationId": "DELETE_invoice-invoice-lines-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a invoice line"
+          }
+        ]
+      },
+      "/invoice/invoice-number": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get system generated Invoice Number",
+          "operationId": "GET_invoice-invoice-number"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "invoice": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/invoice.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/invoice.json"
+        },
+        "invoiceCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/invoice_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/invoice_collection.json"
+        },
+        "invoiceDocument": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/document.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/document.json"
+        },
+        "documentCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/document_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/document_collection.json"
+        },
+        "invoiceLine": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/invoice_line.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/invoice_line.json"
+        },
+        "invoiceLineCollection": {
+          "includePath": "acq-models/mod-invoice-storage/schemas/invoice_line_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-invoice-storage/schemas/invoice_line_collection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

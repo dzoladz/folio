@@ -1,0 +1,62 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Titles",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-orders-storage"
+      }
+    ],
+    "paths": {
+      "/orders/titles": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get list of titles",
+          "operationId": "GET_orders-titles"
+        }
+      },
+      "/orders/titles/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/UUID"
+            },
+            "description": "The UUID of a Title"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "title": {
+          "includePath": "acq-models/mod-orders-storage/schemas/title.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/title.json"
+        },
+        "title_collection": {
+          "includePath": "acq-models/mod-orders-storage/schemas/title_collection.json",
+          "$ref": "#/components/schemas/Can not resolve acq-models/mod-orders-storage/schemas/title_collection.json"
+        },
+        "UUID": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+          "type": "string"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }
