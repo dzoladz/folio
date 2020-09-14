@@ -1,0 +1,74 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Circulation",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/loan-anonymization/by-user/{userId}": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Chosen loans have been successfully anonymized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/anonymize-loans-response"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_loan-anonymization-by-user-userId"
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "anonymize-loans-response": {
+          "includePath": "schema/anonymize-loans-response.json",
+          "$ref": "#/components/schemas/Can not resolve schema/anonymize-loans-response.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

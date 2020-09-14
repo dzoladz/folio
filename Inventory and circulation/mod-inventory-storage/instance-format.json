@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Instance Formats API",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/instance-formats": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of instance formats",
+          "operationId": "GET_instance-formats"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new instance format",
+          "operationId": "POST_instance-formats"
+        }
+      },
+      "/instance-formats/{instanceFormatId}": {
+        "parameters": [
+          {
+            "name": "instanceFormatId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "instanceFormat": {
+          "includePath": "instanceformat.json",
+          "$ref": "#/components/schemas/Can not resolve instanceformat.json"
+        },
+        "instanceFormats": {
+          "includePath": "instanceformats.json",
+          "$ref": "#/components/schemas/Can not resolve instanceformats.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

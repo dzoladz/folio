@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Metadata Collections",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/mod-finc-config"
+      }
+    ],
+    "paths": {
+      "/finc-config/metadata-collections": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all metadata collections",
+          "operationId": "GET_finc-config-metadata-collections"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post new metadata collection",
+          "operationId": "POST_finc-config-metadata-collections"
+        }
+      },
+      "/finc-config/metadata-collections/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get one metadata collection identified by id",
+          "operationId": "GET_finc-config-metadata-collections-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete an metadata collection identified by id",
+          "operationId": "DELETE_finc-config-metadata-collections-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Put an metadata collection identified by id",
+          "operationId": "PUT_finc-config-metadata-collections-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "fincConfigMetadataCollection": {
+          "includePath": "schemas/fincConfigMetadataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincConfigMetadataCollection.json"
+        },
+        "fincConfigMetadataCollections": {
+          "includePath": "schemas/fincConfigMetadataCollections.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincConfigMetadataCollections.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

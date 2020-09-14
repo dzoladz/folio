@@ -1,0 +1,70 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Isils",
+      "version": "v1.0.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-finc-config"
+      }
+    ],
+    "paths": {
+      "/finc-config/isils": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of isisls",
+          "operationId": "GET_finc-config-isils"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create an isil",
+          "operationId": "POST_finc-config-isils"
+        }
+      },
+      "/finc-config/isils/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "isil": {
+          "includePath": "schemas/isil.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/isil.json"
+        },
+        "isils": {
+          "includePath": "schemas/isils.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/isils.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

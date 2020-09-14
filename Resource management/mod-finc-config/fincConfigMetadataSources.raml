@@ -1,0 +1,76 @@
+#%RAML 1.0
+title: Metadata Sources
+version: v1
+baseUri: http://localhost/mod-finc-config
+
+documentation:
+  - title: mod-finc-config API
+    content: This documents the API calls that can be made to query and manage metadata sources
+
+types:
+  fincConfigMetadataSource: !include schemas/fincConfigMetadataSource.json
+  fincConfigMetadataSources: !include schemas/fincConfigMetadataSources.json
+  tinyMetadataSource: !include schemas/tinyMetadataSource.json
+  tinyMetadataSources: !include schemas/tinyMetadataSources.json
+  contact: !include schemas/contact.json
+  contacts: !include schemas/contacts.json
+  errors: !include ./raml-util/schemas/errors.schema
+
+traits:
+  orderable: !include ./raml-util/traits/orderable.raml
+  pageable: !include ./raml-util/traits/pageable.raml
+  searchable: !include ./raml-util/traits/searchable.raml
+  language: !include ./raml-util/traits/language.raml
+  validate: !include ./raml-util/traits/validation.raml
+
+resourceTypes:
+  collection: !include ./raml-util/rtypes/collection.raml
+  collection-item: !include ./raml-util/rtypes/item-collection.raml
+
+/finc-config/metadata-sources:
+  displayName: Metadata Sources
+  type:
+    collection:
+      exampleCollection: !include examples/fincConfigMetadataSource_collection.sample
+      exampleItem: !include examples/fincConfigMetadataSource.sample
+      schemaCollection: fincConfigMetadataSources
+      schemaItem: fincConfigMetadataSource
+  get:
+    is: [
+      searchable: {description: "", example: "((label=\"Journals*\" or sourceId=\"Journals*\") and status=(\"active\" or \"technical implementation\")) sortby label"},
+      orderable: {fieldsList: "label, sourceId, status, solrShard, lastProcessed"},
+      pageable
+    ]
+    description: Get all metadata sources
+  post:
+    is: [validate]
+    description: Post new metadata source
+  /{id}:
+    type:
+      collection-item:
+        exampleItem: !include examples/fincConfigMetadataSource.sample
+        schema: fincConfigMetadataSource
+    get:
+      description: Get one metadata source identified by id
+    delete:
+      description: Delete an metadata source identified by id
+    put:
+      description: Put an metadata source identified by id
+/finc-config/tiny-metadata-sources:
+  type:
+    collection:
+      exampleCollection: !include examples/tinyMetadataSource_collection.sample
+      exampleItem: !include examples/tinyMetadataSource.sample
+      schemaCollection: tinyMetadataSources
+      schemaItem: tinyMetadataSource
+  get:
+    description: Get all tiny metadata sources
+/finc-config/contacts:
+  type:
+    collection:
+      exampleCollection: !include examples/contact_collection.sample
+      exampleItem: !include examples/contact.sample
+      schemaCollection: contacts
+      schemaItem: contact
+  get:
+    description: Get all contacts defined in metadata sources

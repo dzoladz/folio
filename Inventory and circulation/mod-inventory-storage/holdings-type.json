@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Holdings types API",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-inventory-storage"
+      },
+      {
+        "url": "https://github.com/org/folio/mod-inventory-storage"
+      }
+    ],
+    "paths": {
+      "/holdings-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of holdings types",
+          "operationId": "GET_holdings-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new holdings type",
+          "operationId": "POST_holdings-types"
+        }
+      },
+      "/holdings-types/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "holdingsType": {
+          "includePath": "holdingstype.json",
+          "$ref": "#/components/schemas/Can not resolve holdingstype.json"
+        },
+        "holdingsTypes": {
+          "includePath": "holdingstypes.json",
+          "$ref": "#/components/schemas/Can not resolve holdingstypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

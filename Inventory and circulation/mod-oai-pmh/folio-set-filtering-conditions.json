@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "OAI-PMH API",
+      "version": "v3"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-oai-pmh"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-oai-pmh"
+      }
+    ],
+    "paths": {
+      "/oai-pmh/filtering-conditions": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/filtering_condition_value_collection.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/filteringConditionValueCollection"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Unable to get filtering condition values. Unauthorized"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_oai-pmh-filtering-conditions"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "filteringCondition": {
+          "includePath": "schemas/dto/filteringCondition.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/dto/filteringCondition.json"
+        },
+        "filteringConditionValueCollection": {
+          "includePath": "schemas/dto/filteringConditionValueCollection.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/dto/filteringConditionValueCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

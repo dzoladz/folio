@@ -1,0 +1,163 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/titles": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/titles/titles_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/titleCollection"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a set of titles matching the given search criteria.",
+          "operationId": "GET_eholdings-titles"
+        },
+        "post": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/titles/titles_post_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/title"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_post_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Bad",
+              "content": {
+                "application/vnd.api+json": {
+                  "schema": {
+                    "example": "Can not resolve examples/titles/titles_post_422_response.json"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create a new Custom Title.",
+          "operationId": "POST_eholdings-titles",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/titles/titles_post_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/titlePostRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/eholdings/titles/{titleId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/titles/titles_titleId_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/title"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "schema": {
+                    "example": "Can not resolve examples/titles/titles_titleId_get_404_response.json"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get the title by its unique identifier.",
+          "operationId": "GET_eholdings-titles-titleId"
+        },
+        "parameters": [
+          {
+            "name": "titleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "title": {
+          "includePath": "types/titles/title.json",
+          "$ref": "#/components/schemas/Can not resolve types/titles/title.json"
+        },
+        "titleCollection": {
+          "includePath": "types/titles/titleCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/titles/titleCollection.json"
+        },
+        "titlePostRequest": {
+          "includePath": "types/titles/titlePostRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/titles/titlePostRequest.json"
+        },
+        "titlePutRequest": {
+          "includePath": "types/titles/titlePutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/titles/titlePutRequest.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

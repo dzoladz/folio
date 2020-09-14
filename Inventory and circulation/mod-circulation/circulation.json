@@ -1,0 +1,600 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Circulation",
+      "version": "v9.4"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/circulation/check-out-by-barcode": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/loan"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Creates a loan by checking out an item to a loanee",
+          "operationId": "POST_circulation-check-out-by-barcode",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/check-out-by-barcode-request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve check-out-by-barcode-request.json"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/circulation/override-check-out-by-barcode": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/loan"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Creates a loan by checking out an item to a loanee",
+          "operationId": "POST_circulation-override-check-out-by-barcode",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/override-check-out-by-barcode-request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve override-check-out-by-barcode-request.json"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/circulation/renew-by-barcode": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/loan"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/loan"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Updates the due date of an existing loan",
+          "operationId": "POST_circulation-renew-by-barcode",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/renew-by-barcode-request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve renew-by-barcode-request.json"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/circulation/renew-by-id": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/loan"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/loan"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Updates the due date of an existing loan",
+          "operationId": "POST_circulation-renew-by-id",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/renew-by-id-request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve renew-by-id-request.json"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/circulation/override-renewal-by-barcode": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/loan"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/loan"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Updates the due date of an existing loan",
+          "operationId": "POST_circulation-override-renewal-by-barcode",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/override-renewal-by-barcode-request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve override-renewal-by-barcode-request.json"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/circulation/check-in-by-barcode": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/check-in-by-barcode-response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/check-in-by-barcode-response"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Updates the status of an existing loan",
+          "operationId": "POST_circulation-check-in-by-barcode",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/check-in-by-barcode-request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve check-in-by-barcode-request.json"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/circulation/loans": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_circulation-loans"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_circulation-loans"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All loans deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "DELETE_circulation-loans"
+        }
+      },
+      "/circulation/loans/{loanId}": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_circulation-loans-loanId"
+        },
+        "put": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "PUT_circulation-loans-loanId"
+        },
+        "delete": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_circulation-loans-loanId"
+        },
+        "parameters": [
+          {
+            "name": "loanId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/circulation/requests": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_circulation-requests"
+        },
+        "post": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "POST_circulation-requests"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All requests deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            },
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_circulation-requests"
+        }
+      },
+      "/circulation/requests/{requestId}": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_circulation-requests-requestId"
+        },
+        "put": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "PUT_circulation-requests-requestId"
+        },
+        "delete": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_circulation-requests-requestId"
+        },
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/circulation/requests/queue/{itemId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_circulation-requests-queue-itemId"
+        },
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/circulation/requests/queue/{itemId}/reorder": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Queue has been reordered successfully",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/requests.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/requests"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Queue for item not found."
+            },
+            "422": {
+              "description": "Validation errors.",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Page requests can not be displaced from position 1."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error.",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error."
+                  }
+                }
+              }
+            }
+          },
+          "description": "Reorder requests in the item queue",
+          "operationId": "POST_circulation-requests-queue-itemId-reorder",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/reorder-queue.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve schema/reorder-queue.json"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/circulation/requests/instances": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/request.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Creates a request for a specific item from the given instance ID",
+          "operationId": "POST_circulation-requests-instances",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/request-by-instance-id.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve request-by-instance-id.json"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "loan": {
+          "includePath": "loan.json",
+          "$ref": "#/components/schemas/Can not resolve loan.json"
+        },
+        "loans": {
+          "includePath": "loans.json",
+          "$ref": "#/components/schemas/Can not resolve loans.json"
+        },
+        "request": {
+          "includePath": "request.json",
+          "$ref": "#/components/schemas/Can not resolve request.json"
+        },
+        "requests": {
+          "includePath": "requests.json",
+          "$ref": "#/components/schemas/Can not resolve requests.json"
+        },
+        "check-in-by-barcode-response": {
+          "includePath": "check-in-by-barcode-response.json",
+          "$ref": "#/components/schemas/Can not resolve check-in-by-barcode-response.json"
+        },
+        "error": {
+          "includePath": "raml-util/schemas/error.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/error.schema"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

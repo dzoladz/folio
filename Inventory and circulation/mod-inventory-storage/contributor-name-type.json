@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Contributor Name Types API",
+      "version": "v1.2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/contributor-name-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of contributor name types",
+          "operationId": "GET_contributor-name-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new contributor name type",
+          "operationId": "POST_contributor-name-types"
+        }
+      },
+      "/contributor-name-types/{contributorNameTypeId}": {
+        "parameters": [
+          {
+            "name": "contributorNameTypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "contributorNameType": {
+          "includePath": "contributornametype.json",
+          "$ref": "#/components/schemas/Can not resolve contributornametype.json"
+        },
+        "contributorNameTypes": {
+          "includePath": "contributornametypes.json",
+          "$ref": "#/components/schemas/Can not resolve contributornametypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

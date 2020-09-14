@@ -1,0 +1,97 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Usage Data Providers",
+      "version": "v2.5"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/mod-erm-usage"
+      }
+    ],
+    "paths": {
+      "/usage-data-providers": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all usage data providers",
+          "operationId": "GET_usage-data-providers"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post new usage data providers",
+          "operationId": "POST_usage-data-providers"
+        }
+      },
+      "/usage-data-providers/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get one usage data provider identified by id",
+          "operationId": "GET_usage-data-providers-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete an usage data provider identified by id",
+          "operationId": "DELETE_usage-data-providers-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Put an usage data provider identified by id",
+          "operationId": "PUT_usage-data-providers-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "usageDataProvider": {
+          "includePath": "schemas/udprovider.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/udprovider.json"
+        },
+        "usageDataProviders": {
+          "includePath": "schemas/udproviders.json",
+          "$ref": "#/components/schemas/Can not resolve ./schemas/udproviders.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

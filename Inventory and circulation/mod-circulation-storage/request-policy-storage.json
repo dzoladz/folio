@@ -1,0 +1,193 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Request Policy Storage",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/request-policy-storage/request-policies": {
+        "get": {
+          "responses": {
+            "500": {
+              "description": "General errors",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_request-policy-storage-request-policies"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Request policy created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/request-policy"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "General errors",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_request-policy-storage-request-policies"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All request policies deleted"
+            },
+            "500": {
+              "description": "General errors",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            },
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_request-policy-storage-request-policies"
+        }
+      },
+      "/request-policy-storage/request-policies/{requestPolicyId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Request policy successfully retreived",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/request-policy"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "General errors",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            },
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_request-policy-storage-request-policies-requestPolicyId"
+        },
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Request policy successfully updated"
+            },
+            "500": {
+              "description": "General errors",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            },
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "PUT_request-policy-storage-request-policies-requestPolicyId"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "Request policy successfully deleted"
+            },
+            "500": {
+              "description": "General errors",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "DELETE_request-policy-storage-request-policies-requestPolicyId"
+        },
+        "parameters": [
+          {
+            "name": "requestPolicyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "request-policy": {
+          "includePath": "request-policy.json",
+          "$ref": "#/components/schemas/Can not resolve request-policy.json"
+        },
+        "request-policies": {
+          "includePath": "request-policies.json",
+          "$ref": "#/components/schemas/Can not resolve request-policies.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Statistical code reference API",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/statistical-codes": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of statistical codes",
+          "operationId": "GET_statistical-codes"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new statistical code",
+          "operationId": "POST_statistical-codes"
+        }
+      },
+      "/statistical-codes/{statisticalCodeId}": {
+        "parameters": [
+          {
+            "name": "statisticalCodeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "statisticalCode": {
+          "includePath": "statisticalcode.json",
+          "$ref": "#/components/schemas/Can not resolve statisticalcode.json"
+        },
+        "statisticalCodes": {
+          "includePath": "statisticalcodes.json",
+          "$ref": "#/components/schemas/Can not resolve statisticalcodes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

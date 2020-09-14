@@ -1,0 +1,173 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Inventory Storage OAI-PMH view API",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-inventory-storage"
+      },
+      {
+        "url": "https://github.com/org/folio/mod-inventory-storage"
+      }
+    ],
+    "paths": {
+      "/oai-pmh-view/instances": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Stream data for oai-pmh",
+          "operationId": "GET_oai-pmh-view-instances",
+          "parameters": [
+            {
+              "name": "startDate",
+              "in": "query",
+              "description": "Lower bound for filtering instances by instances, items and holdings metadata update date. Accepted format YYYY-MM-DD or YYYY-MM-DDThh:mm:ssZ",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "endDate",
+              "in": "query",
+              "description": "Upper bound for filtering instances by instances, items and holdings metadata update date",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "deletedRecordSupport",
+              "in": "query",
+              "description": "Returns deleted records",
+              "schema": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "skipSuppressedFromDiscoveryRecords",
+              "in": "query",
+              "description": "Configuration param which defines if discovery suppressed instance records should be skipped or not",
+              "schema": {
+                "default": true,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      "/oai-pmh-view/updatedInstanceIds": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Stream updated instances ids for oai-pmh",
+          "operationId": "GET_oai-pmh-view-updatedInstanceIds",
+          "parameters": [
+            {
+              "name": "startDate",
+              "in": "query",
+              "description": "Lower bound for filtering instances by instances, items and holdings metadata update date",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "endDate",
+              "in": "query",
+              "description": "Upper bound for filtering instances by instances, items and holdings metadata update date",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "deletedRecordSupport",
+              "in": "query",
+              "description": "return deleted records",
+              "schema": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "skipSuppressedFromDiscoveryRecords",
+              "in": "query",
+              "description": "Configuration param which defines if discovery suppressed instance records should be skipped or not",
+              "schema": {
+                "default": true,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      "/oai-pmh-view/enrichedInstances": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/oaipmhenrichedinstances.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/oaipmhEnrichedInstances"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Stream instances view data for oai-pmh",
+          "operationId": "POST_oai-pmh-view-enrichedInstances",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/oaipmhinstanceids.json",
+                "schema": {
+                  "$ref": "#/components/schemas/oaipmhInstanceIds"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "oaipmhInstances": {
+          "includePath": "oaipmh/oaipmhinstances.json",
+          "$ref": "#/components/schemas/Can not resolve oaipmh/oaipmhinstances.json"
+        },
+        "oaipmhUpdatedInstanceIds": {
+          "includePath": "oaipmh/oaipmhupdatedinstanceids.json",
+          "$ref": "#/components/schemas/Can not resolve oaipmh/oaipmhupdatedinstanceids.json"
+        },
+        "oaipmhEnrichedInstances": {
+          "includePath": "oaipmh/oaipmhenrichedinstances.json",
+          "$ref": "#/components/schemas/Can not resolve oaipmh/oaipmhenrichedinstances.json"
+        },
+        "oaipmhInstanceIds": {
+          "includePath": "oaipmh/oaipmhinstanceids.json",
+          "$ref": "#/components/schemas/Can not resolve oaipmh/oaipmhinstanceids.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

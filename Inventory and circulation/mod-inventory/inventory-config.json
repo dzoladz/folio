@@ -1,0 +1,66 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Inventory API",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/inventory/config/instances/blocked-fields": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Array of blocked fields of instance",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/blocked_fields_get.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/blocked-fields"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Provides configuration with blocked fields of instance",
+          "operationId": "GET_inventory-config-instances-blocked-fields"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "blocked-fields": {
+          "includePath": "blocked-fields.json",
+          "$ref": "#/components/schemas/Can not resolve blocked-fields.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

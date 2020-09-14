@@ -1,0 +1,353 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Counter Reports",
+      "version": "v1.5"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/mod-erm-usage"
+      }
+    ],
+    "paths": {
+      "/counter-reports": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all reports. If query parameter tiny is set to true, the reports' metadata is returned without the actual counter reports.",
+          "operationId": "GET_counter-reports",
+          "parameters": [
+            {
+              "name": "tiny",
+              "in": "query",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post new report",
+          "operationId": "POST_counter-reports"
+        }
+      },
+      "/counter-reports/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get one report identified by id",
+          "operationId": "GET_counter-reports-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete report identified by id",
+          "operationId": "DELETE_counter-reports-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Put report identified by id",
+          "operationId": "PUT_counter-reports-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/counter-reports/{id}/download": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "404": {
+              "description": "Not Found"
+            },
+            "500": {
+              "description": "Server Error"
+            }
+          },
+          "description": "Download report in its original format",
+          "operationId": "GET_counter-reports-id-download"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/counter-reports/sorted/{udpId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "counter reports sorted by year and report",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/counterreports_sorted.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/counterReportsSorted"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": ""
+            },
+            "500": {
+              "description": ""
+            }
+          },
+          "description": "Get counter reports sorted by year and report",
+          "operationId": "GET_counter-reports-sorted-udpId"
+        },
+        "parameters": [
+          {
+            "name": "udpId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/counter-reports/export/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": ""
+            },
+            "400": {
+              "description": ""
+            },
+            "500": {
+              "description": "Server Error"
+            }
+          },
+          "description": "Get the report identified by id as specified format (default is CSV)",
+          "operationId": "GET_counter-reports-export-id",
+          "parameters": [
+            {
+              "name": "format",
+              "in": "query",
+              "schema": {
+                "default": "csv",
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/counter-reports/export/provider/{id}/report/{name}/version/{aversion}/from/{begin}/to/{end}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": ""
+            },
+            "400": {
+              "description": ""
+            },
+            "500": {
+              "description": "Server Error"
+            }
+          },
+          "description": "Get report for several months as specified format (default is CSV)",
+          "operationId": "GET_counter-reports-export-provider-id-report-name-version-aversion-from-begin-to-end",
+          "parameters": [
+            {
+              "name": "format",
+              "in": "query",
+              "schema": {
+                "default": "csv",
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "aversion",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "begin",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "end",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/counter-reports/upload/provider/{id}": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": ""
+            },
+            "404": {
+              "description": ""
+            },
+            "500": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_counter-reports-upload-provider-id",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "overwrite",
+              "in": "query",
+              "required": true,
+              "description": "Overwrite existing reports?",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/counter-reports/errors/codes": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "error codes existent in counter reports",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/errorcodes.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/errorCodes"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": ""
+            }
+          },
+          "description": "Get counter/sushi error codes existent in counter reports",
+          "operationId": "GET_counter-reports-errors-codes"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "counterReport": {
+          "includePath": "schemas/counterreport.json",
+          "$ref": "#/components/schemas/Can not resolve ./schemas/counterreport.json"
+        },
+        "counterReports": {
+          "includePath": "schemas/counterreports.json",
+          "$ref": "#/components/schemas/Can not resolve ./schemas/counterreports.json"
+        },
+        "counterReportsSorted": {
+          "includePath": "schemas/counterreports_sorted.json",
+          "$ref": "#/components/schemas/Can not resolve ./schemas/counterreports_sorted.json"
+        },
+        "errorCodes": {
+          "includePath": "schemas/errorcodes.json",
+          "$ref": "#/components/schemas/Can not resolve ./schemas/errorcodes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

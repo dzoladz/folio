@@ -1,0 +1,265 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/providers": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/providers/providers_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/providerCollection"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of providers based on the search query.",
+          "operationId": "GET_eholdings-providers"
+        }
+      },
+      "/eholdings/providers/{providerId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/providers/providers_providerId_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/provider"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "schema": {
+                    "example": "Can not resolve examples/providers/providers_providerId_404_response.json"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get provider given providerId",
+          "operationId": "GET_eholdings-providers-providerId"
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/providers/providers_providerId_put_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/provider"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update proxy and token information for a given provider Id.\n",
+          "operationId": "PUT_eholdings-providers-providerId",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/providers/providers_providerId_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/providerPutRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Provider Id of provider to get"
+          }
+        ]
+      },
+      "/eholdings/providers/{providerId}/tags": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/providers/providers_tags_put_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/providerTags"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/providers/providers_tags_put_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update tags assigned to provider",
+          "operationId": "PUT_eholdings-providers-providerId-tags",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/providers/providers_tags_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/providerTagsPutRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Provider Id of provider to get"
+          }
+        ]
+      },
+      "/eholdings/providers/{providerId}/packages": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/providers/providers_providerId_packages_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/packageCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/providers/providers_providerId_packages_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/providers/providers_providerId_packages_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Search within a list of packages associated with a given provider.",
+          "operationId": "GET_eholdings-providers-providerId-packages"
+        },
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Provider Id of provider to get"
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "providerCollection": {
+          "includePath": "types/providers/providerCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/providers/providerCollection.json"
+        },
+        "providerPutRequest": {
+          "includePath": "types/providers/providerPutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/providers/providerPutRequest.json"
+        },
+        "providerTags": {
+          "includePath": "types/providers/providerTags.json",
+          "$ref": "#/components/schemas/Can not resolve types/providers/providerTags.json"
+        },
+        "providerTagsPutRequest": {
+          "includePath": "types/providers/providerTagsPutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/providers/providerTagsPutRequest.json"
+        },
+        "provider": {
+          "includePath": "types/providers/provider.json",
+          "$ref": "#/components/schemas/Can not resolve types/providers/provider.json"
+        },
+        "packageCollection": {
+          "includePath": "types/packages/packageCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/packages/packageCollection.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

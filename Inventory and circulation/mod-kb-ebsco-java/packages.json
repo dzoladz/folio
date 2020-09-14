@@ -1,0 +1,483 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/packages": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/packageCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Retrieve a collection of packages based on the search query.",
+          "operationId": "GET_eholdings-packages",
+          "parameters": [
+            {
+              "name": "filter[custom]",
+              "in": "query",
+              "description": "Filter to get list of custom packages\nPossible values are\n  - true\n",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_post_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/package"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_post_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_post_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create a custom package",
+          "operationId": "POST_eholdings-packages",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/packages/packages_post_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/packagePostRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/eholdings/packages/{packageId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/package"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Retrieve a specific package given packageId.\nNote that packageId is providerId-packageId\n",
+          "operationId": "GET_eholdings-packages-packageId",
+          "parameters": [
+            {
+              "name": "include",
+              "in": "query",
+              "description": "Include resources or provider in response\nPossible values are\n  - resources\n  - provider\n",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_put_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/package"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_put_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_put_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_put_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update a managed or custom package using packageId\nNote that packageId is providerId-packageId\n",
+          "operationId": "PUT_eholdings-packages-packageId",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/packages/packages_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/packagePutRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_delete_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete a specific custom package using packageId.\nNote that packageId is providerId-packageId\n",
+          "operationId": "DELETE_eholdings-packages-packageId"
+        },
+        "parameters": [
+          {
+            "name": "packageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "identifier of the package formed from Provider Id and Package Id (see example)"
+          }
+        ]
+      },
+      "/eholdings/packages/{packageId}/resources": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_resources_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/resourceCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_resources_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_packageId_resources_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Include all resources belonging to a specific package",
+          "operationId": "GET_eholdings-packages-packageId-resources"
+        },
+        "parameters": [
+          {
+            "name": "packageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "identifier of the package formed from Provider Id and Package Id (see example)"
+          }
+        ]
+      },
+      "/eholdings/packages/{packageId}/tags": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/package_tags_put_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/packageTags"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_post_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update tags assigned to package",
+          "operationId": "PUT_eholdings-packages-packageId-tags",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/packages/package_tags_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/packageTagsPutRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "packageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "identifier of the package formed from Provider Id and Package Id (see example)"
+          }
+        ]
+      },
+      "/eholdings/packages/bulk/fetch": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_bulk_fetch_post_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/packageBulkFetchCollection"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/packages/packages_bulk_fetch_post_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_eholdings-packages-bulk-fetch",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/packages/packages_bulk_fetch_post_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/packagePostBulkFetchRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "packageCollection": {
+          "includePath": "types/packages/packageCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/packages/packageCollection.json"
+        },
+        "packagePostRequest": {
+          "includePath": "types/packages/packagePostRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/packages/packagePostRequest.json"
+        },
+        "packagePutRequest": {
+          "includePath": "types/packages/packagePutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/packages/packagePutRequest.json"
+        },
+        "packageTagsPutRequest": {
+          "includePath": "types/packages/packageTagsPutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/packages/packageTagsPutRequest.json"
+        },
+        "package": {
+          "includePath": "types/packages/package.json",
+          "$ref": "#/components/schemas/Can not resolve types/packages/package.json"
+        },
+        "packageTags": {
+          "includePath": "types/packages/packageTags.json",
+          "$ref": "#/components/schemas/Can not resolve types/packages/packageTags.json"
+        },
+        "resourceCollection": {
+          "includePath": "types/resources/resourceCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/resources/resourceCollection.json"
+        },
+        "packagePostBulkFetchRequest": {
+          "includePath": "types/packages/packagePostBulkFetchRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/packages/packagePostBulkFetchRequest.json"
+        },
+        "packageBulkFetchCollection": {
+          "includePath": "types/packages/packageBulkFetchCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/packages/packageBulkFetchCollection.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

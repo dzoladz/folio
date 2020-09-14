@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Item note types API",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-inventory-storage"
+      },
+      {
+        "url": "https://github.com/org/folio/mod-inventory-storage"
+      }
+    ],
+    "paths": {
+      "/item-note-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of item note types",
+          "operationId": "GET_item-note-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new item note type",
+          "operationId": "POST_item-note-types"
+        }
+      },
+      "/item-note-types/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "itemNoteType": {
+          "includePath": "itemnotetype.json",
+          "$ref": "#/components/schemas/Can not resolve itemnotetype.json"
+        },
+        "itemNoteTypes": {
+          "includePath": "itemnotetypes.json",
+          "$ref": "#/components/schemas/Can not resolve itemnotetypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

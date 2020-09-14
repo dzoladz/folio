@@ -1,0 +1,54 @@
+#%RAML 1.0
+title: Usage Data Providers
+version: v2.5
+baseUri: http://localhost/mod-erm-usage
+
+documentation:
+  - title: mod-erm-usage API
+    content: This documents the API calls that can be made to query and manage usage data providers
+
+types:
+  usageDataProvider: !include schemas/udprovider.json
+  usageDataProviders: !include ./schemas/udproviders.json
+  errors: !include ./raml-util/schemas/errors.schema
+
+traits:
+  orderable: !include ./raml-util/traits/orderable.raml
+  pageable: !include ./raml-util/traits/pageable.raml
+  searchable: !include ./raml-util/traits/searchable.raml
+  language: !include ./raml-util/traits/language.raml
+  validate: !include ./raml-util/traits/validation.raml
+
+resourceTypes:
+  collection: !include ./raml-util/rtypes/collection.raml
+  collection-item: !include ./raml-util/rtypes/item-collection.raml
+
+/usage-data-providers:
+  displayName: Usage Data Providers
+  type:
+    collection:
+      exampleCollection: !include ./examples/udproviders_collection.sample
+      exampleItem: !include ./examples/udproviders.sample
+      schemaCollection: usageDataProviders
+      schemaItem: usageDataProvider
+  get:
+    is: [
+      searchable: {description: "", example: "((label=\"Journal*\" or vendor=\"Journal*\" or platform=\"Journal*\" or harvestingConfig.aggregator.name=\"Journal*\") and harvestingConfig.harvestingStatus=\"active\" and harvestingConfig.harvestVia=\"sushi\" and hasFailedReport=\"no\") sortby label"},
+      orderable: {fieldsList: "label, harvestingConfig.harvestingStatus, latestReport, harvestingConfig.aggregator.name"},
+      pageable
+    ]
+    description: Get all usage data providers
+  post:
+    is: [validate]
+    description: Post new usage data providers
+  /{id}:
+    type:
+      collection-item:
+        exampleItem: !include ./examples/udproviders.sample
+        schema: usageDataProvider
+    get:
+      description: Get one usage data provider identified by id
+    delete:
+      description: Delete an usage data provider identified by id
+    put:
+      description: Put an usage data provider identified by id

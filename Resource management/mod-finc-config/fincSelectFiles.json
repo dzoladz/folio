@@ -1,0 +1,101 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Files for Finc Select",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/mod-finc-config"
+      }
+    ],
+    "paths": {
+      "/finc-select/files": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Uploading the file was successful. Returns uuid of uploaded file. This uuid will be referenced in 'fincSelectFilterFile' as value of the property 'file'."
+            },
+            "404": {
+              "description": ""
+            },
+            "500": {
+              "description": ""
+            }
+          },
+          "description": "Upload/update a finc select file.",
+          "operationId": "POST_finc-select-files",
+          "requestBody": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/finc-select/files/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": ""
+            },
+            "404": {
+              "description": ""
+            },
+            "500": {
+              "description": "Server Error"
+            }
+          },
+          "description": "Get file by id",
+          "operationId": "GET_finc-select-files-id"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "Delete succeeded"
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete a file identified by id",
+          "operationId": "DELETE_finc-select-files-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {},
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

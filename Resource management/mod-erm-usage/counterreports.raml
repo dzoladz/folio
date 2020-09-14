@@ -1,0 +1,167 @@
+#%RAML 1.0
+title: Counter Reports
+version: v1.5
+baseUri: http://localhost/mod-erm-usage
+
+documentation:
+  - title: mod-erm-usage API
+    content: This documents the API calls that can be made to query and manage counter reports
+
+types:
+  counterReport: !include ./schemas/counterreport.json
+  counterReports: !include ./schemas/counterreports.json
+  counterReportsSorted: !include ./schemas/counterreports_sorted.json
+  errorCodes: !include ./schemas/errorcodes.json
+  errors: !include ./raml-util/schemas/errors.schema
+
+traits:
+  orderable: !include ./raml-util/traits/orderable.raml
+  pageable: !include ./raml-util/traits/pageable.raml
+  searchable: !include ./raml-util/traits/searchable.raml
+  language: !include ./raml-util/traits/language.raml
+  validate: !include ./raml-util/traits/validation.raml
+
+resourceTypes:
+  collection: !include ./raml-util/rtypes/collection.raml
+  collection-item: !include ./raml-util/rtypes/item-collection.raml
+
+/counter-reports:
+  displayName: Counter Reports
+  type:
+    collection:
+      exampleCollection: !include ./examples/counterreport_collection.sample
+      exampleItem: !include ./examples/counterreport.sample
+      schemaCollection: counterReports
+      schemaItem: counterReport
+  get:
+    is: [
+      searchable: {description: "", example: "yearMonth=\"2018-03\" and reportName=\"JR1\""},
+      orderable: {fieldsList: ""},
+      pageable
+    ]
+    queryParameters:
+      tiny:
+        type: boolean
+        required: false
+        default: false
+    description: Get all reports. If query parameter tiny is set to true, the reports' metadata is returned without the actual counter reports.
+  post:
+    is: [validate]
+    description: Post new report
+  /{id}:
+    type:
+      collection-item:
+        exampleItem: !include ./examples/counterreport.sample
+        schema: counterReport
+    get:
+      description: Get one report identified by id
+    delete:
+      description: Delete report identified by id
+    put:
+      description: Put report identified by id
+    /download:
+        get:
+          description: Download report in its original format
+          responses:
+            200:
+              description: OK
+              body:
+                application/xml:
+                application/json:
+            404:
+              description: Not Found
+            500:
+              description: Server Error
+              body:
+                text/plain:
+  /sorted:
+    /{udpId}:
+      get:
+        description: Get counter reports sorted by year and report
+        responses:
+          200:
+            description: counter reports sorted by year and report
+            body:
+              application/json:
+                example: !include examples/counterreports_sorted.sample
+                schema: counterReportsSorted
+          400:
+            body:
+              text/plain:
+          500:
+            body:
+              text/plain:
+  /export:
+      /{id}:
+        get:
+          queryParameters:
+            format:
+              type: string
+              required: false
+              default: "csv"
+          description: Get the report identified by id as specified format (default is CSV)
+          responses:
+            200:
+              body:
+                text/csv:
+                application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+            400:
+              body:
+                text/plain:
+            500:
+              description: Server Error
+              body:
+                text/plain:
+      /provider/{id}/report/{name}/version/{aversion}/from/{begin}/to/{end}:
+            get:
+              queryParameters:
+                format:
+                  type: string
+                  required: false
+                  default: "csv"
+              description: Get report for several months as specified format (default is CSV)
+              responses:
+                200:
+                  body:
+                    text/csv:
+                    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+                400:
+                  body:
+                    text/plain:
+                500:
+                  description: Server Error
+                  body:
+                    text/plain:
+  /upload/provider/{id}:
+    description: Upload a report from file for a provider identified by id
+    post:
+      queryParameters:
+        overwrite:
+          description: Overwrite existing reports?
+          type: boolean
+          default: false
+      body:
+        application/octet-stream:
+      responses:
+        200:
+          body:
+            text/plain:
+        404:
+          body:
+            text/plain:
+        500:
+          body:
+            text/plain:
+  /errors/codes:
+    get:
+      description: Get counter/sushi error codes existent in counter reports
+      responses:
+        200:
+          description: error codes existent in counter reports
+          body:
+            application/json:
+              example: !include examples/errorcodes.sample
+              schema: errorCodes
+        500:
+          body:
+            text/plain:

@@ -1,0 +1,105 @@
+
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Circulation",
+      "version": "v0.7"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/circulation/requests/{requestId}/move": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Request has been moved",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/request.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve request.json"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Request record not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "request record with ID \"f3eb6d07-861a-4b76-9937-2ae12768e5f5\" cannot be found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unable to process request",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/request-move-errors.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Move Request to specified Item",
+          "operationId": "POST_circulation-requests-requestId-move",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/request-move.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve request-move.json"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

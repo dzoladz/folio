@@ -1,0 +1,124 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Fixed Due Date Schedule",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/fixed-due-date-schedule-storage/fixed-due-date-schedules": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_fixed-due-date-schedule-storage-fixed-due-date-schedules"
+        },
+        "post": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "POST_fixed-due-date-schedule-storage-fixed-due-date-schedules"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All fixed due date schedules deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            },
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_fixed-due-date-schedule-storage-fixed-due-date-schedules"
+        }
+      },
+      "/fixed-due-date-schedule-storage/fixed-due-date-schedules/{fixedDueDateScheduleId}": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_fixed-due-date-schedule-storage-fixed-due-date-schedules-fixedDueDateScheduleId"
+        },
+        "put": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "PUT_fixed-due-date-schedule-storage-fixed-due-date-schedules-fixedDueDateScheduleId"
+        },
+        "delete": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_fixed-due-date-schedule-storage-fixed-due-date-schedules-fixedDueDateScheduleId"
+        },
+        "parameters": [
+          {
+            "name": "fixedDueDateScheduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "fixed-due-date-schedule": {
+          "includePath": "fixed-due-date-schedule.json",
+          "$ref": "#/components/schemas/Can not resolve fixed-due-date-schedule.json"
+        },
+        "schedule": {
+          "includePath": "schedule.json",
+          "$ref": "#/components/schemas/Can not resolve schedule.json"
+        },
+        "fixed-due-date-schedules": {
+          "includePath": "fixed-due-date-schedules.json",
+          "$ref": "#/components/schemas/Can not resolve fixed-due-date-schedules.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "parameters": {
+          "includePath": "raml-util/schemas/parameters.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/parameters.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

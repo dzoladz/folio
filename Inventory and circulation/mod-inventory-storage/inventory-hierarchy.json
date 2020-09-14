@@ -1,0 +1,131 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Inventory Hierarchy API",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-inventory-storage"
+      },
+      {
+        "url": "https://github.com/org/folio/mod-inventory-storage"
+      }
+    ],
+    "paths": {
+      "/inventory-hierarchy/updated-instance-ids": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Stream updated instances ids for Inventory",
+          "operationId": "GET_inventory-hierarchy-updated-instance-ids",
+          "parameters": [
+            {
+              "name": "startDate",
+              "in": "query",
+              "description": "Lower bound for filtering instances by instances, items and holdings metadata update date",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "endDate",
+              "in": "query",
+              "description": "Upper bound for filtering instances by instances, items and holdings metadata update date",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "deletedRecordSupport",
+              "in": "query",
+              "description": "return deleted records",
+              "schema": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "skipSuppressedFromDiscoveryRecords",
+              "in": "query",
+              "description": "Configuration param which defines if discovery suppressed instance records should be skipped or not",
+              "schema": {
+                "default": true,
+                "type": "boolean"
+              }
+            },
+            {
+              "name": "onlyInstanceUpdateDate",
+              "in": "query",
+              "description": "Configuration param which defines if discovery suppressed instance records should be skipped or not",
+              "schema": {
+                "default": true,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      "/inventory-hierarchy/items-and-holdings": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/inventory-items-and-holdings.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/inventoryItemsAndHoldings"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Stream instances view data for Inventory",
+          "operationId": "POST_inventory-hierarchy-items-and-holdings",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/inventory-instance-ids.json",
+                "schema": {
+                  "$ref": "#/components/schemas/inventoryInstanceIds"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "inventoryUpdatedInstanceIds": {
+          "includePath": "inventory-hierarchy/inventory-updated-instance-ids.json",
+          "$ref": "#/components/schemas/Can not resolve inventory-hierarchy/inventory-updated-instance-ids.json"
+        },
+        "inventoryInstanceIds": {
+          "includePath": "inventory-hierarchy/inventory-instance-ids.json",
+          "$ref": "#/components/schemas/Can not resolve inventory-hierarchy/inventory-instance-ids.json"
+        },
+        "inventoryItemsAndHoldings": {
+          "includePath": "inventory-hierarchy/inventory-instance-records.json",
+          "$ref": "#/components/schemas/Can not resolve inventory-hierarchy/inventory-instance-records.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,1099 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Course Reserves API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-courses"
+      },
+      {
+        "url": "https://github.com/org/folio/mod-courses"
+      }
+    ],
+    "paths": {
+      "/coursereserves/courselistings": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of listings",
+          "operationId": "GET_coursereserves-courselistings"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new listing",
+          "operationId": "POST_coursereserves-courselistings"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All listings deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all listings",
+          "operationId": "DELETE_coursereserves-courselistings"
+        }
+      },
+      "/coursereserves/courselistings/{listing_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-courselistings-listing_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a listing by id",
+          "operationId": "PUT_coursereserves-courselistings-listing_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-courselistings-listing_id"
+        },
+        "parameters": [
+          {
+            "name": "listing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/courselistings/{listing_id}/courses": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of courses",
+          "operationId": "GET_coursereserves-courselistings-listing_id-courses"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new course",
+          "operationId": "POST_coursereserves-courselistings-listing_id-courses"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All courses deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all courses",
+          "operationId": "DELETE_coursereserves-courselistings-listing_id-courses"
+        },
+        "parameters": [
+          {
+            "name": "listing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/courselistings/{listing_id}/courses/{course_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-courselistings-listing_id-courses-course_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a course by id",
+          "operationId": "PUT_coursereserves-courselistings-listing_id-courses-course_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-courselistings-listing_id-courses-course_id"
+        },
+        "parameters": [
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "listing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/courselistings/{listing_id}/instructors": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of instructors",
+          "operationId": "GET_coursereserves-courselistings-listing_id-instructors"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new instructor",
+          "operationId": "POST_coursereserves-courselistings-listing_id-instructors"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All instructors deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all instructors",
+          "operationId": "DELETE_coursereserves-courselistings-listing_id-instructors"
+        },
+        "parameters": [
+          {
+            "name": "listing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/courselistings/{listing_id}/instructors/{instructor_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-courselistings-listing_id-instructors-instructor_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update an instructor by id",
+          "operationId": "PUT_coursereserves-courselistings-listing_id-instructors-instructor_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-courselistings-listing_id-instructors-instructor_id"
+        },
+        "parameters": [
+          {
+            "name": "instructor_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "listing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/courselistings/{listing_id}/reserves": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of reserves",
+          "operationId": "GET_coursereserves-courselistings-listing_id-reserves",
+          "parameters": [
+            {
+              "name": "expand",
+              "in": "query",
+              "description": "Whether or not to expand the id fields",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new reserve",
+          "operationId": "POST_coursereserves-courselistings-listing_id-reserves"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All reserves deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all reserves",
+          "operationId": "DELETE_coursereserves-courselistings-listing_id-reserves"
+        },
+        "parameters": [
+          {
+            "name": "listing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/courselistings/{listing_id}/reserves/{reserve_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-courselistings-listing_id-reserves-reserve_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a reserve by id",
+          "operationId": "PUT_coursereserves-courselistings-listing_id-reserves-reserve_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-courselistings-listing_id-reserves-reserve_id"
+        },
+        "parameters": [
+          {
+            "name": "reserve_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "listing_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/roles": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of roles",
+          "operationId": "GET_coursereserves-roles"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new role",
+          "operationId": "POST_coursereserves-roles"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All roles deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all roles",
+          "operationId": "DELETE_coursereserves-roles"
+        }
+      },
+      "/coursereserves/roles/{role_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-roles-role_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a role by id",
+          "operationId": "PUT_coursereserves-roles-role_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-roles-role_id"
+        },
+        "parameters": [
+          {
+            "name": "role_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/terms": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of terms",
+          "operationId": "GET_coursereserves-terms"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new term",
+          "operationId": "POST_coursereserves-terms"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All terms deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all terms",
+          "operationId": "DELETE_coursereserves-terms"
+        }
+      },
+      "/coursereserves/terms/{term_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-terms-term_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a term by id",
+          "operationId": "PUT_coursereserves-terms-term_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-terms-term_id"
+        },
+        "parameters": [
+          {
+            "name": "term_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/coursetypes": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of course types",
+          "operationId": "GET_coursereserves-coursetypes"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new course type",
+          "operationId": "POST_coursereserves-coursetypes"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All course types deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all course types",
+          "operationId": "DELETE_coursereserves-coursetypes"
+        }
+      },
+      "/coursereserves/coursetypes/{type_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-coursetypes-type_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a course type by id",
+          "operationId": "PUT_coursereserves-coursetypes-type_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-coursetypes-type_id"
+        },
+        "parameters": [
+          {
+            "name": "type_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/departments": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of departments",
+          "operationId": "GET_coursereserves-departments"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new department",
+          "operationId": "POST_coursereserves-departments"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All departments deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all departments",
+          "operationId": "DELETE_coursereserves-departments"
+        }
+      },
+      "/coursereserves/departments/{department_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-departments-department_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a department by id",
+          "operationId": "PUT_coursereserves-departments-department_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-departments-department_id"
+        },
+        "parameters": [
+          {
+            "name": "department_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/processingstatuses": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of statuses",
+          "operationId": "GET_coursereserves-processingstatuses"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new status",
+          "operationId": "POST_coursereserves-processingstatuses"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All statuses deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all statuses",
+          "operationId": "DELETE_coursereserves-processingstatuses"
+        }
+      },
+      "/coursereserves/processingstatuses/{status_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-processingstatuses-status_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a status by id",
+          "operationId": "PUT_coursereserves-processingstatuses-status_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-processingstatuses-status_id"
+        },
+        "parameters": [
+          {
+            "name": "status_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/copyrightstatuses": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of copyright statuses",
+          "operationId": "GET_coursereserves-copyrightstatuses"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new copyright status",
+          "operationId": "POST_coursereserves-copyrightstatuses"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All statuses deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all copyright statuses",
+          "operationId": "DELETE_coursereserves-copyrightstatuses"
+        }
+      },
+      "/coursereserves/copyrightstatuses/{status_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-copyrightstatuses-status_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a status by id",
+          "operationId": "PUT_coursereserves-copyrightstatuses-status_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-copyrightstatuses-status_id"
+        },
+        "parameters": [
+          {
+            "name": "status_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/courses": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of courses",
+          "operationId": "GET_coursereserves-courses"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new course",
+          "operationId": "POST_coursereserves-courses"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All courses delete"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete ALL courses",
+          "operationId": "DELETE_coursereserves-courses"
+        }
+      },
+      "/coursereserves/courses/{course_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-courses-course_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a course by id",
+          "operationId": "PUT_coursereserves-courses-course_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-courses-course_id"
+        },
+        "parameters": [
+          {
+            "name": "course_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/coursereserves/reserves": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of reserves",
+          "operationId": "GET_coursereserves-reserves",
+          "parameters": [
+            {
+              "name": "expand",
+              "in": "query",
+              "description": "What fields to expand",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new reserve",
+          "operationId": "POST_coursereserves-reserves"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All reserves deleted"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete ALL reserves",
+          "operationId": "DELETE_coursereserves-reserves"
+        }
+      },
+      "/coursereserves/reserves/{reserve_id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_coursereserves-reserves-reserve_id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a reserve by id",
+          "operationId": "PUT_coursereserves-reserves-reserve_id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_coursereserves-reserves-reserve_id"
+        },
+        "parameters": [
+          {
+            "name": "reserve_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "course": {
+          "includePath": "course.json",
+          "$ref": "#/components/schemas/Can not resolve course.json"
+        },
+        "courses": {
+          "includePath": "courses.json",
+          "$ref": "#/components/schemas/Can not resolve courses.json"
+        },
+        "courseListing": {
+          "includePath": "courselisting.json",
+          "$ref": "#/components/schemas/Can not resolve courselisting.json"
+        },
+        "courseListings": {
+          "includePath": "courselistings.json",
+          "$ref": "#/components/schemas/Can not resolve courselistings.json"
+        },
+        "instructor": {
+          "includePath": "instructor.json",
+          "$ref": "#/components/schemas/Can not resolve instructor.json"
+        },
+        "instructors": {
+          "includePath": "instructors.json",
+          "$ref": "#/components/schemas/Can not resolve instructors.json"
+        },
+        "reserve": {
+          "includePath": "reserve.json",
+          "$ref": "#/components/schemas/Can not resolve reserve.json"
+        },
+        "reserves": {
+          "includePath": "reserves.json",
+          "$ref": "#/components/schemas/Can not resolve reserves.json"
+        },
+        "role": {
+          "includePath": "role.json",
+          "$ref": "#/components/schemas/Can not resolve role.json"
+        },
+        "roles": {
+          "includePath": "roles.json",
+          "$ref": "#/components/schemas/Can not resolve roles.json"
+        },
+        "term": {
+          "includePath": "term.json",
+          "$ref": "#/components/schemas/Can not resolve term.json"
+        },
+        "terms": {
+          "includePath": "terms.json",
+          "$ref": "#/components/schemas/Can not resolve terms.json"
+        },
+        "courseType": {
+          "includePath": "coursetype.json",
+          "$ref": "#/components/schemas/Can not resolve coursetype.json"
+        },
+        "courseTypes": {
+          "includePath": "coursetypes.json",
+          "$ref": "#/components/schemas/Can not resolve coursetypes.json"
+        },
+        "department": {
+          "includePath": "department.json",
+          "$ref": "#/components/schemas/Can not resolve department.json"
+        },
+        "departments": {
+          "includePath": "departments.json",
+          "$ref": "#/components/schemas/Can not resolve departments.json"
+        },
+        "processingStatus": {
+          "includePath": "processingstatus.json",
+          "$ref": "#/components/schemas/Can not resolve processingstatus.json"
+        },
+        "processingStatuses": {
+          "includePath": "processingstatuses.json",
+          "$ref": "#/components/schemas/Can not resolve processingstatuses.json"
+        },
+        "copyrightStatus": {
+          "includePath": "copyrightstatus.json",
+          "$ref": "#/components/schemas/Can not resolve copyrightstatus.json"
+        },
+        "copyrightStatuses": {
+          "includePath": "copyrightstatuses.json",
+          "$ref": "#/components/schemas/Can not resolve copyrightstatuses.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

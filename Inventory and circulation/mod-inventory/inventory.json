@@ -1,0 +1,374 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Inventory API",
+      "version": "v10.6"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/inventory/items": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_inventory-items"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_inventory-items"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All items deleted"
+            }
+          },
+          "operationId": "DELETE_inventory-items"
+        }
+      },
+      "/inventory/items/{itemId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_inventory-items-itemId"
+        },
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/inventory/items/{itemId}/mark-withdrawn": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Item has marked as withdrawn",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/item_get.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/item"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Item not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Item with such id not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_inventory-items-itemId-mark-withdrawn"
+        },
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/inventory/items/{itemId}/mark-missing": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Item has marked as missing",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/item_get.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/item"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Item not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Item with such id not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_inventory-items-itemId-mark-missing"
+        },
+        "parameters": [
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/inventory/instances": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_inventory-instances"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_inventory-instances"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All instances deleted"
+            }
+          },
+          "operationId": "DELETE_inventory-instances"
+        }
+      },
+      "/inventory/instances/{instanceId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_inventory-instances-instanceId"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_inventory-instances-instanceId"
+        },
+        "parameters": [
+          {
+            "name": "instanceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/inventory/instances/context": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Dublin Core context for instances",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/instance_context_get.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/context"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Provides Dublin Core context for instances",
+          "operationId": "GET_inventory-instances-context"
+        }
+      },
+      "/inventory/ingest/mods": {
+        "post": {
+          "responses": {
+            "202": {
+              "description": "",
+              "headers": {
+                "location": {
+                  "description": "URI pointing to the location of ingest status",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Cannot parse multiple files in a single request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_inventory-ingest-mods",
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "properties": {
+                    "file": {
+                      "description": "MODS file containing items to ingest",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/inventory/ingest/mods/status/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/ingest_status_get.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/ingest-status"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": ""
+            }
+          },
+          "description": "Status of a MODS ingest",
+          "operationId": "GET_inventory-ingest-mods-status-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "item": {
+          "includePath": "item.json",
+          "$ref": "#/components/schemas/Can not resolve item.json"
+        },
+        "items": {
+          "includePath": "items.json",
+          "$ref": "#/components/schemas/Can not resolve items.json"
+        },
+        "instance": {
+          "includePath": "instance.json",
+          "$ref": "#/components/schemas/Can not resolve instance.json"
+        },
+        "instances": {
+          "includePath": "instances.json",
+          "$ref": "#/components/schemas/Can not resolve instances.json"
+        },
+        "context": {
+          "includePath": "instance-context.json",
+          "$ref": "#/components/schemas/Can not resolve instance-context.json"
+        },
+        "ingest-status": {
+          "includePath": "ingest-status.json",
+          "$ref": "#/components/schemas/Can not resolve ingest-status.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

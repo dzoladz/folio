@@ -1,0 +1,124 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Metadata Collections Select",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/mod-finc-config"
+      }
+    ],
+    "paths": {
+      "/finc-select/metadata-sources": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all metadata sources",
+          "operationId": "GET_finc-select-metadata-sources"
+        }
+      },
+      "/finc-select/metadata-sources/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get one metadata source identified by id",
+          "operationId": "GET_finc-select-metadata-sources-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/finc-select/metadata-sources/{id}/collections": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get metadata collections assigned to this metadata source",
+          "operationId": "GET_finc-select-metadata-sources-id-collections"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/finc-select/metadata-sources/{id}/collections/select-all": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post, if all metadata collections of this source are selected resp. deselected",
+          "operationId": "PUT_finc-select-metadata-sources-id-collections-select-all"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "fincSelectMetadataSource": {
+          "includePath": "schemas/fincSelectMetadataSource.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincSelectMetadataSource.json"
+        },
+        "fincSelectMetadataSources": {
+          "includePath": "schemas/fincSelectMetadataSources.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincSelectMetadataSources.json"
+        },
+        "fincSelectMetadataCollection": {
+          "includePath": "schemas/fincSelectMetadataCollection.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincSelectMetadataCollection.json"
+        },
+        "fincSelectMetadataCollections": {
+          "includePath": "schemas/fincSelectMetadataCollections.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincSelectMetadataCollections.json"
+        },
+        "select": {
+          "includePath": "schemas/select.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/select.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,125 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "MARCcat",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8080/"
+      },
+      {
+        "url": "https://localhost:8080/"
+      }
+    ],
+    "paths": {
+      "/marccat/search": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return a list of marc records and search metadata"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Required String parameter 'lang' is not present"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Query not supported"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Return a list of marc records and search metadata",
+          "operationId": "GET_marccat-search"
+        }
+      },
+      "/marccat/mergedSearch": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return a list of marc records and search metadata"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Required String parameter 'qbib' is not present"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Query not supported"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Return a list of marc records and search metadata",
+          "operationId": "GET_marccat-mergedSearch"
+        }
+      },
+      "/marccat/searchVertical": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return a list of marc records in text format"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          },
+          "description": "Return a list of marc records in text formats",
+          "operationId": "GET_marccat-searchVertical"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "error": {
+          "includePath": "raml-storage/raml-util/schemas/error.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/error.schema"
+        },
+        "errors": {
+          "includePath": "raml-storage/raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-storage/raml-util/schemas/errors.schema"
+        },
+        "searchResult": {
+          "includePath": "schema/searchResult.json",
+          "$ref": "#/components/schemas/Can not resolve schema/searchResult.json"
+        },
+        "searchResultVertical": {
+          "includePath": "schema/searchResultVertical.json",
+          "$ref": "#/components/schemas/Can not resolve schema/searchResultVertical.json"
+        },
+        "searchResultCollection": {
+          "includePath": "schema/searchResultCollection.json",
+          "$ref": "#/components/schemas/Can not resolve schema/searchResultCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,91 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Edge API - OAI-PMH",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/edge-oai-pmh"
+      }
+    ],
+    "paths": {
+      "/oai": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Run OAI-PMH request",
+          "operationId": "GET_oai"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Run OAI-PMH request",
+          "operationId": "POST_oai"
+        }
+      },
+      "/oai/{apiKeyPath}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Run OAI-PMH request",
+          "operationId": "GET_oai-apiKeyPath"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Run OAI-PMH request",
+          "operationId": "POST_oai-apiKeyPath"
+        },
+        "parameters": [
+          {
+            "name": "apiKeyPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/admin/health": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "description": "Health Check",
+          "operationId": "GET_admin-health"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "OAI-PMH": {
+          "includePath": "schemas/OAI-PMH.xsd",
+          "$ref": "#/components/schemas/Can not resolve schemas/OAI-PMH.xsd"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

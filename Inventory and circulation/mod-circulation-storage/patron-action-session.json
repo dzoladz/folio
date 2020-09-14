@@ -1,0 +1,140 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Patron Action Session",
+      "version": "v0.2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/patron-action-session-storage/patron-action-sessions": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_patron-action-session-storage-patron-action-sessions"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_patron-action-session-storage-patron-action-sessions"
+        }
+      },
+      "/patron-action-session-storage/patron-action-sessions/{patronSessionId}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_patron-action-session-storage-patron-action-sessions-patronSessionId"
+        },
+        "parameters": [
+          {
+            "name": "patronSessionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/patron-action-session-storage/expired-session-patron-ids": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return list of notice groups",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/patron-action-expired-ids-response"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_patron-action-session-storage-expired-session-patron-ids",
+          "parameters": [
+            {
+              "name": "action_type",
+              "in": "query",
+              "description": "Parameter to filter expired sessions by patron action type",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "session_inactivity_time_limit",
+              "in": "query",
+              "required": true,
+              "description": "This parameter defines time up to which all sessions are considered as expired. Conforms to the ISO 8601 date and time format",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "Limit the number of sessions returned in the response",
+              "schema": {
+                "default": 10,
+                "minimum": 0,
+                "maximum": 2147483647,
+                "type": "integer"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "patron-action-session": {
+          "includePath": "patron-action-session.json",
+          "$ref": "#/components/schemas/Can not resolve patron-action-session.json"
+        },
+        "patron-action-sessions": {
+          "includePath": "patron-action-sessions.json",
+          "$ref": "#/components/schemas/Can not resolve patron-action-sessions.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "patron-action-expired-ids-response": {
+          "includePath": "patron-action-expired-ids-response.json",
+          "$ref": "#/components/schemas/Can not resolve patron-action-expired-ids-response.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Electronic access relationship terms reference API",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/electronic-access-relationships": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of electronic access relationship terms",
+          "operationId": "GET_electronic-access-relationships"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new electronic access relationship term",
+          "operationId": "POST_electronic-access-relationships"
+        }
+      },
+      "/electronic-access-relationships/{electronicAccessRelationshipId}": {
+        "parameters": [
+          {
+            "name": "electronicAccessRelationshipId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "electronicAccessRelationship": {
+          "includePath": "electronicaccessrelationship.json",
+          "$ref": "#/components/schemas/Can not resolve electronicaccessrelationship.json"
+        },
+        "electronicAccessRelationships": {
+          "includePath": "electronicaccessrelationships.json",
+          "$ref": "#/components/schemas/Can not resolve electronicaccessrelationships.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

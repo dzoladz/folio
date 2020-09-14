@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Holdings note types API",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-inventory-storage"
+      },
+      {
+        "url": "https://github.com/org/folio/mod-inventory-storage"
+      }
+    ],
+    "paths": {
+      "/holdings-note-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of holdings note types",
+          "operationId": "GET_holdings-note-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new holdings note type",
+          "operationId": "POST_holdings-note-types"
+        }
+      },
+      "/holdings-note-types/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "holdingsNoteType": {
+          "includePath": "holdingsnotetype.json",
+          "$ref": "#/components/schemas/Can not resolve holdingsnotetype.json"
+        },
+        "holdingsNoteTypes": {
+          "includePath": "holdingsnotetypes.json",
+          "$ref": "#/components/schemas/Can not resolve holdingsnotetypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

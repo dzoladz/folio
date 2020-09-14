@@ -1,0 +1,243 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/status": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Status of currently set KB configuration.",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/status/status_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/configurationStatus"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Gives status of currently set KB configuration.",
+          "operationId": "GET_eholdings-status"
+        }
+      },
+      "/eholdings/cache": {
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "No Content"
+            }
+          },
+          "description": "Invalidate configuration cache for tenant\n",
+          "operationId": "DELETE_eholdings-cache"
+        }
+      },
+      "/eholdings/loading/kb-credentials": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "409": {
+              "description": "Process of loading holdings is already running",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Process of loading holdings is already running"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Run load holdings job.",
+          "operationId": "POST_eholdings-loading-kb-credentials",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/eholdings/loading/kb-credentials/{id}": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/loadHoldings/load-holdings-by-id-post-404-response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "409": {
+              "description": "Process of loading holdings is already running",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Process of loading holdings is already running"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Run load holdings job by credentials id.",
+          "operationId": "POST_eholdings-loading-kb-credentials-id",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/eholdings/loading/kb-credentials/{id}/status": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Get current status of load holdings job.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loadHoldings/loading_completed_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/holdingsLoadingStatus"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/loadHoldings/load-holdings-by-id-post-404-response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get current status of load holdings job.",
+          "operationId": "GET_eholdings-loading-kb-credentials-id-status",
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "configurationStatus": {
+          "includePath": "types/status/status.json",
+          "$ref": "#/components/schemas/Can not resolve types/status/status.json"
+        },
+        "holdingsLoadingStatus": {
+          "includePath": "types/loadHoldings/loadingHoldingsStatus.json",
+          "$ref": "#/components/schemas/Can not resolve types/loadHoldings/loadingHoldingsStatus.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

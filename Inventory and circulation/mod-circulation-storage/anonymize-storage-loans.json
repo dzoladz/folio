@@ -1,0 +1,78 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Anonymize loans",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/anonymize-storage-loans": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Loans that have been anonymized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/anonymize-storage-loans-response"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_anonymize-storage-loans",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/anonymize-storage-loans-request"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "anonymize-storage-loans-response": {
+          "includePath": "anonymize-storage-loans-response.json",
+          "$ref": "#/components/schemas/Can not resolve anonymize-storage-loans-response.json"
+        },
+        "anonymize-storage-loans-request": {
+          "includePath": "anonymize-storage-loans-request.json",
+          "$ref": "#/components/schemas/Can not resolve anonymize-storage-loans-request.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,116 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Loan Policy Storage",
+      "version": "v2.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/loan-policy-storage/loan-policies": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_loan-policy-storage-loan-policies"
+        },
+        "post": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "POST_loan-policy-storage-loan-policies"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All loans deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            },
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_loan-policy-storage-loan-policies"
+        }
+      },
+      "/loan-policy-storage/loan-policies/{loanPolicyId}": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_loan-policy-storage-loan-policies-loanPolicyId"
+        },
+        "put": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "PUT_loan-policy-storage-loan-policies-loanPolicyId"
+        },
+        "delete": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_loan-policy-storage-loan-policies-loanPolicyId"
+        },
+        "parameters": [
+          {
+            "name": "loanPolicyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "loan-policy": {
+          "includePath": "loan-policy.json",
+          "$ref": "#/components/schemas/Can not resolve loan-policy.json"
+        },
+        "loan-policies": {
+          "includePath": "loan-policies.json",
+          "$ref": "#/components/schemas/Can not resolve loan-policies.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,332 @@
+#%RAML 1.0
+title: Circulation
+version: v9.4
+protocols: [ HTTP, HTTPS ]
+baseUri: http://localhost:9130
+
+documentation:
+  - title: Circulation Business Logic API
+    content: <b>API for loans and requests</b>
+
+types:
+  loan: !include loan.json
+  loans: !include loans.json
+  request: !include request.json
+  requests: !include requests.json
+  check-in-by-barcode-response: !include check-in-by-barcode-response.json
+  error: !include raml-util/schemas/error.schema
+  errors: !include raml-util/schemas/errors.schema
+
+traits:
+  language: !include raml-util/traits/language.raml
+  pageable: !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+  validate: !include raml-util/traits/validation.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-get: !include raml-util/rtypes/collection-get.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+
+/circulation:
+  /check-out-by-barcode:
+    displayName: Check out using barcode for item and loanee
+    post:
+      description: Creates a loan by checking out an item to a loanee
+      is: [
+        language,
+        validate
+      ]
+      body:
+        application/json:
+          type: !include check-out-by-barcode-request.json
+          example: !include examples/check-out-by-barcode-request.json
+      responses:
+        201:
+          body:
+            application/json:
+              type: loan
+              example: !include examples/loan.json
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+  /override-check-out-by-barcode:
+    displayName: Check out override using barcode for item and loanee
+    post:
+      description: Creates a loan by checking out an item to a loanee
+      is: [
+        language,
+        validate
+      ]
+      body:
+        application/json:
+          type: !include override-check-out-by-barcode-request.json
+          example: !include examples/override-check-out-by-barcode-request.json
+      responses:
+        201:
+          body:
+            application/json:
+              type: loan
+              example: !include examples/loan.json
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+  /renew-by-barcode:
+    displayName: Renew an existing loan using barcode for item and loanee
+    post:
+      description: Updates the due date of an existing loan
+      is: [
+        language,
+        validate
+      ]
+      body:
+        application/json:
+          type: !include renew-by-barcode-request.json
+          example: !include examples/renew-by-barcode-request.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: loan
+              example: !include examples/loan.json
+        201:
+          body:
+            application/json:
+              type: loan
+              example: !include examples/loan.json
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+  /renew-by-id:
+    displayName: Renew an existing loan using IDs of the item and loanee
+    post:
+      description: Updates the due date of an existing loan
+      is: [
+        language,
+        validate
+      ]
+      body:
+        application/json:
+          type: !include renew-by-id-request.json
+          example: !include examples/renew-by-id-request.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: loan
+              example: !include examples/loan.json
+        201:
+          body:
+            application/json:
+              type: loan
+              example: !include examples/loan.json
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+  /override-renewal-by-barcode:
+    displayName: Override renewal of an existing loan using barcode for item and loanee
+    post:
+      description: Updates the due date of an existing loan
+      is: [
+        language,
+        validate
+      ]
+      body:
+        application/json:
+          type: !include override-renewal-by-barcode-request.json
+          example: !include examples/override-renewal-by-barcode-request.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: loan
+              example: !include examples/loan.json
+        201:
+          body:
+            application/json:
+              type: loan
+              example: !include examples/loan.json
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+  /check-in-by-barcode:
+    displayName: Checkin an existing loan using barcode for item and loanee
+    post:
+      description: Updates the status of an existing loan
+      is: [
+        language,
+        validate
+      ]
+      body:
+        application/json:
+          type: !include check-in-by-barcode-request.json
+          example: !include examples/check-in-by-barcode-request.json
+      responses:
+        200:
+          body:
+            application/json:
+              type: check-in-by-barcode-response
+              example: !include examples/check-in-by-barcode-response.json
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+  /loans:
+    displayName: Loans
+    type:
+      collection:
+        exampleCollection: !include examples/loans.json
+        exampleItem: !include examples/loan.json
+        schemaCollection: loans
+        schemaItem: loan
+    get:
+      is: [
+        pageable,
+        searchable: {description: "by title (using CQL)",
+                        example: "userId=\"cf23adf0-61ba-4887-bf82-956c4aae2260\""}
+      ]
+      responses:
+        501:
+          description: "Not implemented yet"
+    post:
+    delete:
+      responses:
+        204:
+          description: "All loans deleted"
+        500:
+          description: "Internal server error, e.g. due to misconfiguration"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+    /{loanId}:
+      type:
+        collection-item:
+          exampleItem: !include examples/loan.json
+          schema: loan
+      get:
+        responses:
+          501:
+            description: "Not implemented yet"
+      put:
+        responses:
+          501:
+            description: "Not implemented yet"
+      delete:
+        responses:
+          501:
+            description: "Not implemented yet"
+  /requests:
+    displayName: Requests
+    type:
+      collection:
+        exampleCollection: !include examples/requests.json
+        exampleItem: !include examples/request.json
+        schemaCollection: requests
+        schemaItem: request
+    get:
+      is: [pageable,
+        searchable: {description: "by using CQL",
+                        example: "requesterId=\"cf23adf0-61ba-4887-bf82-956c4aae2260\""}
+        ]
+      responses:
+        501:
+          description: "Not implemented yet"
+    post:
+      responses:
+        501:
+          description: "Not implemented yet"
+    delete:
+      responses:
+        204:
+          description: "All requests deleted"
+        500:
+          description: "Internal server error, e.g. due to misconfiguration"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+        501:
+          description: "Not implemented yet"
+    /{requestId}:
+      type:
+        collection-item:
+          exampleItem: !include examples/request.json
+          schema: request
+      get:
+        responses:
+          501:
+            description: "Not implemented yet"
+      put:
+        responses:
+          501:
+            description: "Not implemented yet"
+      delete:
+        responses:
+          501:
+            description: "Not implemented yet"
+    /queue:
+      /{itemId}:
+        type:
+          collection-get:
+            exampleCollection: !include examples/request-queue.json
+            schemaCollection: requests
+        get:
+        /reorder:
+          post:
+            description: Reorder requests in the item queue
+            body:
+              application/json:
+                type: !include schema/reorder-queue.json
+                example: !include examples/reorder-queue.json
+            responses:
+              200:
+                description: "Queue has been reordered successfully"
+                body:
+                  application/json:
+                    type: requests
+                    example: !include examples/requests.json
+              422:
+                description: "Validation errors."
+                body:
+                  text/plain:
+                    example: "Page requests can not be displaced from position 1."
+              404:
+                description: "Queue for item not found."
+              500:
+                description: "Internal server error."
+                body:
+                  text/plain:
+                    example: "Internal server error."
+    /instances:
+      displayName: Instance level requests
+      post:
+        description: Creates a request for a specific item from the given instance ID
+        is: [
+          language,
+          validate
+        ]
+        body:
+          application/json:
+            type: !include request-by-instance-id.json
+            example: !include examples/request-by-instance-id.json
+        responses:
+          201:
+            body:
+              application/json:
+                type: request
+                example: !include examples/request.json
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error"

@@ -1,0 +1,282 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Institution level location unit",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-inventory-storage"
+      },
+      {
+        "url": "https://github.com/org/folio/mod-inventory-storage"
+      }
+    ],
+    "paths": {
+      "/location-units/institutions": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of institutions",
+          "operationId": "GET_location-units-institutions"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new institution",
+          "operationId": "POST_location-units-institutions"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All institutions deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all institutions",
+          "operationId": "DELETE_location-units-institutions"
+        }
+      },
+      "/location-units/institutions/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_location-units-institutions-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_location-units-institutions-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_location-units-institutions-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/location-units/campuses": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of campuses",
+          "operationId": "GET_location-units-campuses"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new campus",
+          "operationId": "POST_location-units-campuses"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All campuses deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all campuses",
+          "operationId": "DELETE_location-units-campuses"
+        }
+      },
+      "/location-units/campuses/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_location-units-campuses-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_location-units-campuses-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_location-units-campuses-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/location-units/libraries": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of libraries",
+          "operationId": "GET_location-units-libraries"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new library",
+          "operationId": "POST_location-units-libraries"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All libraries deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all libraries",
+          "operationId": "DELETE_location-units-libraries"
+        }
+      },
+      "/location-units/libraries/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_location-units-libraries-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_location-units-libraries-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_location-units-libraries-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "locinst": {
+          "includePath": "locinst.json",
+          "$ref": "#/components/schemas/Can not resolve locinst.json"
+        },
+        "locinsts": {
+          "includePath": "locinsts.json",
+          "$ref": "#/components/schemas/Can not resolve locinsts.json"
+        },
+        "loccamp": {
+          "includePath": "loccamp.json",
+          "$ref": "#/components/schemas/Can not resolve loccamp.json"
+        },
+        "loccamps": {
+          "includePath": "loccamps.json",
+          "$ref": "#/components/schemas/Can not resolve loccamps.json"
+        },
+        "loclib": {
+          "includePath": "loclib.json",
+          "$ref": "#/components/schemas/Can not resolve loclib.json"
+        },
+        "loclibs": {
+          "includePath": "loclibs.json",
+          "$ref": "#/components/schemas/Can not resolve loclibs.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

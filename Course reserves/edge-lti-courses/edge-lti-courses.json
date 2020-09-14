@@ -1,0 +1,305 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Edge API - Course Reserves LTI Tool",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/edge-lti-courses"
+      }
+    ],
+    "paths": {
+      "/lti-courses/.well-known/jwks.json": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return the JWKS the tool uses to sign its JWTs",
+          "operationId": "GET_lti-courses--well-known-jwks-json"
+        }
+      },
+      "/lti-courses/oidc-login-init/{apiKeyPath}": {
+        "get": {
+          "responses": {
+            "302": {
+              "description": "Success, redirecting to the LTI Platform's OAuth Authorization URL"
+            },
+            "400": {
+              "description": "Bad request, missing some of the required parameters",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Missing required parameter: target_link_uri"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Begin a third-party OIDC login initiation flow",
+          "operationId": "GET_lti-courses-oidc-login-init-apiKeyPath",
+          "parameters": [
+            {
+              "name": "iss",
+              "in": "query",
+              "required": true,
+              "description": "The Issuer string of the Platform. This corresponds to a JWT's iss.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "login_hint",
+              "in": "query",
+              "required": true,
+              "description": "Unused by this tool but required by the LTI Advantage spec.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "target_link_uri",
+              "in": "query",
+              "required": true,
+              "description": "The actual end-point that should be executed at the end of the OpenID Connect authentication flow.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "apiKeyPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/lti-courses/launches/{apiKeyPath}": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Success, will render the course reserves or a 'none found' message"
+            },
+            "400": {
+              "description": "Bad request, some data is missing or invalid",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Issuer not provided"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Some internal server error, including ones thrown by Folio",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Folio had an internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_lti-courses-launches-apiKeyPath",
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "properties": {
+                    "id_token": {
+                      "description": "A JWT containing the LTI Resource Link Launch Request message, https://www.imsglobal.org/spec/lti/v1p3/#resource-link-launch-request-message",
+                      "example": "eyJr[...]sjFs.G9iY[...]0aS1.HVyb[...]cmdld",
+                      "type": "string"
+                    },
+                    "state": {
+                      "description": "The `state` that was passed to the OAuth2 authorization URL by the Tool in response to the OIDC Login Initiation",
+                      "example": "vmeekvqcbvvxmbjvarhe",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_token",
+                    "state"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "apiKeyPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/lti-courses/externalIdLaunches/{apiKeyPath}": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Success, will render the course reserves or a 'none found' message"
+            },
+            "400": {
+              "description": "Bad request, some data is missing or invalid",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Issuer not provided"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Some internal server error, including ones thrown by Folio",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Folio had an internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_lti-courses-externalIdLaunches-apiKeyPath",
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "properties": {
+                    "id_token": {
+                      "description": "A JWT containing the LTI Resource Link Launch Request message, https://www.imsglobal.org/spec/lti/v1p3/#resource-link-launch-request-message",
+                      "example": "eyJr[...]sjFs.G9iY[...]0aS1.HVyb[...]cmdld",
+                      "type": "string"
+                    },
+                    "state": {
+                      "description": "The `state` that was passed to the OAuth2 authorization URL by the Tool in response to the OIDC Login Initiation",
+                      "example": "vmeekvqcbvvxmbjvarhe",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_token",
+                    "state"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "apiKeyPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/lti-courses/registrarIdLaunches/{apiKeyPath}": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Success, will render the course reserves or a 'none found' message"
+            },
+            "400": {
+              "description": "Bad request, some data is missing or invalid",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Issuer not provided"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Some internal server error, including ones thrown by Folio",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Folio had an internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_lti-courses-registrarIdLaunches-apiKeyPath",
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "properties": {
+                    "id_token": {
+                      "description": "A JWT containing the LTI Resource Link Launch Request message, https://www.imsglobal.org/spec/lti/v1p3/#resource-link-launch-request-message",
+                      "example": "eyJr[...]sjFs.G9iY[...]0aS1.HVyb[...]cmdld",
+                      "type": "string"
+                    },
+                    "state": {
+                      "description": "The `state` that was passed to the OAuth2 authorization URL by the Tool in response to the OIDC Login Initiation",
+                      "example": "vmeekvqcbvvxmbjvarhe",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id_token",
+                    "state"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "apiKeyPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/admin/health": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "description": "Health Check",
+          "operationId": "GET_admin-health"
+        }
+      }
+    },
+    "components": {
+      "schemas": {},
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,263 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/kb-credentials/{id}/users": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/assignedUserCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Retrieve users information assigned to a specific KB credentials.",
+          "operationId": "GET_eholdings-kb-credentials-id-users"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_post_201_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/assignedUser"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_post_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_post_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_post_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Assign user to a specific KB credentials.",
+          "operationId": "POST_eholdings-kb-credentials-id-users",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/assignedUsers/assigned_users_post_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/assignedUserPostRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/eholdings/kb-credentials/{id}/users/{userId}": {
+        "put": {
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_put_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_put_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_put_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_eholdings-kb-credentials-id-users-userId",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/assignedUsers/assigned_users_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/assignedUserPutRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_delete_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/assignedUsers/assigned_users_delete_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Remove association between user and KB Credentials",
+          "operationId": "DELETE_eholdings-kb-credentials-id-users-userId"
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "assignedUser": {
+          "includePath": "types/assignedUsers/assignedUser.json",
+          "$ref": "#/components/schemas/Can not resolve types/assignedUsers/assignedUser.json"
+        },
+        "assignedUserCollection": {
+          "includePath": "types/assignedUsers/assignedUserCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/assignedUsers/assignedUserCollection.json"
+        },
+        "assignedUserPostRequest": {
+          "includePath": "types/assignedUsers/assignedUserPostRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/assignedUsers/assignedUserPostRequest.json"
+        },
+        "assignedUserPutRequest": {
+          "includePath": "types/assignedUsers/assignedUserPutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/assignedUsers/assignedUserPutRequest.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

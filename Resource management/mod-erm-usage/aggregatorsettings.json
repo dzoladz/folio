@@ -1,0 +1,135 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Aggregator Settings",
+      "version": "v1.2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/mod-erm-usage"
+      }
+    ],
+    "paths": {
+      "/aggregator-settings": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all aggregator settings",
+          "operationId": "GET_aggregator-settings"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post new aggregator settings",
+          "operationId": "POST_aggregator-settings"
+        }
+      },
+      "/aggregator-settings/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get one aggregator setting identified by id",
+          "operationId": "GET_aggregator-settings-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete aggregator setting identified by id",
+          "operationId": "DELETE_aggregator-settings-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Put aggregator setting identified by id",
+          "operationId": "PUT_aggregator-settings-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/aggregator-settings/{id}/exportcredentials": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Ok"
+            },
+            "400": {
+              "description": "Bad Request"
+            },
+            "500": {
+              "description": "Error"
+            }
+          },
+          "description": "Get SushiCredentials associated with this aggregator",
+          "operationId": "GET_aggregator-settings-id-exportcredentials",
+          "parameters": [
+            {
+              "name": "format",
+              "in": "query",
+              "description": "Specify export format (default is CSV)",
+              "schema": {
+                "default": "csv",
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "aggregatorSetting": {
+          "includePath": "schemas/aggregatorsetting.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/aggregatorsetting.json"
+        },
+        "aggregatorSettings": {
+          "includePath": "schemas/aggregatorsettings.json",
+          "$ref": "#/components/schemas/Can not resolve ./schemas/aggregatorsettings.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

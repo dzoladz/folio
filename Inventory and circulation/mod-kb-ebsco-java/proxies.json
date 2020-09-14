@@ -1,0 +1,211 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/proxy-types": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/proxies/proxy_types_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/proxyTypes"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of supported proxy types.",
+          "operationId": "GET_eholdings-proxy-types"
+        }
+      },
+      "/eholdings/kb-credentials/{id}/proxy-types": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/proxies/proxy_types_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/proxyTypes"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/proxies/proxy_types_by_credentials_id_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of supported proxy types for KB Credentials.",
+          "operationId": "GET_eholdings-kb-credentials-id-proxy-types"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/eholdings/root-proxy": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/proxies/root_proxy_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/rootProxy"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get the ID of root proxy that is currently selected from proxy-type list.",
+          "operationId": "GET_eholdings-root-proxy"
+        }
+      },
+      "/eholdings/kb-credentials/{id}/root-proxy": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/proxies/root_proxy_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/rootProxy"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/proxies/root_proxy_by_credentials_id_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get the ID of root proxy that is currently selected from proxy-type list.",
+          "operationId": "GET_eholdings-kb-credentials-id-root-proxy"
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/proxies/root_proxy_put_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/rootProxy"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/proxies/root_proxy_put_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update root-proxy for a Kb Credentials.",
+          "operationId": "PUT_eholdings-kb-credentials-id-root-proxy",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/proxies/root_proxy_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/rootProxyPutRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "proxyTypes": {
+          "includePath": "types/proxies/proxyTypes.json",
+          "$ref": "#/components/schemas/Can not resolve types/proxies/proxyTypes.json"
+        },
+        "rootProxy": {
+          "includePath": "types/proxies/rootProxy.json",
+          "$ref": "#/components/schemas/Can not resolve types/proxies/rootProxy.json"
+        },
+        "rootProxyPutRequest": {
+          "includePath": "types/proxies/rootProxyPutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/proxies/rootProxyPutRequest.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

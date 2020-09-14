@@ -1,0 +1,77 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-erm-usage-harvester periodic API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/erm-usage-harvester/periodic"
+      }
+    ],
+    "paths": {
+      "/erm-usage-harvester/periodic": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/periodicConfig"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_erm-usage-harvester-periodic"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_erm-usage-harvester-periodic",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/periodicConfig"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "DELETE_erm-usage-harvester-periodic"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "periodicConfig": {
+          "includePath": "schemas/periodicConfig.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/periodicConfig.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

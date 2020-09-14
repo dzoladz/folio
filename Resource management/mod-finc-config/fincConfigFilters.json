@@ -1,0 +1,197 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Filters for Finc Config",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/mod-finc-config"
+      }
+    ],
+    "paths": {
+      "/finc-config/filters": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all filters",
+          "operationId": "GET_finc-config-filters"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post new filter",
+          "operationId": "POST_finc-config-filters"
+        }
+      },
+      "/finc-config/filters/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get one finc select filter identified by id",
+          "operationId": "GET_finc-config-filters-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Put a filter identified by id",
+          "operationId": "PUT_finc-config-filters-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete a filter identified by id",
+          "operationId": "DELETE_finc-config-filters-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/finc-config/filters/{id}/collections": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "The collection IDs of collection assigned to this filter",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/fincSelectFilterToMetadataCollections.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/fincSelectFilterToCollections"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get collections the current filter is assigned to",
+          "operationId": "GET_finc-config-filters-id-collections"
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "The added collections",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/fincSelectFilterToMetadataCollections.sample",
+                  "schema": {
+                    "$ref": "#/components/schemas/fincSelectFilterToCollections"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Bad request"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add collections to this filter",
+          "operationId": "PUT_finc-config-filters-id-collections",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/fincSelectFilterToCollections"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "fincSelectFilter": {
+          "includePath": "schemas/fincSelectFilter.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincSelectFilter.json"
+        },
+        "fincSelectFilters": {
+          "includePath": "schemas/fincSelectFilters.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincSelectFilters.json"
+        },
+        "fincSelectFilterToCollections": {
+          "includePath": "schemas/fincSelectFilterToCollections.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincSelectFilterToCollections.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

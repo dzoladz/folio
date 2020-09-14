@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "End Patron Action Session",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/circulation/end-patron-action-session": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Sessions have been successfully ended"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_circulation-end-patron-action-session",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/end-patron-action-session-requests.json",
+                "schema": {
+                  "$ref": "#/components/schemas/end-patron-action-session-requests"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "end-patron-action-session-requests": {
+          "includePath": "end-patron-action-session-requests.json",
+          "$ref": "#/components/schemas/Can not resolve end-patron-action-session-requests.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,193 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Preceding/succeeding Titles API",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/preceding-succeeding-titles": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "The new preceding/succeeding title has been successfully returned"
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Return a list of preceding succeeding titles",
+          "operationId": "GET_preceding-succeeding-titles"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "The new preceding/succeeding title has been successfully created"
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create a new preceding/succeeding title",
+          "operationId": "POST_preceding-succeeding-titles"
+        }
+      },
+      "/preceding-succeeding-titles/{precedingSucceedingTitleId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "The preceding/succeeding title has been returned"
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a preceding/succeeding title by id",
+          "operationId": "GET_preceding-succeeding-titles-precedingSucceedingTitleId"
+        },
+        "put": {
+          "responses": {
+            "204": {
+              "description": "The preceding/succeeding title has been updated"
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update a preceding/succeeding title by id",
+          "operationId": "PUT_preceding-succeeding-titles-precedingSucceedingTitleId"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "The preceding/succeeding title has been deleted"
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete a preceding/succeeding title by id",
+          "operationId": "DELETE_preceding-succeeding-titles-precedingSucceedingTitleId"
+        },
+        "parameters": [
+          {
+            "name": "precedingSucceedingTitleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "precedingSucceedingTitle": {
+          "includePath": "instanceprecedingsucceedingtitle.json",
+          "$ref": "#/components/schemas/Can not resolve instanceprecedingsucceedingtitle.json"
+        },
+        "precedingSucceedingTitles": {
+          "includePath": "instanceprecedingsucceedingtitles.json",
+          "$ref": "#/components/schemas/Can not resolve instanceprecedingsucceedingtitles.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

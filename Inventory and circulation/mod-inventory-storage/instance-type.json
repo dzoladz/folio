@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Instance Types API",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/instance-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of instance types",
+          "operationId": "GET_instance-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new instance type",
+          "operationId": "POST_instance-types"
+        }
+      },
+      "/instance-types/{instanceTypeId}": {
+        "parameters": [
+          {
+            "name": "instanceTypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "instanceType": {
+          "includePath": "instancetype.json",
+          "$ref": "#/components/schemas/Can not resolve instancetype.json"
+        },
+        "instanceTypes": {
+          "includePath": "instancetypes.json",
+          "$ref": "#/components/schemas/Can not resolve instancetypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

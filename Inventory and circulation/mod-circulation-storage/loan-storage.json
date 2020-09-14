@@ -1,0 +1,176 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Loan Storage",
+      "version": "v7.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/loan-storage/loans": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_loan-storage-loans"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_loan-storage-loans"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All loans deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "DELETE_loan-storage-loans"
+        }
+      },
+      "/loan-storage/loans/anonymize/{userId}": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Closed loans for this user have been anonymized"
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body or query parameter."
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_loan-storage-loans-anonymize-userId"
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/loan-storage/loans/{loanId}": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_loan-storage-loans-loanId"
+        },
+        "put": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "PUT_loan-storage-loans-loanId"
+        },
+        "delete": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_loan-storage-loans-loanId"
+        },
+        "parameters": [
+          {
+            "name": "loanId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/loan-storage/loan-history": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_loan-storage-loan-history"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "loan": {
+          "includePath": "loan.json",
+          "$ref": "#/components/schemas/Can not resolve loan.json"
+        },
+        "loans": {
+          "includePath": "loans.json",
+          "$ref": "#/components/schemas/Can not resolve loans.json"
+        },
+        "loans-history-item": {
+          "includePath": "loans-history-item.json",
+          "$ref": "#/components/schemas/Can not resolve loans-history-item.json"
+        },
+        "loans-history-items": {
+          "includePath": "loans-history-items.json",
+          "$ref": "#/components/schemas/Can not resolve loans-history-items.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "parameters": {
+          "includePath": "raml-util/schemas/parameters.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/parameters.schema"
+        },
+        "anonymize-loans-response": {
+          "includePath": "anonymize-storage-loans-response.json",
+          "$ref": "#/components/schemas/Can not resolve anonymize-storage-loans-response.json"
+        },
+        "anonymize-loans-request": {
+          "includePath": "anonymize-storage-loans-request.json",
+          "$ref": "#/components/schemas/Can not resolve anonymize-storage-loans-request.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

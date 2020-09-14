@@ -1,0 +1,101 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Counter Reports",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/mod-erm-usage"
+      }
+    ],
+    "paths": {
+      "/custom-reports": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all reports.",
+          "operationId": "GET_custom-reports"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post new report",
+          "operationId": "POST_custom-reports"
+        }
+      },
+      "/custom-reports/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get one report identified by id",
+          "operationId": "GET_custom-reports-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete report identified by id",
+          "operationId": "DELETE_custom-reports-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Put report identified by id",
+          "operationId": "PUT_custom-reports-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "customReport": {
+          "includePath": "schemas/customreport.json",
+          "$ref": "#/components/schemas/Can not resolve ./schemas/customreport.json"
+        },
+        "customReports": {
+          "includePath": "schemas/customreports.json",
+          "$ref": "#/components/schemas/Can not resolve ./schemas/customreports.json"
+        },
+        "errorCodes": {
+          "includePath": "schemas/errorcodes.json",
+          "$ref": "#/components/schemas/Can not resolve ./schemas/errorcodes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

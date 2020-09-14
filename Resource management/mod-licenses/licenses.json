@@ -1,0 +1,90 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Licenses API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/licenses/"
+      }
+    ],
+    "paths": {
+      "/licenses/licenses": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          },
+          "description": "List current licenses",
+          "operationId": "GET_licenses-licenses"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new license",
+          "operationId": "POST_licenses-licenses",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/License"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/licenses/licenses/{licenseId}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Retrieve a specific license",
+          "operationId": "GET_licenses-licenses-licenseId"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Update a specific license",
+          "operationId": "PUT_licenses-licenses-licenseId"
+        },
+        "parameters": [
+          {
+            "name": "licenseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "License": {
+          "includePath": "license.json",
+          "$ref": "#/components/schemas/Can not resolve license.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,132 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/tags": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/tags/tags_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/tagCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/tags/tags_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Retrieve a collection of tags associated with eholding records.",
+          "operationId": "GET_eholdings-tags",
+          "parameters": [
+            {
+              "name": "filter[rectype]",
+              "in": "query",
+              "description": "Filter tags by one or more record types. Several types can be specified in form of `filter[rectype]=provider&filter[rectype]=package` Possible values are `provider`, `package`, `title`, `resource`",
+              "schema": {
+                "uniqueItems": true,
+                "minItems": 1,
+                "$ref": "#/components/schemas/recordTypes"
+              }
+            }
+          ]
+        }
+      },
+      "/eholdings/tags/summary": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/tags/unique_tags_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/tagUniqueCollection"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/tags/unique_tags_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Retrieve a collection of unique tags associated with eholding records.",
+          "operationId": "GET_eholdings-tags-summary",
+          "parameters": [
+            {
+              "name": "filter[rectype]",
+              "in": "query",
+              "description": "Filter tags by one or more record types. Several types can be specified in form of `filter[rectype]=provider&filter[rectype]=package` Possible values are `provider`, `package`, `title`, `resource`",
+              "schema": {
+                "uniqueItems": true,
+                "minItems": 1,
+                "$ref": "#/components/schemas/recordTypes"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "tagCollection": {
+          "includePath": "types/tags/tagCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/tags/tagCollection.json"
+        },
+        "tagUniqueCollection": {
+          "includePath": "types/tags/tagUniqueCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/tags/tagUniqueCollection.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        },
+        "recordType": {
+          "description": "Eholdings record type. Possible values are provider, package, title, resource.",
+          "type": "string"
+        },
+        "recordTypes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/recordType"
+          }
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

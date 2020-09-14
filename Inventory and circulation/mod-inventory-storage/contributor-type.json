@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Contributor Types API",
+      "version": "v2.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/contributor-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of contributor types",
+          "operationId": "GET_contributor-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new contributor type",
+          "operationId": "POST_contributor-types"
+        }
+      },
+      "/contributor-types/{contributorTypeId}": {
+        "parameters": [
+          {
+            "name": "contributorTypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "contributorType": {
+          "includePath": "contributortype.json",
+          "$ref": "#/components/schemas/Can not resolve contributortype.json"
+        },
+        "contributorTypes": {
+          "includePath": "contributortypes.json",
+          "$ref": "#/components/schemas/Can not resolve contributortypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

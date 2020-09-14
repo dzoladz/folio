@@ -1,0 +1,158 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/custom-labels": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/customLabels/custom_labels_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/customLabelsCollection"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of custom labels.",
+          "operationId": "GET_eholdings-custom-labels"
+        }
+      },
+      "/eholdings/kb-credentials/{id}/custom-labels": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/customLabels/custom_labels_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/customLabelsCollection"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/customLabels/custom_labels_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a custom labels related to specific KB credentials",
+          "operationId": "GET_eholdings-kb-credentials-id-custom-labels"
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/customLabels/cl_collection_put_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/customLabelsCollection"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/customLabels/custom_labels_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/customLabels/cl_collection_put_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update a list of custom labels.",
+          "operationId": "PUT_eholdings-kb-credentials-id-custom-labels",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/customLabels/cl_collection_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/customLabelsPutRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "customLabelsCollection": {
+          "includePath": "types/customLabels/customLabelsCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/customLabels/customLabelsCollection.json"
+        },
+        "customLabelsPutRequest": {
+          "includePath": "types/customLabels/customLabelsPutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/customLabels/customLabelsPutRequest.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

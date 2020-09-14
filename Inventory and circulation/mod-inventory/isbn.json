@@ -1,0 +1,186 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Inventory API",
+      "version": "v2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/isbn/convertTo13": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "The response body is a json object containing the converted isbn",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/isbn13.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/isbn"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, an invalid ISBNs is provided",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "ISBN value is invalid"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Converts an ISBN code to an ISBN-13 code",
+          "operationId": "GET_isbn-convertTo13",
+          "parameters": [
+            {
+              "name": "isbn",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "hyphens",
+              "in": "query",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      "/isbn/convertTo10": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "The response body is a json object containing the converted isbn",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/isbn10.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/isbn"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, an invalid ISBNs is provided",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "ISBN value is invalid"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Converts an ISBN-13 code to an ISBN-10 code",
+          "operationId": "GET_isbn-convertTo10",
+          "parameters": [
+            {
+              "name": "isbn",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "hyphens",
+              "in": "query",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      },
+      "/isbn/validator": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Returns true if a valid ISBN code, otherwise false",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/isbn_validation_result.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/isValid"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request, invalid query parameter is provided",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Only one of following query params must be specified: isbn, isbn10, isbn13"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Checks the code is a valid ISBN code.",
+          "operationId": "GET_isbn-validator",
+          "parameters": [
+            {
+              "name": "/^(isbn|isbn10|isbn13)$/",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "isbn": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "isbn": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "isbn"
+          ]
+        },
+        "isValid": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "isValid": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "isValid"
+          ]
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

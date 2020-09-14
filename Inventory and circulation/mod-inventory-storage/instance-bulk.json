@@ -1,0 +1,62 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Inventory Storage Instance Bulk API",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/instance-bulk/ids": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Retrieve a list of Instance IDs.",
+          "operationId": "GET_instance-bulk-ids",
+          "parameters": [
+            {
+              "name": "field",
+              "in": "query",
+              "description": "Field",
+              "schema": {
+                "default": "id",
+                "enum": [
+                  "id"
+                ],
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "ids": {
+          "includePath": "ids.json",
+          "$ref": "#/components/schemas/Can not resolve ids.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

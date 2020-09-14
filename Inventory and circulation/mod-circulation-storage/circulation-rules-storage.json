@@ -1,0 +1,100 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Circulation Rules Storage",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/circulation-rules-storage": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/circulation-rules"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get the circulation rules",
+          "operationId": "GET_circulation-rules-storage"
+        },
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Circulation rules have been saved."
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Set the circulation rules",
+          "operationId": "PUT_circulation-rules-storage",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/circulation-rules.json",
+                "schema": {
+                  "$ref": "#/components/schemas/circulation-rules"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "circulation-rules": {
+          "includePath": "circulation-rules.json",
+          "$ref": "#/components/schemas/Can not resolve circulation-rules.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "parameters": {
+          "includePath": "raml-util/schemas/parameters.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/parameters.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "OAI-PMH API",
+      "version": "v3"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/folio-org/mod-oai-pmh"
+      },
+      {
+        "url": "https://github.com/folio-org/mod-oai-pmh"
+      }
+    ],
+    "paths": {
+      "/oai-pmh/sets": {
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_oai-pmh-sets"
+        },
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_oai-pmh-sets"
+        }
+      },
+      "/oai-pmh/sets/{id}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_oai-pmh-sets-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "folioSet": {
+          "includePath": "schemas/dto/folioSet.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/dto/folioSet.json"
+        },
+        "folioSetCollection": {
+          "includePath": "schemas/dto/folioSetCollection.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/dto/folioSetCollection.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

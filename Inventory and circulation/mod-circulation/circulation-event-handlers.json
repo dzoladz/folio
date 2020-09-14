@@ -1,0 +1,50 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Circulation event handlers",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/circulation/handlers//loan-related-fee-fine-closed": {
+        "post": {
+          "responses": {
+            "204": {
+              "description": "Event handled successfully"
+            }
+          },
+          "description": "Handle fee/fine record with loan closed event",
+          "operationId": "POST_circulation-handlers--loan-related-fee-fine-closed",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/loan-related-fee-fine-closed.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve handlers/loan-related-fee-fine-closed.json"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {},
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

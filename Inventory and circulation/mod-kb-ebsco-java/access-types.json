@@ -1,0 +1,385 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/access-types": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_collection_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/accessTypeCollection"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of access types.",
+          "operationId": "GET_eholdings-access-types"
+        }
+      },
+      "/eholdings/access-types/{id}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_item_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/accessType"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_item_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_item_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_item_get_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Retrieve specific Access Types by Id",
+          "operationId": "GET_eholdings-access-types-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/eholdings/kb-credentials/{id}/access-types": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_collection_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/accessTypeCollection"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get a list of access types related to specific KB credentials.",
+          "operationId": "GET_eholdings-kb-credentials-id-access-types"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_post_201_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/accessType"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_post_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_post_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_post_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create an access type in specific KB Credentials",
+          "operationId": "POST_eholdings-kb-credentials-id-access-types",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/accessTypes/access_type_post_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/accessTypePostRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/eholdings/kb-credentials/{id}/access-types/{accessTypeId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_item_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/accessType"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_item_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_item_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_item_get_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Retrieve specific Access Types by Id related to specific KB credentials",
+          "operationId": "GET_eholdings-kb-credentials-id-access-types-accessTypeId"
+        },
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Item successfully updated"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_put_by_id_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_put_by_id_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_put_by_id_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update a Access Type by Id related to specific KB credentials",
+          "operationId": "PUT_eholdings-kb-credentials-id-access-types-accessTypeId",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/accessTypes/access_type_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/accessTypePutRequest"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_delete_by_id_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/accessTypes/access_type_delete_by_id_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete a Access Type by Id",
+          "operationId": "DELETE_eholdings-kb-credentials-id-access-types-accessTypeId"
+        },
+        "parameters": [
+          {
+            "name": "accessTypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "accessType": {
+          "includePath": "types/accessTypes/accessType.json",
+          "$ref": "#/components/schemas/Can not resolve types/accessTypes/accessType.json"
+        },
+        "accessTypeCollection": {
+          "includePath": "types/accessTypes/accessTypesCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/accessTypes/accessTypesCollection.json"
+        },
+        "accessTypePostRequest": {
+          "includePath": "types/accessTypes/accessTypePostRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/accessTypes/accessTypePostRequest.json"
+        },
+        "accessTypePutRequest": {
+          "includePath": "types/accessTypes/accessTypePutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/accessTypes/accessTypePutRequest.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

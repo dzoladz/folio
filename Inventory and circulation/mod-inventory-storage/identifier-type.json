@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Instance Identifier Types API",
+      "version": "v1.2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/identifier-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of identifier types",
+          "operationId": "GET_identifier-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new identifier type",
+          "operationId": "POST_identifier-types"
+        }
+      },
+      "/identifier-types/{identifierTypeId}": {
+        "parameters": [
+          {
+            "name": "identifierTypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "identifierType": {
+          "includePath": "identifiertype.json",
+          "$ref": "#/components/schemas/Can not resolve identifiertype.json"
+        },
+        "identifierTypes": {
+          "includePath": "identifiertypes.json",
+          "$ref": "#/components/schemas/Can not resolve identifiertypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

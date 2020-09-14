@@ -1,0 +1,120 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Request Storage",
+      "version": "v3.3"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/request-storage/requests": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_request-storage-requests"
+        },
+        "post": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "POST_request-storage-requests"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All requests deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            },
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_request-storage-requests"
+        }
+      },
+      "/request-storage/requests/{requestId}": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_request-storage-requests-requestId"
+        },
+        "put": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "PUT_request-storage-requests-requestId"
+        },
+        "delete": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_request-storage-requests-requestId"
+        },
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "request": {
+          "includePath": "request.json",
+          "$ref": "#/components/schemas/Can not resolve request.json"
+        },
+        "requests": {
+          "includePath": "requests.json",
+          "$ref": "#/components/schemas/Can not resolve requests.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "parameters": {
+          "includePath": "raml-util/schemas/parameters.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/parameters.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,251 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Patron Notice Policies",
+      "version": "v0.12"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/patron-notice-policy-storage/patron-notice-policies": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return Patron Notice Policy list",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/patron-notice-policies"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get Patron Notice Policy list",
+          "operationId": "GET_patron-notice-policy-storage-patron-notice-policies"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Successfully created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/patron-notice-policy"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create new Patron Notice Policy",
+          "operationId": "POST_patron-notice-policy-storage-patron-notice-policies",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/patron-notice-policy"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/patron-notice-policy-storage/patron-notice-policies/{patronNoticePolicyId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Return Patron Notice Policy",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/patron-notice-policy"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get Patron Notice Policy by id",
+          "operationId": "GET_patron-notice-policy-storage-patron-notice-policies-patronNoticePolicyId"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "Source record deleted"
+            },
+            "400": {
+              "description": "Bad request, e.g. malformed request body, query parameter or constraint violation.",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Cannot delete in use notice policy"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "There is no source record for that patronNoticePolicyId",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete Patron Notice Policy by id",
+          "operationId": "DELETE_patron-notice-policy-storage-patron-notice-policies-patronNoticePolicyId"
+        },
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Successfully updated"
+            },
+            "404": {
+              "description": "Not found",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not found"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update Patron Notice Policy by id",
+          "operationId": "PUT_patron-notice-policy-storage-patron-notice-policies-patronNoticePolicyId",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/patron-notice-policy"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "parameters": [
+          {
+            "name": "patronNoticePolicyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "patron-notice-policy": {
+          "includePath": "patron-notice-policy.json",
+          "$ref": "#/components/schemas/Can not resolve patron-notice-policy.json"
+        },
+        "patron-notice-policies": {
+          "includePath": "patron-notice-policies.json",
+          "$ref": "#/components/schemas/Can not resolve patron-notice-policies.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

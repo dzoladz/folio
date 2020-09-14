@@ -1,0 +1,83 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-erm-usage-harvester API",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/erm-usage-harvester"
+      }
+    ],
+    "paths": {
+      "/erm-usage-harvester/start": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Start harvesting for tenant - process all defined usage data providers",
+          "operationId": "GET_erm-usage-harvester-start"
+        }
+      },
+      "/erm-usage-harvester/start/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Start harvesting for tenant - process a specific usage data provider only",
+          "operationId": "GET_erm-usage-harvester-start-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/erm-usage-harvester/impl": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get available service implementations",
+          "operationId": "GET_erm-usage-harvester-impl",
+          "parameters": [
+            {
+              "name": "aggregator",
+              "in": "query",
+              "description": "Filter by 'isAggregator' property (true or false)",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

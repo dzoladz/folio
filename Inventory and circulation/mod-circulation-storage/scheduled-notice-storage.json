@@ -1,0 +1,102 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Scheduled Notice Storage",
+      "version": "v0.4"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/scheduled-notice-storage/scheduled-notices": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_scheduled-notice-storage-scheduled-notices"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_scheduled-notice-storage-scheduled-notices"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "Successful deletion"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete scheduled notices by cql query",
+          "operationId": "DELETE_scheduled-notice-storage-scheduled-notices"
+        }
+      },
+      "/scheduled-notice-storage/scheduled-notices/{scheduled-noticeId}": {
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "PUT_scheduled-notice-storage-scheduled-notices-scheduled-noticeId"
+        },
+        "parameters": [
+          {
+            "name": "scheduled-noticeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "scheduled-notice": {
+          "includePath": "scheduled-notice.json",
+          "$ref": "#/components/schemas/Can not resolve scheduled-notice.json"
+        },
+        "scheduled-notices": {
+          "includePath": "scheduled-notices.json",
+          "$ref": "#/components/schemas/Can not resolve scheduled-notices.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "parameters": {
+          "includePath": "raml-util/schemas/parameters.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/parameters.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

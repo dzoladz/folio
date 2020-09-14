@@ -1,0 +1,135 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Metadata Sources",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/mod-finc-config"
+      }
+    ],
+    "paths": {
+      "/finc-config/metadata-sources": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all metadata sources",
+          "operationId": "GET_finc-config-metadata-sources"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Post new metadata source",
+          "operationId": "POST_finc-config-metadata-sources"
+        }
+      },
+      "/finc-config/metadata-sources/{id}": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get one metadata source identified by id",
+          "operationId": "GET_finc-config-metadata-sources-id"
+        },
+        "delete": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Delete an metadata source identified by id",
+          "operationId": "DELETE_finc-config-metadata-sources-id"
+        },
+        "put": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Put an metadata source identified by id",
+          "operationId": "PUT_finc-config-metadata-sources-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/finc-config/tiny-metadata-sources": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all tiny metadata sources",
+          "operationId": "GET_finc-config-tiny-metadata-sources"
+        }
+      },
+      "/finc-config/contacts": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Get all contacts defined in metadata sources",
+          "operationId": "GET_finc-config-contacts"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "fincConfigMetadataSource": {
+          "includePath": "schemas/fincConfigMetadataSource.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincConfigMetadataSource.json"
+        },
+        "fincConfigMetadataSources": {
+          "includePath": "schemas/fincConfigMetadataSources.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/fincConfigMetadataSources.json"
+        },
+        "tinyMetadataSource": {
+          "includePath": "schemas/tinyMetadataSource.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/tinyMetadataSource.json"
+        },
+        "tinyMetadataSources": {
+          "includePath": "schemas/tinyMetadataSources.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/tinyMetadataSources.json"
+        },
+        "contact": {
+          "includePath": "schemas/contact.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/contact.json"
+        },
+        "contacts": {
+          "includePath": "schemas/contacts.json",
+          "$ref": "#/components/schemas/Can not resolve schemas/contacts.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

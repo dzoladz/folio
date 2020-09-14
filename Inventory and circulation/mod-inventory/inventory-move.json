@@ -1,0 +1,139 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Inventory Move API",
+      "version": "v0.2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/inventory/items/move": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Items moved to another holdings record",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/move_response"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_inventory-items-move",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/items_move"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/inventory/holdings/move": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Holdings record moved to another instance",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/move_response"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Validation error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_inventory-holdings-move",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/holdings_move"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "items_move": {
+          "includePath": "items_move.json",
+          "$ref": "#/components/schemas/Can not resolve items_move.json"
+        },
+        "holdings_move": {
+          "includePath": "holdings_move.json",
+          "$ref": "#/components/schemas/Can not resolve holdings_move.json"
+        },
+        "move_response": {
+          "includePath": "move_response.json",
+          "$ref": "#/components/schemas/Can not resolve move_response.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

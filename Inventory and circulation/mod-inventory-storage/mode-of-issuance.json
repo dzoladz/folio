@@ -1,0 +1,92 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Statisticalx code reference API",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/modes-of-issuance": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of issuance modes",
+          "operationId": "GET_modes-of-issuance"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new mode of issuance",
+          "operationId": "POST_modes-of-issuance"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All modes of issuance deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all modes of issuance",
+          "operationId": "DELETE_modes-of-issuance"
+        }
+      },
+      "/modes-of-issuance/{modeOfIssuanceId}": {
+        "parameters": [
+          {
+            "name": "modeOfIssuanceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "issuanceMode": {
+          "includePath": "modeofissuance.json",
+          "$ref": "#/components/schemas/Can not resolve modeofissuance.json"
+        },
+        "issuanceModes": {
+          "includePath": "issuancemodes.json",
+          "$ref": "#/components/schemas/Can not resolve issuancemodes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

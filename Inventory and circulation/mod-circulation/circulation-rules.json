@@ -1,0 +1,1017 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Circulation Rules",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/circulation/rules": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/circulation-rules.json"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get the circulation rules",
+          "operationId": "GET_circulation-rules"
+        },
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Circulation rules have been saved."
+            },
+            "422": {
+              "description": "Validation error in the text file.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/circulation-rules-error.json"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Set the circulation rules using a text file",
+          "operationId": "PUT_circulation-rules",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/circulation-rules.json",
+                "schema": {
+                  "$ref": "#/components/schemas/Can not resolve schema/circulation-rules.json"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      },
+      "/circulation/rules/loan-policy": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/loan-policy-id.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/loan-policy-id.json"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid query parameters",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "required query parameter missing: item_type_id"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Execute circulation rules and return the loan policy that will be applied, either the matching loan policy with the highest priority or the fallback loan policy",
+          "operationId": "GET_circulation-rules-loan-policy",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/circulation/rules/loan-policy-all": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rule-loan-policy-matches.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/circulation-rule-loan-policy-matches.json"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Execute circulation rules and return all matching loan policies in decreasing priority and the fallback loan policy",
+          "operationId": "GET_circulation-rules-loan-policy-all",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "rules",
+              "in": "query",
+              "description": "Circulation rules if provided, otherwise use stored circulation rules",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/circulation/rules/overdue-fine-policy": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/overdue-fine-policy-id.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/overdue-fine-policy-id.json"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid query parameters",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "required query parameter missing: item_type_id"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Execute circulation rules and return the overdue fine policy that will be applied, either the matching overdue fine policy with the highest priority or the fallback overdue fine policy policy",
+          "operationId": "GET_circulation-rules-overdue-fine-policy",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/circulation/rules/overdue-fine-policy-all": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rule-overdue-fine-policy-matches.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/circulation-rule-overdue-fine-policy-matches.json"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Execute circulation rules and return all matching overdue fine policies in decreasing priority and the fallback overdue fine policy",
+          "operationId": "GET_circulation-rules-overdue-fine-policy-all",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "rules",
+              "in": "query",
+              "description": "Circulation rules if provided, otherwise use stored circulation rules",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/circulation/rules/lost-item-policy": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/lost-item-policy-id.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/lost-item-policy-id.json"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid query parameters",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "required query parameter missing: item_type_id"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Execute circulation rules and return the lost item policy that will be applied, either the matching lost item policy with the highest priority or the fallback lost item policy policy",
+          "operationId": "GET_circulation-rules-lost-item-policy",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/circulation/rules/lost-item-policy-all": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rule-lost-item-policy-matches.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/circulation-rule-lost-item-policy-matches.json"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Execute circulation rules and return all matching lost item policies in decreasing priority and the fallback lost item policy",
+          "operationId": "GET_circulation-rules-lost-item-policy-all",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "rules",
+              "in": "query",
+              "description": "Circulation rules if provided, otherwise use stored circulation rules",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/circulation/rules/request-policy": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/request-policy-id.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/request-policy-id.json"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid query parameters",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "required query parameter missing: item_type_id"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Execute circulation rules and return the request policy that will be applied, either the matching request policy with the highest priority or the fallback request policy",
+          "operationId": "GET_circulation-rules-request-policy",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/circulation/rules/request-policy-all": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rule-request-policy-matches.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/circulation-rule-request-policy-matches.json"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Execute circulation rules and return all matching request policies policies in decreasing priority and the fallback request policy",
+          "operationId": "GET_circulation-rules-request-policy-all",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "rules",
+              "in": "query",
+              "description": "Circulation rules if provided, otherwise use stored circulation rules",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/circulation/rules/notice-policy": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/notice-policy-id.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/notice-policy-id.json"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid query parameters",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "required query parameter missing: item_type_id"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get the notice policy when applying circulation rules",
+          "operationId": "GET_circulation-rules-notice-policy",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/circulation/rules/notice-policy-all": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rule-notice-policy-matches.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/Can not resolve schema/circulation-rule-notice-policy-matches.json"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid id error.",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/circulation-rules-id-error.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/error"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Get notice policy for each match when applying circulation rules",
+          "operationId": "GET_circulation-rules-notice-policy-all",
+          "parameters": [
+            {
+              "name": "item_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Item type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "loan_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Loan type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "patron_type_id",
+              "in": "query",
+              "required": true,
+              "description": "Patron type id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "location_id",
+              "in": "query",
+              "required": true,
+              "description": "Location id",
+              "schema": {
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[1-5][a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+                "type": "string"
+              }
+            },
+            {
+              "name": "rules",
+              "in": "query",
+              "description": "Circulation rules if provided, otherwise use stored circulation rules",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "error": {
+          "includePath": "raml-util/schemas/error.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/error.schema"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

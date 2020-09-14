@@ -1,0 +1,250 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Instance Storage",
+      "version": "v7.4"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/instance-storage/instance-relationships": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_instance-storage-instance-relationships"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_instance-storage-instance-relationships"
+        }
+      },
+      "/instance-storage/instance-relationships/{relationshipId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "description": "Get Instance Relationship\n",
+          "operationId": "GET_instance-storage-instance-relationships-relationshipId"
+        },
+        "parameters": [
+          {
+            "name": "relationshipId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/instance-storage/instances": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "GET_instance-storage-instances"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "operationId": "POST_instance-storage-instances"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All instances deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "DELETE_instance-storage-instances"
+        }
+      },
+      "/instance-storage/instances/{instanceId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": ""
+            }
+          },
+          "description": "Get Instance by InstanceId\nInstances are stored and accessed by a hash of key properties. The rules which govern\nhow instance hashes are computed are business rules and defined in the service layer.\nthe storage layer only knows how to insert or retrieve instance records by ID.\n",
+          "operationId": "GET_instance-storage-instances-instanceId"
+        },
+        "parameters": [
+          {
+            "name": "instanceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/instance-storage/instances/{instanceId}/source-record": {
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "Source record deleted"
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "This MARC record is still in use"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "There is no source record for that instanceId",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "There is no source record for that instanceId"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete the source record.\nNote: The source records gets automatically deleted when its instance record is deleted.\n",
+          "operationId": "DELETE_instance-storage-instances-instanceId-source-record"
+        },
+        "parameters": [
+          {
+            "name": "instanceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/instance-storage/instances/{instanceId}/source-record/marc-json": {
+        "parameters": [
+          {
+            "name": "instanceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/instance-storage/instances/{instanceId}/source-record/mods": {
+        "get": {
+          "responses": {
+            "500": {
+              "description": "Not implemented yet",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not implemented yet"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "GET_instance-storage-instances-instanceId-source-record-mods"
+        },
+        "put": {
+          "responses": {
+            "500": {
+              "description": "Not implemented yet",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Not implemented yet"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "PUT_instance-storage-instances-instanceId-source-record-mods"
+        },
+        "parameters": [
+          {
+            "name": "instanceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "instance": {
+          "includePath": "instance.json",
+          "$ref": "#/components/schemas/Can not resolve instance.json"
+        },
+        "instances": {
+          "includePath": "instances.json",
+          "$ref": "#/components/schemas/Can not resolve instances.json"
+        },
+        "marcJson": {
+          "includePath": "marc.json",
+          "$ref": "#/components/schemas/Can not resolve marc.json"
+        },
+        "instanceRelationship": {
+          "includePath": "instancerelationship.json",
+          "$ref": "#/components/schemas/Can not resolve instancerelationship.json"
+        },
+        "instanceRelationships": {
+          "includePath": "instancerelationships.json",
+          "$ref": "#/components/schemas/Can not resolve instancerelationships.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

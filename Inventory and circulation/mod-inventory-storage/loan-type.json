@@ -1,0 +1,92 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Loan Types API",
+      "version": "v2.2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/loan-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of loan types",
+          "operationId": "GET_loan-types"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All loan types deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all loan types",
+          "operationId": "DELETE_loan-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new loan type",
+          "operationId": "POST_loan-types"
+        }
+      },
+      "/loan-types/{loantypeId}": {
+        "parameters": [
+          {
+            "name": "loantypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "loantype": {
+          "includePath": "loantype.json",
+          "$ref": "#/components/schemas/Can not resolve loantype.json"
+        },
+        "loantypes": {
+          "includePath": "loantypes.json",
+          "$ref": "#/components/schemas/Can not resolve loantypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

@@ -1,0 +1,105 @@
+#%RAML 1.0
+title: Loan Storage
+version: v7.1
+protocols: [ HTTP, HTTPS ]
+baseUri: http://localhost:9130
+
+documentation:
+  - title: Loan Storage API
+    content: <b>Storage for loans</b>
+
+types:
+  loan:                !include loan.json
+  loans:               !include loans.json
+  loans-history-item:  !include loans-history-item.json
+  loans-history-items: !include loans-history-items.json
+  errors: !include raml-util/schemas/errors.schema
+  parameters: !include raml-util/schemas/parameters.schema
+  anonymize-loans-response: !include anonymize-storage-loans-response.json
+  anonymize-loans-request: !include anonymize-storage-loans-request.json
+
+traits:
+  language: !include raml-util/traits/language.raml
+  pageable: !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+  validate: !include raml-util/traits/validation.raml
+
+resourceTypes:
+  collection: !include raml-util/rtypes/collection.raml
+  collection-item: !include raml-util/rtypes/item-collection.raml
+  get-only: !include raml-util/rtypes/get-only.raml
+
+/loan-storage:
+  /loans:
+    displayName: Loans
+    type:
+      collection:
+        exampleCollection: !include examples/loans.json
+        exampleItem: !include examples/loan.json
+        schemaCollection: loans
+        schemaItem: loan
+    get:
+      is: [pageable,
+        searchable: {description: "searchable using CQL",
+                        example: "requesterId=\"cf23adf0-61ba-4887-bf82-956c4aae2260\""},
+        ]
+      responses:
+        501:
+          description: "Not implemented yet"
+    post:
+      is: [validate]
+    delete:
+      is: [language]
+      responses:
+        204:
+          description: "All loans deleted"
+        500:
+          description: "Internal server error, e.g. due to misconfiguration"
+          body:
+            text/plain:
+              example: "Internal server error, contact administrator"
+    /anonymize/{userId}:
+      post:
+        is: [validate]
+        responses:
+          204:
+            description: "Closed loans for this user have been anonymized"
+          500:
+            description: "Internal server error, e.g. due to misconfiguration"
+            body:
+              text/plain:
+                example: "Internal server error, contact administrator"
+          400:
+            description: "Bad request, e.g. malformed request body or query parameter."
+            body:
+              text/plain:
+    /{loanId}:
+      type:
+        collection-item:
+          exampleItem: !include examples/loan.json
+          schema: loan
+      get:
+        responses:
+          501:
+            description: "Not implemented yet"
+      put:
+        is: [validate]
+        responses:
+          501:
+            description: "Not implemented yet"
+      delete:
+        responses:
+          501:
+            description: "Not implemented yet"
+  /loan-history:
+    displayName: Loan-history
+    type:
+      get-only:
+        exampleCollection: !include examples/loans-history-items.json
+        schema: loans-history-items
+    get:
+      is: [
+        pageable,
+        searchable: {description: "using CQL",
+                        example: "loan.status.name==Closed"}
+        ]

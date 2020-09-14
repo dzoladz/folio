@@ -1,0 +1,73 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Classification Types API",
+      "version": "v1.2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/classification-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of classification qualifiers",
+          "operationId": "GET_classification-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new classification type",
+          "operationId": "POST_classification-types"
+        }
+      },
+      "/classification-types/{classificationTypeId}": {
+        "parameters": [
+          {
+            "name": "classificationTypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "classificationType": {
+          "includePath": "classificationtype.json",
+          "$ref": "#/components/schemas/Can not resolve classificationtype.json"
+        },
+        "classificationTypes": {
+          "includePath": "classificationtypes.json",
+          "$ref": "#/components/schemas/Can not resolve classificationtypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

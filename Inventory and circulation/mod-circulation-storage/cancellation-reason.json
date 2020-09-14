@@ -1,0 +1,120 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Cancellation Reasons",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/cancellation-reason-storage/cancellation-reasons": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_cancellation-reason-storage-cancellation-reasons"
+        },
+        "post": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "POST_cancellation-reason-storage-cancellation-reasons"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All cancellation reasons deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            },
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_cancellation-reason-storage-cancellation-reasons"
+        }
+      },
+      "/cancellation-reason-storage/cancellation-reasons/{cancellationReasonId}": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_cancellation-reason-storage-cancellation-reasons-cancellationReasonId"
+        },
+        "put": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "PUT_cancellation-reason-storage-cancellation-reasons-cancellationReasonId"
+        },
+        "delete": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_cancellation-reason-storage-cancellation-reasons-cancellationReasonId"
+        },
+        "parameters": [
+          {
+            "name": "cancellationReasonId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "cancellation-reason": {
+          "includePath": "cancellation-reason.json",
+          "$ref": "#/components/schemas/Can not resolve cancellation-reason.json"
+        },
+        "cancellation-reasons": {
+          "includePath": "cancellation-reasons.json",
+          "$ref": "#/components/schemas/Can not resolve cancellation-reasons.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "parameters": {
+          "includePath": "raml-util/schemas/parameters.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/parameters.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

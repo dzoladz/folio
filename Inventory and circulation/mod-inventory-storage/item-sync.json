@@ -1,0 +1,100 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Inventory Storage Item Batch Sync API",
+      "version": "v0.5"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/item-storage/batch/synchronous": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "All items have been successfully created or updated"
+            },
+            "413": {
+              "description": "Payload Too Large",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Payload Too Large"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/errors"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create or update a collection of items in a single synchronous request",
+          "operationId": "POST_item-storage-batch-synchronous",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/items_post.json",
+                "schema": {
+                  "$ref": "#/components/schemas/items_post"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "upsert",
+              "in": "query",
+              "description": "When a record with the same id already exists upsert=true will update it, upsert=false will fail the complete batch.",
+              "schema": {
+                "default": false,
+                "type": "boolean"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "items_post": {
+          "includePath": "items_post.json",
+          "$ref": "#/components/schemas/Can not resolve items_post.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

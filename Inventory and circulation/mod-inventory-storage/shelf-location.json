@@ -1,0 +1,116 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Shelf Location API",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://github.com/org/folio/mod-inventory-storage"
+      },
+      {
+        "url": "https://github.com/org/folio/mod-inventory-storage"
+      }
+    ],
+    "paths": {
+      "/shelf-locations": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "DEPRECATED - return a list of (shelf) locations, the forth-level location unit. This is a read-only proxy to the new locations interface at /locations that should be used instead.",
+          "operationId": "GET_shelf-locations"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "DEPRECATED and NOT IMPLEMENTED - Create a new shelf location",
+          "operationId": "POST_shelf-locations"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All shelf locations deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "DEPRECATED and NOT IMPLEMENTED: Delete all shelf locations",
+          "operationId": "DELETE_shelf-locations"
+        }
+      },
+      "/shelf-locations/{id}": {
+        "get": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "GET_shelf-locations-id"
+        },
+        "put": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "PUT_shelf-locations-id"
+        },
+        "delete": {
+          "responses": {
+            "501": {
+              "description": "Not implemented yet"
+            }
+          },
+          "operationId": "DELETE_shelf-locations-id"
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "shelflocation": {
+          "includePath": "shelflocation.json",
+          "$ref": "#/components/schemas/Can not resolve shelflocation.json"
+        },
+        "shelflocations": {
+          "includePath": "shelflocations.json",
+          "$ref": "#/components/schemas/Can not resolve shelflocations.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

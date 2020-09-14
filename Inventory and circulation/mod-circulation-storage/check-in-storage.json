@@ -1,0 +1,95 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Check-in storage",
+      "version": "v0.2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/check-in-storage/check-ins": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Check-in operations that have matched search criteria"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          },
+          "operationId": "GET_check-in-storage-check-ins"
+        },
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Check-in operation that has been created"
+            },
+            "400": {
+              "description": "Supplied entity can not be deserialized"
+            },
+            "422": {
+              "description": "Supplied entity is not valid per schema"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          },
+          "operationId": "POST_check-in-storage-check-ins"
+        }
+      },
+      "/check-in-storage/check-ins/{checkInId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Check in operation retrieved"
+            }
+          },
+          "operationId": "GET_check-in-storage-check-ins-checkInId"
+        },
+        "parameters": [
+          {
+            "name": "checkInId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "parameters": {
+          "includePath": "raml-util/schemas/parameters.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/parameters.schema"
+        },
+        "check-in": {
+          "includePath": "check-in.json",
+          "$ref": "#/components/schemas/Can not resolve check-in.json"
+        },
+        "check-ins": {
+          "includePath": "check-ins.json",
+          "$ref": "#/components/schemas/Can not resolve check-ins.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

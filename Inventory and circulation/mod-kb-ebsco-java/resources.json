@@ -1,0 +1,407 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "mod-kb-ebsco-java",
+      "version": "v1"
+    },
+    "servers": [
+      {
+        "url": "https://github.com/folio-org/mod-kb-ebsco-java"
+      }
+    ],
+    "paths": {
+      "/eholdings/resources": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_post_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/resource"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_post_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_post_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_post_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create a relation between an existing custom package and an existing custom/managed title.",
+          "operationId": "POST_eholdings-resources",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/resources/resources_post_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/resourcePostRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/eholdings/resources/{resourceId}": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_resourceId_get_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/resource"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_resourceId_get_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_resourceId_get_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Retrieve a specific resource given resourceId.\nNote that a resource is a managed/custom title associated with a managed/custom package.\nresourceId is providerId-packageId-titleId\n",
+          "operationId": "GET_eholdings-resources-resourceId",
+          "parameters": [
+            {
+              "name": "include",
+              "in": "query",
+              "description": "Include provider, package or title in response\nPossible values are\n - provider\n - package\n - title\n",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "put": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_resourceId_put_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/resource"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_resourceId_put_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_resourceId_put_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_resourceId_put_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update a managed or custom resource using resourceId\nNote that resourceId is providerId-packageId-titleId\n",
+          "operationId": "PUT_eholdings-resources-resourceId",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/resources/resources_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/resourcePutRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "No Content"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_resourceId_delete_400_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Not Found",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resources_resourceId_delete_404_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete the association between a custom/managed title and a custom package using resourceId.\nNote that resourceId is providerId-packageId-titleId\nIf the title is custom and is not associated with any other package, then the title will be deleted from the knowledge base.\n",
+          "operationId": "DELETE_eholdings-resources-resourceId"
+        },
+        "parameters": [
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Identifier of the resource formed from Provider Id, Package Id, Title Id (see example)"
+          }
+        ]
+      },
+      "/eholdings/resources/{resourceId}/tags": {
+        "put": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resource_tags_put_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/resourceTags"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resource_tags_put_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Update tags assigned to resource",
+          "operationId": "PUT_eholdings-resources-resourceId-tags",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/resources/resource_tags_put_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/resourceTagsPutRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "parameters": [
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Identifier of the resource formed from Provider Id, Package Id, Title Id (see example)"
+          }
+        ]
+      },
+      "/eholdings/resources/bulk/fetch": {
+        "post": {
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resource_bulk_fetch_post_200_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/resourceBulkFetchCollection"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Unprocessable Entity",
+              "content": {
+                "application/vnd.api+json": {
+                  "example": "Can not resolve examples/resources/resource_bulk_post_422_response.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/jsonapiError"
+                  }
+                }
+              }
+            }
+          },
+          "operationId": "POST_eholdings-resources-bulk-fetch",
+          "requestBody": {
+            "content": {
+              "application/vnd.api+json": {
+                "example": "Can not resolve examples/resources/resource_bulk_fetch_post_request.json",
+                "schema": {
+                  "$ref": "#/components/schemas/resourcePostBulkFetchRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "resourcePostRequest": {
+          "includePath": "types/resources/resourcePostRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/resources/resourcePostRequest.json"
+        },
+        "resource": {
+          "includePath": "types/resources/resource.json",
+          "$ref": "#/components/schemas/Can not resolve types/resources/resource.json"
+        },
+        "jsonapiError": {
+          "includePath": "types/jsonapiError.json",
+          "$ref": "#/components/schemas/Can not resolve types/jsonapiError.json"
+        },
+        "resourcePutRequest": {
+          "includePath": "types/resources/resourcePutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/resources/resourcePutRequest.json"
+        },
+        "resourceTagsPutRequest": {
+          "includePath": "types/resources/resourceTagsPutRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/resources/resourceTagsPutRequest.json"
+        },
+        "resourceTags": {
+          "includePath": "types/resources/resourceTags.json",
+          "$ref": "#/components/schemas/Can not resolve types/resources/resourceTags.json"
+        },
+        "resourcePostBulkFetchRequest": {
+          "includePath": "types/resources/resourcePostBulkFetchRequest.json",
+          "$ref": "#/components/schemas/Can not resolve types/resources/resourcePostBulkFetchRequest.json"
+        },
+        "resourceBulkFetchCollection": {
+          "includePath": "types/resources/resourceBulkFetchCollection.json",
+          "$ref": "#/components/schemas/Can not resolve types/resources/resourceBulkFetchCollection.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

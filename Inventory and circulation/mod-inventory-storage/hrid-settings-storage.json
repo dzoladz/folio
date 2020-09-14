@@ -1,0 +1,136 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "HRID Settings Storage",
+      "version": "v1.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/hrid-settings-storage/hrid-settings": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Returns the user account info",
+              "content": {
+                "application/json": {
+                  "example": "Can not resolve examples/hridsettings.json",
+                  "schema": {
+                    "$ref": "#/components/schemas/HridSettings"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to get account -- unauthorized"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access Denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access Denied"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Return the HRID settings",
+          "operationId": "GET_hrid-settings-storage-hrid-settings"
+        },
+        "put": {
+          "responses": {
+            "204": {
+              "description": "Item successfully updated"
+            },
+            "401": {
+              "description": "Not authorized to perform requested action",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "unable to get account -- unauthorized"
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Access Denied",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Access Denied"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Modifies HRID settings",
+          "operationId": "PUT_hrid-settings-storage-hrid-settings",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "example": "Can not resolve examples/hridsettings.json",
+                "schema": {
+                  "$ref": "#/components/schemas/HridSettings"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "HridSettings": {
+          "includePath": "hridsettings.json",
+          "$ref": "#/components/schemas/Can not resolve hridsettings.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

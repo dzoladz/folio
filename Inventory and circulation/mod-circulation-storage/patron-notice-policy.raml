@@ -1,0 +1,122 @@
+#%RAML 1.0
+title: Patron Notice Policies
+version: v0.12
+protocols: [ HTTP, HTTPS ]
+baseUri: http://localhost:9130
+
+documentation:
+  - title: Patron Notice Policies API
+    content: <b>Storage for Patron Notice Policies</b>
+
+types:
+  patron-notice-policy: !include patron-notice-policy.json
+  patron-notice-policies: !include patron-notice-policies.json
+  errors: !include raml-util/schemas/errors.schema
+
+traits:
+  pageable: !include raml-util/traits/pageable.raml
+  searchable: !include raml-util/traits/searchable.raml
+
+/patron-notice-policy-storage:
+  /patron-notice-policies:
+    displayName: Patron Notice Policies
+    get:
+      is: [
+        pageable,
+        searchable: {description: "searchable using CQL", example: "name=\"undergrad*\""}
+      ]
+      description: "Get Patron Notice Policy list"
+      responses:
+        200:
+          description: "Return Patron Notice Policy list"
+          body:
+            application/json:
+              type: patron-notice-policies
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+    post:
+      description: "Create new Patron Notice Policy"
+      body:
+        application/json:
+          type: patron-notice-policy
+      responses:
+        201:
+          description: "Successfully created"
+          body:
+            application/json:
+              type: patron-notice-policy
+        422:
+          description: "Unprocessable entity"
+          body:
+            application/json:
+              type: errors
+        500:
+          description: "Internal server error"
+          body:
+            text/plain:
+              example: "Internal server error"
+    /{patronNoticePolicyId}:
+      get:
+        description: "Get Patron Notice Policy by id"
+        responses:
+          200:
+            description: "Return Patron Notice Policy"
+            body:
+              application/json:
+                type: patron-notice-policy
+          404:
+            description: "Not found"
+            body:
+              text/plain:
+                example: "Not found"
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error"
+      delete:
+        description: "Delete Patron Notice Policy by id"
+        responses:
+          204:
+            description: "Source record deleted"
+          400:
+            description: "Bad request, e.g. malformed request body, query parameter or constraint violation."
+            body:
+              text/plain:
+                example: "Cannot delete in use notice policy"
+          404:
+            description: "There is no source record for that patronNoticePolicyId"
+            body:
+              text/plain:
+                example: "Not found"
+          500:
+            description: "Internal server error, e.g. due to misconfiguration"
+            body:
+              text/plain:
+                example: "Internal server error"
+      put:
+        description: "Update Patron Notice Policy by id"
+        body:
+          application/json:
+            type: patron-notice-policy
+        responses:
+          204:
+            description: "Successfully updated"
+          404:
+            description: "Not found"
+            body:
+              text/plain:
+                example: "Not found"
+          422:
+            description: "Unprocessable entity"
+            body:
+              application/json:
+                type: errors
+          500:
+            description: "Internal server error"
+            body:
+              text/plain:
+                example: "Internal server error"

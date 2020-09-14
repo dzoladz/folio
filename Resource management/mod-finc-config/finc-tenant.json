@@ -1,0 +1,130 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Finc-Tenant",
+      "version": "v0.1"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:9130/"
+      },
+      {
+        "url": "https://localhost:9130/"
+      }
+    ],
+    "paths": {
+      "/_/finc/tenant": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "tenant id added successfully, returns a list of commands that have failed while initializing the tenant"
+            },
+            "204": {
+              "description": "tenant id exists, nothing will be added"
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Post a new tenant",
+          "operationId": "POST__-finc-tenant",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/tenantAttributes"
+                }
+              }
+            },
+            "required": true
+          }
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "Delete succeeded"
+            },
+            "400": {
+              "description": "Bad request"
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete a tenant",
+          "operationId": "DELETE__-finc-tenant"
+        },
+        "get": {
+          "responses": {
+            "200": {
+              "description": "true or false indicator",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Text....."
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Does tenant id already exist",
+          "operationId": "GET__-finc-tenant"
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "tenantAttributes": {
+          "includePath": "raml-util/schemas/moduleInfo.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/moduleInfo.schema"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/errors.schema"
+        },
+        "error.schema": {
+          "includePath": "raml-util/schemas/error.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/error.schema"
+        },
+        "parameters.schema": {
+          "includePath": "raml-util/schemas/parameters.schema",
+          "$ref": "#/components/schemas/Can not resolve ./raml-util/schemas/parameters.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

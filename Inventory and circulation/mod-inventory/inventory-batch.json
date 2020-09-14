@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Inventory API",
+      "version": "v0.5"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/inventory/instances/batch": {
+        "post": {
+          "responses": {
+            "201": {
+              "description": "Instances are created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/instancesBatchResponse"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal server error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/instancesBatchResponse"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Create collection of instances in one request",
+          "operationId": "POST_inventory-instances-batch",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/instances"
+                }
+              }
+            },
+            "required": true
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        },
+        "instances": {
+          "includePath": "instances.json",
+          "$ref": "#/components/schemas/Can not resolve instances.json"
+        },
+        "instancesBatchResponse": {
+          "includePath": "instances-batch-response.json",
+          "$ref": "#/components/schemas/Can not resolve instances-batch-response.json"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

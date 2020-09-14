@@ -1,0 +1,92 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Instance status reference API",
+      "version": "v1.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/instance-statuses": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of instances statuses",
+          "operationId": "GET_instance-statuses"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new instance status",
+          "operationId": "POST_instance-statuses"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All instance statuses deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all instance statuses",
+          "operationId": "DELETE_instance-statuses"
+        }
+      },
+      "/instance-statuses/{instanceStatusId}": {
+        "parameters": [
+          {
+            "name": "instanceStatusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "instanceStatus": {
+          "includePath": "instancestatus.json",
+          "$ref": "#/components/schemas/Can not resolve instancestatus.json"
+        },
+        "instanceStatuses": {
+          "includePath": "instancestatuses.json",
+          "$ref": "#/components/schemas/Can not resolve instancestatuses.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }

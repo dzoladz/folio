@@ -1,0 +1,92 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Material Types API",
+      "version": "v2.2"
+    },
+    "servers": [
+      {
+        "url": "http://localhost/"
+      },
+      {
+        "url": "https://localhost/"
+      }
+    ],
+    "paths": {
+      "/material-types": {
+        "get": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Return a list of material types",
+          "operationId": "GET_material-types"
+        },
+        "post": {
+          "responses": {
+            "default": {
+              "description": ""
+            }
+          },
+          "description": "Create a new material type",
+          "operationId": "POST_material-types"
+        },
+        "delete": {
+          "responses": {
+            "204": {
+              "description": "All material types deleted"
+            },
+            "500": {
+              "description": "Internal server error, e.g. due to misconfiguration",
+              "content": {
+                "text/plain": {
+                  "schema": {
+                    "example": "Internal server error, contact administrator"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Delete all material types",
+          "operationId": "DELETE_material-types"
+        }
+      },
+      "/material-types/{materialtypeId}": {
+        "parameters": [
+          {
+            "name": "materialtypeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "components": {
+      "schemas": {
+        "mtype": {
+          "includePath": "materialtype.json",
+          "$ref": "#/components/schemas/Can not resolve materialtype.json"
+        },
+        "mtypes": {
+          "includePath": "materialtypes.json",
+          "$ref": "#/components/schemas/Can not resolve materialtypes.json"
+        },
+        "errors": {
+          "includePath": "raml-util/schemas/errors.schema",
+          "$ref": "#/components/schemas/Can not resolve raml-util/schemas/errors.schema"
+        }
+      },
+      "responses": {},
+      "parameters": {},
+      "examples": {},
+      "requestBodies": {},
+      "headers": {},
+      "securitySchemes": {},
+      "links": {},
+      "callbacks": {}
+    }
+  }
